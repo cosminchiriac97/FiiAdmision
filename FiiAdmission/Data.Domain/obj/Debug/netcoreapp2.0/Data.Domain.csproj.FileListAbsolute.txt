@@ -1,0 +1,11 @@
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\bin\Debug\netcoreapp2.0\Data.Domain.deps.json
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\bin\Debug\netcoreapp2.0\Data.Domain.dll
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\bin\Debug\netcoreapp2.0\Data.Domain.pdb
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.xml
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.csprojResolveAssemblyReference.cache
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.csproj.CoreCompileInputs.cache
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.AssemblyInfoInputs.cache
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.AssemblyInfo.cs
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.dll
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.pdb

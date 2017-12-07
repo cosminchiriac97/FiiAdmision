@@ -13,15 +13,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Tests", "04-Tests", "{6D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prezentation", "Prezentation\Prezentation.csproj", "{2A1F1DD2-59D7-442A-8591-794E12C828D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Domain", "Data.Domain\Data.Domain.csproj", "{A39B749C-B51D-42F1-8864-54115CE29C64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Domain", "Data.Domain\Data.Domain.csproj", "{A39B749C-B51D-42F1-8864-54115CE29C64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Persistence", "Data.Persistence\Data.Persistence.csproj", "{478265AF-0FF2-4403-831C-1967AA83A9F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Persistence", "Data.Persistence\Data.Persistence.csproj", "{478265AF-0FF2-4403-831C-1967AA83A9F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{DC0871A8-F4F2-47E8-B22F-B8AE2468520E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{DC0871A8-F4F2-47E8-B22F-B8AE2468520E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{BCD0DE1C-72C1-441E-879D-6047760A6D1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{BCD0DE1C-72C1-441E-879D-6047760A6D1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{89ED0F9C-A892-4503-A696-8171F28500A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{89ED0F9C-A892-4503-A696-8171F28500A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05-Services", "05-Services", "{01E6A0DD-7D7C-486E-8492-F23C2477E91F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

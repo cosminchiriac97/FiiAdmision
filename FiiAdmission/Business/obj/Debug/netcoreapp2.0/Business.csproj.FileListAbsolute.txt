@@ -1,0 +1,13 @@
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.deps.json
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.dll
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.pdb
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.csprojResolveAssemblyReference.cache
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.csproj.CoreCompileInputs.cache
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.AssemblyInfoInputs.cache
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.AssemblyInfo.cs
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.dll
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.pdb
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Domain.dll
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Persistence.dll
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Domain.pdb
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Persistence.pdb
