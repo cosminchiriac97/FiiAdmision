@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Services.EmailService
+﻿namespace Services.EmailService
 {
     public class EmailContent
     {
