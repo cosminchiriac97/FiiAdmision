@@ -1,0 +1,9 @@
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Services\bin\Debug\netcoreapp2.0\Services.deps.json
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Services\bin\Debug\netcoreapp2.0\Services.dll
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Services\obj\Debug\netcoreapp2.0\Services.csprojResolveAssemblyReference.cache
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Services\obj\Debug\netcoreapp2.0\Services.csproj.CoreCompileInputs.cache
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Services\obj\Debug\netcoreapp2.0\Services.AssemblyInfoInputs.cache
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Services\obj\Debug\netcoreapp2.0\Services.AssemblyInfo.cs
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Services\bin\Debug\netcoreapp2.0\Services.pdb
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Services\obj\Debug\netcoreapp2.0\Services.dll
+D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Services\obj\Debug\netcoreapp2.0\Services.pdb

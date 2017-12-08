@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Data.Domain;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Prezentation.Auth;
-using Prezentation.Helpers;
 using Prezentation.ModelView;
+using Services.EmailService;
 
 namespace Prezentation.Controllers
 {
@@ -37,10 +32,12 @@ namespace Prezentation.Controllers
                 Formatting = Formatting.Indented
             };
         }
-        [Authorize]
+     
         [HttpGet]
         public async Task<IActionResult> Protected()
         {
+            EmailSender sender = new EmailSender();
+            await sender.SendEmail(new EmailContent{EmailAdress = "domnaru.alexandru@gmail.com",Subject = "Citeste Body-ul", TextBody = "Esti un gay"});
             return Ok("Protected area");
         }
         // POST api/auth/login
