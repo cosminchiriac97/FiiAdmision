@@ -11,3 +11,16 @@ D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcor
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Persistence.dll
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Domain.pdb
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Persistence.pdb
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.deps.json
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.dll
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.pdb
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Domain.dll
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Persistence.dll
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Domain.pdb
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Persistence.pdb
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.csprojResolveAssemblyReference.cache
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.csproj.CoreCompileInputs.cache
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.AssemblyInfoInputs.cache
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.AssemblyInfo.cs
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.dll
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.pdb

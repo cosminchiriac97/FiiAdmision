@@ -9,3 +9,14 @@ D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debu
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Domain.pdb
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.dll
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.pdb
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Persistence.deps.json
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Persistence.dll
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Persistence.pdb
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Domain.dll
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Domain.pdb
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.csprojResolveAssemblyReference.cache
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.AssemblyInfoInputs.cache
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.AssemblyInfo.cs
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.dll
+C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.pdb
