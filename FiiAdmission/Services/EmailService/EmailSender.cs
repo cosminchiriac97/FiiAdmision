@@ -5,7 +5,7 @@ using MimeKit;
 
 namespace Services.EmailService
 {
-    public  class EmailSender
+    public  class EmailSender : IEmailSender
     {
         public async Task SendEmail(EmailContent emailContent)
         {

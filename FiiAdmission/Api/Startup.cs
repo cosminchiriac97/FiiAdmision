@@ -10,10 +10,13 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Services.EmailService;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Api
@@ -59,7 +62,12 @@ namespace Api
                         ClockSkew = TimeSpan.Zero // remove delay of token when expire
                     };
                 });
-
+            /*
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
+            */
             services.AddIdentity<AppUser, IdentityRole>
                 (o =>
                 {
@@ -69,10 +77,13 @@ namespace Api
                     o.Password.RequireUppercase = false;
                     o.Password.RequireNonAlphanumeric = false;
                     o.Password.RequiredLength = 6;
+                    o.SignIn.RequireConfirmedEmail = true;
                 })
                 .AddEntityFrameworkStores<ApplicationUserDbContext>()
                 .AddDefaultTokenProviders();
-
+            
+            // Add application services.
+            services.AddTransient<IEmailSender, EmailSender>();
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
             services.AddAutoMapper();
 
@@ -92,7 +103,12 @@ namespace Api
             }
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
+            /*
+            var options = new RewriteOptions()
+                .AddRedirectToHttps();
 
+            app.UseRewriter(options);
+            */
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
