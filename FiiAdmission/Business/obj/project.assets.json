@@ -6478,11 +6478,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj": {
-              "projectPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj"
-            },
             "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj": {
               "projectPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj"
+            },
+            "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj": {
+              "projectPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj"
             }
           }
         }
@@ -6499,7 +6499,7 @@
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0",
+            "version": "[2.0.0, )",
             "autoReferenced": true
           }
         },

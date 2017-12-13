@@ -4957,16 +4957,16 @@
         "dependencies": {
           "Microsoft.Extensions.Identity.Stores": {
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.1, )"
           },
           "Microsoft.IdentityModel.Tokens": {
             "target": "Package",
-            "version": "5.1.5"
+            "version": "[5.1.5, )"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0",
+            "version": "[2.0.0, )",
             "autoReferenced": true
           }
         },

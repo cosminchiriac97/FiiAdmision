@@ -71,6 +71,7 @@ namespace Api.Controllers
                 new {userId = userIdentity.Id, code},
                 HttpContext.Request.Scheme
             );
+
           //  var callbackUrl = Url.EmailConfirmationLink(userIdentity.Id, code, Request.Scheme);    
             await _emailSender.SendEmail(new EmailContent{EmailAdress = userIdentity.Email, Subject = "ConfirmationEmail", TextBody = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>" });
 

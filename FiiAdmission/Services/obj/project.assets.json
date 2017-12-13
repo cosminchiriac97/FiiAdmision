@@ -4522,12 +4522,12 @@
         "dependencies": {
           "MailKit": {
             "target": "Package",
-            "version": "1.22.0"
+            "version": "[1.22.0, )"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0",
+            "version": "[2.0.0, )",
             "autoReferenced": true
           }
         },
