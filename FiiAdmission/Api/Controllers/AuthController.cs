@@ -32,6 +32,7 @@ namespace Api.Controllers
                 Formatting = Formatting.Indented
             };
         }
+
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> Protected()
@@ -40,6 +41,7 @@ namespace Api.Controllers
             await sender.SendEmail(new EmailContent{EmailAdress = "domnaru.alexandru@gmail.com",Subject = "Citeste Body-ul", TextBody = "Esti un gay"});
             return Ok("Protected area");
         }
+
         // POST api/auth/login
         [HttpPost("login")]
         public async Task<object> Post([FromBody] CredentialsViewModel credentials)

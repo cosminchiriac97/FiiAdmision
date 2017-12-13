@@ -20,3 +20,14 @@ C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistenc
 C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.AssemblyInfo.cs
 C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.dll
 C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.pdb
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Persistence.deps.json
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Persistence.dll
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Persistence.pdb
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Domain.dll
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Domain.pdb
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.csprojResolveAssemblyReference.cache
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.AssemblyInfoInputs.cache
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.AssemblyInfo.cs
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.dll
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.pdb
