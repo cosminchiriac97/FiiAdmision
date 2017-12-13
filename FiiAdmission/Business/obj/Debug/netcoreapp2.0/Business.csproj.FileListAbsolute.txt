@@ -24,3 +24,16 @@ C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\obj\De
 C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.AssemblyInfo.cs
 C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.dll
 C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.pdb
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.deps.json
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.dll
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.pdb
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Domain.dll
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Persistence.dll
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Domain.pdb
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Persistence.pdb
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.csprojResolveAssemblyReference.cache
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.csproj.CoreCompileInputs.cache
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.AssemblyInfoInputs.cache
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.AssemblyInfo.cs
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.dll
+C:\Users\Alexander\Documents\GitHub\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.pdb
