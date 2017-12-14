@@ -1,22 +1,3 @@
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.deps.json
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.json
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.dev.json
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.dll
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Business.dll
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Data.Domain.dll
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Data.Persistence.dll
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Services.dll
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Business.pdb
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Data.Domain.pdb
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Data.Persistence.pdb
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Services.pdb
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.csprojResolveAssemblyReference.cache
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.csproj.CoreCompileInputs.cache
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.AssemblyInfoInputs.cache
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.AssemblyInfo.cs
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.pdb
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.dll
-D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.pdb
 C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.deps.json
 C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.json
 C:\Users\giosa\Documents\GitHub\dotNet\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.dev.json
