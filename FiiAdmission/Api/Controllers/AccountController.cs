@@ -8,6 +8,7 @@ using Api.ModelView;
 using AutoMapper;
 using Business.AccountsRepository;
 using Data.Domain;
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -99,6 +100,7 @@ namespace Api.Controllers
             var callbackUrl = Url.Action(
                 "ResetPassword",
                 "Account",
+                new { userId = userIdentity.Id, code },
                 HttpContext.Request.Scheme
             );
 
@@ -106,7 +108,7 @@ namespace Api.Controllers
             {
                 EmailAdress = userIdentity.Email,
                 Subject = "PasswordReset",
-                TextBody = "Go to this link " + callbackUrl + " and reset your password using this code: " + code
+                TextBody = "Go to this link to reset your password: " + callbackUrl
             });
 
             return Ok("Password reset link sent");
@@ -127,8 +129,10 @@ namespace Api.Controllers
                 return BadRequest();
             }
 
+            
             //simulate client
-            _client.BaseAddress = new Uri("http://localhost:64115");
+            var displayUrl = HttpContext.Request.Scheme + "://" +  HttpContext.Request.GetUri().Authority;
+            _client.BaseAddress = new Uri(displayUrl);
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
