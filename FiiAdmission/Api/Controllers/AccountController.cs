@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Api.Helpers;
 using Api.ModelView;
 using AutoMapper;
 using Business.AccountsRepository;
 using Data.Domain;
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Services.EmailService;
 
 
@@ -16,6 +21,7 @@ namespace Api.Controllers
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
+        private readonly HttpClient _client = new HttpClient();
         private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
         private readonly IJobSeekerRepository _jobSeekerRepository;
@@ -72,7 +78,6 @@ namespace Api.Controllers
                 new {userId = userIdentity.Id, code},
                 HttpContext.Request.Scheme
             );
-
             await _emailSender.SendEmail(new EmailContent{EmailAdress = userIdentity.Email, Subject = "ConfirmationEmail", TextBody = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>" });
 
             await _jobSeekerRepository.AddAsync(new JobSeeker {Id = new Guid(),IdentityId = userIdentity.Id});
@@ -95,6 +100,7 @@ namespace Api.Controllers
             var callbackUrl = Url.Action(
                 "ResetPassword",
                 "Account",
+                new { userId = userIdentity.Id, code },
                 HttpContext.Request.Scheme
             );
 
@@ -102,15 +108,55 @@ namespace Api.Controllers
             {
                 EmailAdress = userIdentity.Email,
                 Subject = "PasswordReset",
-                TextBody = "Go to this link " + callbackUrl + " and reset your password using this code: " + code
+                TextBody = "Go to this link to reset your password: " + callbackUrl
             });
 
             return Ok("Password reset link sent");
         }
 
         [AllowAnonymous]
-        [HttpPut("ResetPassword")]
-        public async Task<IActionResult> ResetPassword([FromBody]ResetPasswordViewModel model)
+        [HttpGet("ResetPassword")]
+        public async Task<IActionResult> ResetPassword(string userId = "", string code = "")
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
+            {
+                ModelState.AddModelError("", "User Id and Code are required");
+                return BadRequest(ModelState);
+            }
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            
+            //simulate client
+            var displayUrl = HttpContext.Request.Scheme + "://" +  HttpContext.Request.GetUri().Authority;
+            _client.BaseAddress = new Uri(displayUrl);
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            ResetPasswordViewModel model = new ResetPasswordViewModel
+            {
+                Email = user.Email,
+                Password = "asdfghhhh",
+                ConfirmPassword = "asdfghhhh",
+                Code = code
+            };
+            string json = await Task.Run(() => JsonConvert.SerializeObject(model));
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _client.PutAsync(
+                $"api/account/reset", content);
+            if (response.IsSuccessStatusCode)
+            {
+                return Ok("ok");
+            }
+            return BadRequest("Something went wrong");
+        }
+
+        [AllowAnonymous]
+        [HttpPut("Reset")]
+        public async Task<IActionResult> PasswordReset([FromBody]ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
