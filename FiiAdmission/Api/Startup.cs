@@ -15,6 +15,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Services.EmailService;
+using Services.StorageAzure;
+using Services.StorageAzure.Implementation;
+using Services.StorageAzure.Interfaces;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Api
@@ -79,7 +82,17 @@ namespace Api
                 })
                 .AddEntityFrameworkStores<ApplicationUserDbContext>()
                 .AddDefaultTokenProviders();
+
+            // Add azure blob storage services
             
+            services.AddScoped<IAzureBlobStorage>(factory =>
+            {
+                return new AzureBlobStorage(new AzureBlobSetings(
+                    storageAccount: Configuration["Blob_StorageAccount"],
+                    storageKey: Configuration["Blob_StorageKey"],
+                    containerName: Configuration["Blob_ContainerName"]));
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());

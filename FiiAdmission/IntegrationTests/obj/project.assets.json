@@ -5703,11 +5703,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\IntegrationTests\\IntegrationTests.csproj",
+      "projectUniqueName": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\IntegrationTests\\IntegrationTests.csproj",
       "projectName": "IntegrationTests",
-      "projectPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\IntegrationTests\\IntegrationTests.csproj",
+      "projectPath": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\IntegrationTests\\IntegrationTests.csproj",
       "packagesPath": "C:\\Users\\cosmin\\.nuget\\packages\\",
-      "outputPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\IntegrationTests\\obj\\",
+      "outputPath": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\IntegrationTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

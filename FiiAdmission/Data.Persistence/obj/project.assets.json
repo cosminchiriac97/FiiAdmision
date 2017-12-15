@@ -6436,11 +6436,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj",
+      "projectUniqueName": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj",
       "projectName": "Data.Persistence",
-      "projectPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj",
+      "projectPath": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj",
       "packagesPath": "C:\\Users\\cosmin\\.nuget\\packages\\",
-      "outputPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\obj\\",
+      "outputPath": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6459,8 +6459,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj": {
-              "projectPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj"
+            "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj": {
+              "projectPath": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj"
             }
           }
         }

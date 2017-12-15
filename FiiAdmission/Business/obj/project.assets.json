@@ -6455,11 +6455,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj",
+      "projectUniqueName": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj",
       "projectName": "Business",
-      "projectPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj",
+      "projectPath": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj",
       "packagesPath": "C:\\Users\\cosmin\\.nuget\\packages\\",
-      "outputPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Business\\obj\\",
+      "outputPath": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Business\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6478,11 +6478,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj": {
-              "projectPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj"
+            "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj": {
+              "projectPath": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj"
             },
-            "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj": {
-              "projectPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj"
+            "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj": {
+              "projectPath": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj"
             }
           }
         }

@@ -4921,11 +4921,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj",
+      "projectUniqueName": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj",
       "projectName": "Data.Domain",
-      "projectPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj",
+      "projectPath": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj",
       "packagesPath": "C:\\Users\\cosmin\\.nuget\\packages\\",
-      "outputPath": "D:\\Facultate Chiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\obj\\",
+      "outputPath": "D:\\FacultateChiriac\\An3\\NET\\FiiAdmission\\FiiAdmission\\Data.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

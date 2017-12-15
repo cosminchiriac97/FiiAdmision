@@ -72,12 +72,7 @@ namespace Api.Controllers
                 new {userId = userIdentity.Id, code},
                 HttpContext.Request.Scheme
             );
-<<<<<<< HEAD
 
-          //  var callbackUrl = Url.EmailConfirmationLink(userIdentity.Id, code, Request.Scheme);    
-=======
-            
->>>>>>> de47878b96e83233a601b4750434591ef57fce96
             await _emailSender.SendEmail(new EmailContent{EmailAdress = userIdentity.Email, Subject = "ConfirmationEmail", TextBody = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>" });
 
             await _jobSeekerRepository.AddAsync(new JobSeeker {Id = new Guid(),IdentityId = userIdentity.Id});
