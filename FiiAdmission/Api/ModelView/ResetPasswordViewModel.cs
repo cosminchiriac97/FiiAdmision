@@ -1,5 +1,9 @@
-﻿namespace Api.ModelView
+﻿using Api.ModelView.Validations;
+using FluentValidation.Attributes;
+
+namespace Api.ModelView
 {
+    [Validator(typeof(ResetPasswordValidator))]
     public class ResetPasswordViewModel 
     {
         public string Email { get; set; }
