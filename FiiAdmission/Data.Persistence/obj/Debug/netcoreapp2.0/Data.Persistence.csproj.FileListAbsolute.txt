@@ -31,14 +31,3 @@ D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debu
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.AssemblyInfo.cs
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.dll
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.pdb
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Persistence.deps.json
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Persistence.dll
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Persistence.pdb
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Domain.dll
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\bin\Debug\netcoreapp2.0\Data.Domain.pdb
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.csprojResolveAssemblyReference.cache
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.csproj.CoreCompileInputs.cache
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.AssemblyInfoInputs.cache
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.AssemblyInfo.cs
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.dll
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Persistence\obj\Debug\netcoreapp2.0\Data.Persistence.pdb

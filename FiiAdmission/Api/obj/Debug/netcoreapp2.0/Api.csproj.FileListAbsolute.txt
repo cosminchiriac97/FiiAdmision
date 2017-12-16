@@ -55,22 +55,3 @@ D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Services.pdb
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.dll
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.pdb
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.deps.json
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.json
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.dev.json
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.dll
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Api.pdb
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Business.dll
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Data.Domain.dll
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Data.Persistence.dll
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Services.dll
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Business.pdb
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Data.Domain.pdb
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Data.Persistence.pdb
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\bin\Debug\netcoreapp2.0\Services.pdb
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.csprojResolveAssemblyReference.cache
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.csproj.CoreCompileInputs.cache
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.AssemblyInfoInputs.cache
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.AssemblyInfo.cs
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.dll
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Api\obj\Debug\netcoreapp2.0\Api.pdb

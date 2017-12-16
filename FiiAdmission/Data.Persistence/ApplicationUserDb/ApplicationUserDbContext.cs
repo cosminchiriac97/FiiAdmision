@@ -6,7 +6,7 @@ namespace Data.Persistence.ApplicationUserDb
 {
     public class ApplicationUserDbContext :  IdentityDbContext, IApplicationUserDbContext
     {
-        public ApplicationUserDbContext(DbContextOptions options) : base(options)
+        public ApplicationUserDbContext(DbContextOptions<ApplicationUserDbContext> options) : base(options)
         {
         }
 

@@ -9,4 +9,14 @@
     <ProjectReference Include="..\Data.Persistence\Data.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AnnouncementsRepository\" />
+    <Folder Include="FormRepository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="1.22.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.7.0" />
+  </ItemGroup>
+
 </Project>

@@ -25,12 +25,3 @@ D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\net
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.AssemblyInfo.cs
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.dll
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.pdb
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\bin\Debug\netcoreapp2.0\Data.Domain.deps.json
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\bin\Debug\netcoreapp2.0\Data.Domain.dll
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\bin\Debug\netcoreapp2.0\Data.Domain.pdb
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.csprojResolveAssemblyReference.cache
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.csproj.CoreCompileInputs.cache
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.AssemblyInfoInputs.cache
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.AssemblyInfo.cs
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.dll
-D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Data.Domain\obj\Debug\netcoreapp2.0\Data.Domain.pdb

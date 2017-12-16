@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 FiiAdmission/.vs/config/applicationhost.config
+*.cache
+*.cache

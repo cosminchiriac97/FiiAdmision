@@ -7,13 +7,13 @@ using Api.Helpers;
 using Api.ModelView;
 using AutoMapper;
 using Business.AccountsRepository;
+using Business.EmailServices;
 using Data.Domain;
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Services.EmailService;
 
 
 namespace Api.Controllers
@@ -78,7 +78,8 @@ namespace Api.Controllers
                 new {userId = userIdentity.Id, code},
                 HttpContext.Request.Scheme
             );
-            await _emailSender.SendEmail(new EmailContent{EmailAdress = userIdentity.Email, Subject = "ConfirmationEmail", TextBody = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>" });
+
+            await _emailSender.SendEmail(new Email{EmailAdress = userIdentity.Email, Subject = "ConfirmationEmail", TextBody = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>" });
 
             await _jobSeekerRepository.AddAsync(new JobSeeker {Id = new Guid(),IdentityId = userIdentity.Id});
 
@@ -104,7 +105,7 @@ namespace Api.Controllers
                 HttpContext.Request.Scheme
             );
 
-            await _emailSender.SendEmail(new EmailContent
+            await _emailSender.SendEmail(new Email
             {
                 EmailAdress = userIdentity.Email,
                 Subject = "PasswordReset",

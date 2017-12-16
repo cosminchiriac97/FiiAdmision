@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using Services.EmailService;
 using Api.ModelView;
 using Api.Auth;
+using Business.EmailServices;
 
 namespace Api.Controllers
 {
@@ -38,7 +38,7 @@ namespace Api.Controllers
         public async Task<IActionResult> Protected()
         {
             EmailSender sender = new EmailSender();
-            await sender.SendEmail(new EmailContent{EmailAdress = "domnaru.alexandru@gmail.com",Subject = "Citeste Body-ul", TextBody = "Esti un gay"});
+            await sender.SendEmail(new Email{EmailAdress = "domnaru.alexandru@gmail.com",Subject = "Citeste Body-ul", TextBody = "Esti un gay"});
             return Ok("Protected area");
         }
 

@@ -3,6 +3,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using AutoMapper;
 using Business.AccountsRepository;
+using Business.EmailServices;
+using Business.StorageAzureServices.Implementation;
+using Business.StorageAzureServices.Interfaces;
 using Data.Domain;
 using Data.Persistence.ApplicationUserDb;
 using FluentValidation.AspNetCore;
@@ -14,10 +17,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Services.EmailService;
-using Services.StorageAzure;
-using Services.StorageAzure.Implementation;
-using Services.StorageAzure.Interfaces;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Api
@@ -36,6 +35,10 @@ namespace Api
         {
             services.AddTransient<IApplicationUserDbContext, ApplicationUserDbContext>();
             services.AddTransient<IJobSeekerRepository, JobSeekerRepository>();
+            services.AddTransient<IContentDbContext, ContentDbContext>();
+
+            services.AddDbContext<ContentDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("ContentDbConnection")));
 
             services.AddDbContext<ApplicationUserDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AppUsersConnection")));
