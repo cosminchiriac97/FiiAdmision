@@ -2,7 +2,7 @@
 
 namespace Api.ModelView.Validations
 {
-    public class ResetPasswordValidator : AbstractValidator<ResetPasswordViewModel>
+    public class ResetPasswordValidator : AbstractValidator<ResetPasswordModel>
     {
         public ResetPasswordValidator()
         {
