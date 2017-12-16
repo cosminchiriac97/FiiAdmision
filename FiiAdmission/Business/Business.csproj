@@ -10,8 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AnnouncementsRepository\" />
-    <Folder Include="FormRepository\" />
+    <Folder Include="FormRepo\" />
   </ItemGroup>
 
   <ItemGroup>
