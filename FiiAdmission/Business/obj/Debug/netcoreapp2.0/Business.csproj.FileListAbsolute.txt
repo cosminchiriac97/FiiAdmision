@@ -37,3 +37,16 @@ D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcor
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.AssemblyInfo.cs
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.dll
 D:\Facultate Chiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.pdb
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.deps.json
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.dll
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Business.pdb
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Domain.dll
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Persistence.dll
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Domain.pdb
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\bin\Debug\netcoreapp2.0\Data.Persistence.pdb
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.csprojResolveAssemblyReference.cache
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.csproj.CoreCompileInputs.cache
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.AssemblyInfoInputs.cache
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.AssemblyInfo.cs
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.dll
+D:\FacultateChiriac\An3\NET\FiiAdmission\FiiAdmission\Business\obj\Debug\netcoreapp2.0\Business.pdb

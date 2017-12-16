@@ -1,13 +1,14 @@
 ﻿using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Data.Domain;
 using SmtpClient = System.Net.Mail.SmtpClient;
 
-namespace Services.EmailService
+namespace Business.EmailServices
 {
     public  class EmailSender : IEmailSender
     {
-        public async Task SendEmail(EmailContent emailContent)
+        public async Task SendEmail(Email emailContent)
         {
             using (var emailMessage = new MailMessage {From = new MailAddress("noreply.fiiadmission@gmail.com")})
             {
