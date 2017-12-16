@@ -1,39 +1,37 @@
-﻿using MimeKit;
-using System.Net;
+﻿using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
-using MailKit.Net.Smtp;
-using Data.Domain;
+using SmtpClient = System.Net.Mail.SmtpClient;
 
-namespace Business.EmailServices
+namespace Services.EmailService
 {
     public  class EmailSender : IEmailSender
     {
-        public async Task SendEmail(Email emailContent)
+        public async Task SendEmail(EmailContent emailContent)
         {
-            var emailMessage = new MimeMessage();
-
-            emailMessage.From.Add(new MailboxAddress("noreply.fiiadmission@gmail.com"));
-
-            emailMessage.To.Add(new MailboxAddress(emailContent.EmailAdress));
-
-            emailMessage.Subject = emailContent.Subject;
-
-            var builder = new BodyBuilder { TextBody = emailContent.TextBody };
-
-
-            emailMessage.Body = builder.ToMessageBody();
-            using (var client = new SmtpClient())
+            using (var emailMessage = new MailMessage {From = new MailAddress("noreply.fiiadmission@gmail.com")})
             {
-                var credentials = new NetworkCredential
+                emailMessage.To.Add(new MailAddress(emailContent.EmailAdress));
+
+                emailMessage.Subject = emailContent.Subject;
+                emailMessage.Body = emailContent.TextBody;
+                emailMessage.IsBodyHtml = true;
+                using (var client = new SmtpClient())
                 {
-                    UserName = "noreply.fiiadmission@gmail.com",
-                    Password = "2d0380fvo"
-                };
-                await client.ConnectAsync("smtp.gmail.com", 587).ConfigureAwait(false);
-                await client.AuthenticateAsync(credentials);
-                await client.SendAsync(emailMessage).ConfigureAwait(false);
-                await client.DisconnectAsync(true).ConfigureAwait(false);
-            }
+                    var credentials = new NetworkCredential
+                    {
+                        UserName = "noreply.fiiadmission@gmail.com",
+                        Password = "2d0380fvo"
+                    };
+                    client.Host = "smtp.gmail.com";
+                    client.Port = 587;
+                    client.EnableSsl = true;
+                    client.UseDefaultCredentials = false;
+                    client.Credentials = credentials;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    await client.SendMailAsync(emailMessage);
+                }
+}
         }
     }
 }
