@@ -7,6 +7,7 @@ namespace Data.Persistence.ContentDb
     {
         public ContentDbContext(DbContextOptions<ContentDbContext> options) : base((DbContextOptions) options)
         {
+
         }
 
         public DbSet<Announcement> Announcements { get; set;}

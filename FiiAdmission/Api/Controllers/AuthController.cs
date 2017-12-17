@@ -33,7 +33,7 @@ namespace Api.Controllers
             };
         }
 
-        [Authorize]
+        [Authorize(Policy = "AdminOnly")]
         [HttpGet]
         public async Task<IActionResult> Protected()
         {
@@ -43,6 +43,7 @@ namespace Api.Controllers
         }
 
         // POST api/auth/login
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<object> Post([FromBody] CredentialsViewModel credentials)
         {

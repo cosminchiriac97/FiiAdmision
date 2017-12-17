@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Api.Helpers;
@@ -34,6 +35,7 @@ namespace Api.Controllers
             _emailSender = emailSender;
         }
 
+        [AllowAnonymous]
         [HttpGet("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string userId = "", string code = "")
         {
@@ -45,17 +47,17 @@ namespace Api.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return BadRequest();
+                return BadRequest("no such user");
             }
 
             IdentityResult result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
-                return Ok();
+                result = await _userManager.AddClaimAsync(user, new Claim("Role1", "NotAdmin"));
             }        
             return BadRequest(result);
         }
-       
+
         [AllowAnonymous]
         [HttpPost("create_account")]
         public async Task<IActionResult> AccountCreation([FromBody]RegistrationModel model)
@@ -75,17 +77,17 @@ namespace Api.Controllers
             var callbackUrl = Url.Action(
                 "ConfirmEmail",
                 "Account",
-                new {userId = userIdentity.Id, code},
+                new { userId = userIdentity.Id, code },
                 HttpContext.Request.Scheme
             );
 
-            await _emailSender.SendEmail(new Email{EmailAdress = userIdentity.Email, Subject = "ConfirmationEmail", TextBody = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>" });
+            await _emailSender.SendEmail(new Email { EmailAdress = userIdentity.Email, Subject = "ConfirmationEmail", TextBody = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>" });
 
-            await _jobSeekerRepository.AddAsync(new JobSeeker {Id = new Guid(),IdentityId = userIdentity.Id});
+            await _jobSeekerRepository.AddAsync(new JobSeeker { Id = new Guid(), IdentityId = userIdentity.Id });
 
-            return  Ok("Account created");
+            return Ok("Account created");
         }
-  
+
         [AllowAnonymous]
         [HttpPost("reset_password")]
         public async Task<IActionResult> PasswordRecovery([FromBody]string email)
@@ -137,7 +139,7 @@ namespace Api.Controllers
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            ResetPasswordViewModel model = new ResetPasswordViewModel
+            ResetPasswordModel model = new ResetPasswordModel
             {
                 Email = user.Email,
                 Password = "asdfghhhh",
@@ -157,7 +159,7 @@ namespace Api.Controllers
 
         [AllowAnonymous]
         [HttpPut("Reset")]
-        public async Task<IActionResult> PasswordReset([FromBody]ResetPasswordViewModel model)
+        public async Task<IActionResult> PasswordReset([FromBody]ResetPasswordModel model)
         {
             if (!ModelState.IsValid)
             {
