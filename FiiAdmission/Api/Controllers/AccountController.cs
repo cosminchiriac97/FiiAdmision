@@ -137,7 +137,7 @@ namespace Api.Controllers
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            ResetPasswordViewModel model = new ResetPasswordViewModel
+            ResetPasswordModel model = new ResetPasswordModel
             {
                 Email = user.Email,
                 Password = "asdfghhhh",
@@ -157,7 +157,7 @@ namespace Api.Controllers
 
         [AllowAnonymous]
         [HttpPut("Reset")]
-        public async Task<IActionResult> PasswordReset([FromBody]ResetPasswordViewModel model)
+        public async Task<IActionResult> PasswordReset([FromBody]ResetPasswordModel model)
         {
             if (!ModelState.IsValid)
             {
