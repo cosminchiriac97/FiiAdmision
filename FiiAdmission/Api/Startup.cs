@@ -11,12 +11,9 @@ using Data.Persistence.ApplicationUserDb;
 using Data.Persistence.ContentDb;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -100,15 +97,12 @@ namespace Api
                     containerName: Configuration["Blob_ContainerName"]));
             });
 
-            // Add cors 
-            services.AddCors(options =>
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
-                options.AddPolicy("AllowSpecificOrigin",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin();
-                    });
-            });
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
@@ -119,13 +113,16 @@ namespace Api
             {
                 c.SwaggerDoc("v1", new Info { Title = "FIIAdmission API", Version = "v1" });
             });
-            services.AddMvc();
-            
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminOnly", policy => policy.RequireClaim("Role"));
                 options.AddPolicy("NotAdmin", policy => policy.RequireClaim("Role1"));
             });
+
+            services.AddMvc();
+            
+    
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -136,7 +133,7 @@ namespace Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("AllowSpecificOrigin");
+            app.UseCors("MyPolicy");
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
             /*
