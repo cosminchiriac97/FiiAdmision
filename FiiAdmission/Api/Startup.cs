@@ -104,9 +104,11 @@ namespace Api
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("https://fii-admission.firebaseapp.com"));
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin();
+                    });
             });
-
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
