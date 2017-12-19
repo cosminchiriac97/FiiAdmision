@@ -13,7 +13,6 @@ namespace Business.EmailServices
             using (var emailMessage = new MailMessage {From = new MailAddress("noreply.fiiadmission@gmail.com")})
             {
                 emailMessage.To.Add(new MailAddress(emailContent.EmailAdress));
-
                 emailMessage.Subject = emailContent.Subject;
                 emailMessage.Body = emailContent.TextBody;
                 emailMessage.IsBodyHtml = true;

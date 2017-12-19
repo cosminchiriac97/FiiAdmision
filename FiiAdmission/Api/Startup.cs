@@ -100,6 +100,13 @@ namespace Api
                     containerName: Configuration["Blob_ContainerName"]));
             });
 
+            // Add cors 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("https://fii-admission.firebaseapp.com"));
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
@@ -126,6 +133,8 @@ namespace Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowSpecificOrigin");
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
             /*
