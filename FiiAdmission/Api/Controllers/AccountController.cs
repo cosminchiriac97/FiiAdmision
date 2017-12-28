@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Api.Helpers;
 using Api.ModelView;
 using AutoMapper;
@@ -90,14 +91,14 @@ namespace Api.Controllers
 
         [AllowAnonymous]
         [HttpPost("reset_password")]
-        public async Task<IActionResult> PasswordRecovery([FromBody]string email)
+        public async Task<IActionResult> PasswordRecovery([FromBody]EmailModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var userIdentity = await _userManager.FindByEmailAsync(email);
+            var userIdentity = await _userManager.FindByEmailAsync(model.Email);
 
             var code = await _userManager.GeneratePasswordResetTokenAsync(userIdentity);
             var callbackUrl = Url.Action(
@@ -177,6 +178,27 @@ namespace Api.Controllers
                 return Ok("Password succesfuly reset.");
             }
             return BadRequest(result);
+        }
+
+        [HttpGet("{encodedEmail}", Name = "GetUser")]
+        [NoCache]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        public async Task<IActionResult> GetUserInfo(string encodedEmail)
+        {
+            if (string.IsNullOrWhiteSpace(encodedEmail))
+            {
+                return BadRequest(new ApiResponse { Status = false });
+            }
+
+            string email = HttpUtility.UrlDecode(encodedEmail);
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return NoContent();
+            }
+            return Ok();
         }
     }
 }
