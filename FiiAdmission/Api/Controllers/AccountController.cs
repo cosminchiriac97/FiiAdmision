@@ -175,24 +175,22 @@ namespace Api.Controllers
             var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return Ok("Password succesfuly reset.");
+                return Ok("Password succesfully reset.");
             }
             return BadRequest(result);
         }
 
-        [HttpGet("{encodedEmail}", Name = "GetUser")]
+        [HttpGet("{email}", Name = "GetUser")]
         [NoCache]
         [ProducesResponseType(200)]
         [ProducesResponseType(204)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<IActionResult> GetUserInfo(string encodedEmail)
+        public async Task<IActionResult> GetUserInfo(string email)
         {
-            if (string.IsNullOrWhiteSpace(encodedEmail))
+            if (string.IsNullOrWhiteSpace(email))
             {
                 return BadRequest(new ApiResponse { Status = false });
             }
-
-            string email = HttpUtility.UrlDecode(encodedEmail);
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {

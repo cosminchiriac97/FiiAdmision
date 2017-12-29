@@ -8,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Api.ModelView;
 using Api.Auth;
-using Business.EmailServices;
 
 namespace Api.Controllers
 {
@@ -35,10 +34,8 @@ namespace Api.Controllers
 
         [Authorize(Policy = "AdminOnly")]
         [HttpGet]
-        public async Task<IActionResult> Protected()
-        {
-            EmailSender sender = new EmailSender();
-            await sender.SendEmail(new Email{EmailAdress = "domnaru.alexandru@gmail.com",Subject = "Citeste Body-ul", TextBody = "Esti un gay"});
+        public IActionResult Protected()
+        {    
             return Ok("Protected area");
         }
 
@@ -63,7 +60,8 @@ namespace Api.Controllers
                 {
                     Email = appUser.Email,
                     FirstName = appUser.FirstName,
-                    LastName = appUser.LastName
+                    LastName = appUser.LastName,
+                    EmailIsConfirmed = appUser.EmailConfirmed
                 };
                 return Ok(new ApiResponseObject<SimpleUserModel>{Object = userModel, Status = true});
             }
