@@ -29,7 +29,7 @@ namespace Api.Controllers
         private readonly IJobSeekerRepository _jobSeekerRepository;
         private readonly IEmailSender _emailSender;
         public AccountController(UserManager<AppUser> userManager, IMapper mapper, IJobSeekerRepository jobSeekerRepository, IEmailSender emailSender)
-        {
+        { 
             _userManager = userManager;
             _mapper = mapper;
             _jobSeekerRepository = jobSeekerRepository;
