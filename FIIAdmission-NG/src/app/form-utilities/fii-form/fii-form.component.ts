@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
-import { FiiFormField } from '../fii-form-field';
+import { FiiFormField } from '../../_models/fii-form-field';
 
 @Component({
   selector: 'app-fii-form',

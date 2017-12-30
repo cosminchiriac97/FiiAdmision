@@ -1,3 +1,26 @@
-<p>
-  dashboard works!
-</p>
+<dashboard-sidenav>
+  <div class="dash-container">
+    <div id="news">
+      <div class="col-md-8 col-md-offset-2" id="welcome-panel">
+        <h2 class="col-md-4 col-md-offset-5" style="margin-bottom:20px;">News!</h2>
+        <app-news class="col-md-4 col-md-offset-1"></app-news>
+      </div>
+    </div>
+  </div>
+  <div class="dash-container">
+    <div id="notifications">
+      <div class="col-md-8 col-md-offset-2" id="welcome-panel">
+        <h2 class="col-md-4 col-md-offset-5" style="margin-bottom:20px;">Notifications</h2>
+        <app-notifications class="col-md-10 col-md-offset-1">
+        </app-notifications>
+      </div>
+    </div>
+  </div>
+  <div class="dash-container" id="form">
+    <div class="col-md-8 col-md-offset-2" id="welcome-panel">
+      <h2 class="col-md-4 col-md-offset-5" style="margin-bottom:20px;">Application Form</h2>
+      <app-fii-form class="col-md-8 col-md-offset-2" [fields]="fields">
+      </app-fii-form>
+    </div>
+  </div>
+</dashboard-sidenav>

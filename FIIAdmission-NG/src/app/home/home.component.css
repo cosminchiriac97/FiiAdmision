@@ -1,77 +1,123 @@
-/*
-* multi-line comment
-*/
-p{ line-height: 1em; }
-h1, h2, h3, h4{
-    color: orange;
-	font-weight: normal;
-	line-height: 1.1em;
-	margin: 0 0 .5em 0;
+button {
+    /*color: rgba(62, 156, 242, 0.5);*/
+    color: #2f5e85;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 20px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
-h1{ font-size: 1.7em; }
-h2{ font-size: 1.5em; }
-a{
-	color: black;
-	text-decoration: none;
+button:hover{
+	opacity: 0.6;
 }
-	a:hover,
-	a:active{ text-decoration: underline; }
-
-/* you can structure your code's white space so that it is as readable for when you come back in the future or for other people to read and edit quickly */
-
-body{
-    font-family: arial; font-size: 80%; line-height: 1.2em; width: 100%; margin: 0; background: #eee;
+.navbar-buttons-hover:hover{
+	text-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 1em white;
 }
-/* you can put your code all in one line like above */
-#page{ margin: 20px; }
-
-/* or on different lines like below */
-#logo{
-	width: 35%;
-	margin-top: 5px;
-	font-family: georgia;
-	display: inline-block;
-}
-/* but try and be as concise as possible */
-#nav{
-	width: 60%;
-	display: inline-block;
-	text-align: right;
+.right {
 	float: right;
 }
-	#nav ul{}
-		#nav ul li{
-			display: inline-block;
-			height: 62px;
-		}
-			#nav ul li a{
-				padding: 20px;
-				background: orange;
-				color: white;
-			}
-			#nav ul li a:hover{
-				background-color: #ffb424;
-				box-shadow: 0px 1px 1px #666;
-			}
-			#nav ul li a:active{ background-color: #ff8f00; }
+#welcome-panel{
+	background: rgba(39,39,39,0.7);
+}
+header {
+	min-height:100vh;
+	background: url('https://i.pinimg.com/originals/5b/bc/11/5bbc11d7852485126c992135005efd9d.png') no-repeat center center;
+	background-size: cover;
+	background-color: #EDEFF3;
+	padding-top: 20%;
+	/*background: rgba(62, 156, 242, 0.1);*/
+}
+h1{
+	color: white;
+	text-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 0.2em darkblue;
+}
+h2 {
+	color: white;
+}
 
-#content{
-	margin: 30px 0;
-	background: white;
-	padding: 20px;
-	clear: both;
+.beneficii {
+	padding-top: 75px;
+	background-color: #EDEFF3;
+	min-height: 640px;
 }
-#footer{
-	border-bottom: 1px #ccc solid;
-	margin-bottom: 10px;
+
+.beneficii ul {
+	color: #20547E;
+	line-height: 1.7;
+	text-shadow: unset;
+	font-size: 2em;
 }
-	#footer p{
-		text-align: right;
-		text-transform: uppercase;
-		font-size: 80%;
-		color: grey;
+
+.impresii {
+	padding-top: 75px;
+	background-color: rgba(28, 50, 79,1);
+	min-height: 640px;
+}
+
+.contact {
+	background-color: #EDEFF3;
+	min-height: 640px;
+}
+
+.padded {
+	padding: 10%;
+}
+
+.first {
+	margin-top: 5%;
+	margin-bottom: 7%;
+}
+
+.contactImg {
+	width: 100%;
+    	height: auto;
+	min-height: 640px;
+	float: left;
+}
+
+.detalii {
+	color: black;
+	float: left;
+	padding-top: 75px;
+	padding-left: 15px;
+}
+
+footer {
+	background-color: rgba(39, 39, 39,1);
+  color: white;
+ }
+
+ footer a {
+ 	color: white;
+ }
+
+ .social img {
+ 	width: 50px;
+ 	margin-right: 20px;
+ }
+
+ .social {
+ 	padding: 20px 20px 20px 0; 
+ }
+ #bs-example-navbar-collapse-1{
+	 float: right !important;
+ }
+
+ @media screen and (max-width: 770px) {
+    #bs-example-navbar-collapse-1{
+		float: left !important;
 	}
+	header{
+		padding-top: 90%;
+	}
+}
 
-/* multiple styles seperated by a , */
-#content,
-ul li a{ box-shadow: 0px 1px 1px #999; }
+@media screen and (max-width: 1000px) {
+    #padded{
+		display: none;
+	}
+	header{
+		padding-top: 90%;
+	}
+}

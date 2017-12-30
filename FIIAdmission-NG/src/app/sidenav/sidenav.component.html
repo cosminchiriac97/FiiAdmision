@@ -1,0 +1,31 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" id="topbar" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon style="font-size:40px;">&#9776;</mat-icon>
+    </button>
+    <img style="margin-left:30px;width:165.137px;height:50px;" src="https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png"
+      alt="FII Admis logo">
+      <div class="col-md-1 col-md-offset-8 .col-xs-8"  style="float:right"><h1 style="font-size: 40px;" >Hello, {{user}}!</h1></div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav id="rightbar" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <a class="sidenav-button" mat-list-item (click)="news()">News</a>
+        <a class="sidenav-button" mat-list-item (click)="notifications()">Notifications</a>
+        <a class="sidenav-button" mat-list-item (click)="form()">Form</a>
+        <a class="sidenav-button" mat-list-item >Documents</a>
+        <a class="sidenav-button" mat-list-item (click)="logout()">Logout</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content id="main">
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>  <div>
+    <h4>&copy; 2017
+      <a href="https://www.info.uaic.ro">Faculty of Computer Science Ia&#351;i</a>. All rights reserved.</h4>
+  </div>
