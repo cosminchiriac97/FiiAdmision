@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FiiFormField } from '../_models/fii-form-field';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Authentication } from '../_services/authentication.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,14 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: Authentication) { }
+    private authenticationService: Authentication,
+    public snackBar: MatSnackBar) { }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
+  }
 
   ngOnInit() {
     // get return url from route parameters or default to '/'
@@ -32,6 +40,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
       },
       error => {
+        if (error.status === 400) {
+          this.openSnackBar(error, 'Close');
+        }
         this.loading = false;
       });
   }

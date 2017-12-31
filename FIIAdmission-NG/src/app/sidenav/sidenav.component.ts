@@ -34,29 +34,27 @@ export class SidenavComponent {
     this.router.navigate(['/']);
   }
 
-  get user(): any {
-    const x = JSON.parse(localStorage.getItem('currentUser'));
-    const y = JSON.parse(x['_body']);
-    let fName = JSON.stringify(y['object']['firstName']).replace('"', '').replace('"', '').toLowerCase();
-    fName = fName.charAt(0).toUpperCase() + fName.slice(1);
-    let lName = JSON.stringify(y['object']['lastName']).replace('"', '').replace('"', '').toLowerCase();
-    lName = lName.charAt(0).toUpperCase() + lName.slice(1);
-    return fName + ' ' + lName;
-  }
-
   news() {
-    this.toggle(1, 0, 0);
+    this.toggle(1, 0, 0, 0, 0);
   }
 
   notifications() {
-    this.toggle(0, 1, 0);
+    this.toggle(0, 1, 0, 0, 0);
   }
 
   form() {
-    this.toggle(0, 0, 1);
+    this.toggle(0, 0, 1, 0, 0);
   }
 
-  toggle(a, b, c) {
+  documents() {
+    this.toggle(0, 0, 0, 1, 0);
+  }
+
+  reset() {
+    this.toggle(0, 0, 0, 0, 1);
+  }
+
+  toggle(a, b, c, d, e) {
     if (a === 1) {
       document.getElementById('news').style.display = 'block';
     } else {
@@ -71,6 +69,16 @@ export class SidenavComponent {
       document.getElementById('form').style.display = 'block';
     } else {
       document.getElementById('form').style.display = 'none';
+    }
+    if (d === 1) {
+      document.getElementById('documents').style.display = 'block';
+    } else {
+      document.getElementById('documents').style.display = 'none';
+    }
+    if (e === 1) {
+      document.getElementById('reset').style.display = 'block';
+    } else {
+      document.getElementById('reset').style.display = 'none';
     }
   }
 

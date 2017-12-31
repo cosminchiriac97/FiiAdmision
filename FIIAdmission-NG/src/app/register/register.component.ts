@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FiiFormField } from '../_models/fii-form-field';
 import { UserService } from '../_services/user.service';
 import { FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   moduleId: module.id,
@@ -16,7 +17,14 @@ export class RegisterComponent {
   loading = false;
 
   constructor(private router: Router,
-    private userService: UserService) { }
+    private userService: UserService,
+    public snackBar: MatSnackBar) { }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
+  }
 
   register() {
     this.loading = true;
@@ -26,6 +34,9 @@ export class RegisterComponent {
         this.router.navigate(['/login']);
       },
       error => {
+        if (error.status === 400) {
+          this.openSnackBar('E-mail already in use', 'Close');
+        }
         this.loading = false;
       });
   }
@@ -34,11 +45,11 @@ export class RegisterComponent {
     const pass = (<HTMLInputElement>document.getElementsByName('password')[0]).value;
     const confirmPass = (<HTMLInputElement>document.getElementsByName('confirmPassword')[0]).value;
     // tslint:disable-next-line:one-line
-    if (pass !== confirmPass && confirmPass !== ''){
+    if (pass !== confirmPass && confirmPass !== '') {
       document.getElementById('confirmError').style.display = 'block';
     }
     // tslint:disable-next-line:one-line
-    else { document.getElementById('confirmError').style.display = 'none';  }
+    else { document.getElementById('confirmError').style.display = 'none'; }
   }
 
 }
