@@ -54,7 +54,8 @@ namespace Api.Controllers
             IdentityResult result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
-                result = await _userManager.AddClaimAsync(user, new Claim("Role1", "NotAdmin"));
+                result = await _userManager.AddClaimAsync(user, new Claim("Applier", "Applicant"));
+                return Redirect("https://fii-admission.firebaseapp.com/confirm?returnUrl=%252login");
             }        
             return BadRequest(result);
         }
