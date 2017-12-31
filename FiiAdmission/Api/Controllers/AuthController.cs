@@ -32,7 +32,7 @@ namespace Api.Controllers
             };
         }
 
-        [Authorize(Policy = "AdminOnly")]
+        [Authorize(Policy = "Administrator")]
         [HttpGet]
         public IActionResult Protected()
         {    
