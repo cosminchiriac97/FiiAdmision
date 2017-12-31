@@ -1,29 +1,29 @@
 <div class='example-container' *ngFor="let field of fields">
   <form [ngSwitch]="field.type">
-    <mat-form-field class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'text'">
+    <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'text'">
       <input matInput placeholder={{field.placeholder}} type={{field.type}}>
     </mat-form-field>
     <mat-form-field *ngSwitchCase="'password'">
       <input matInput placeholder={{field.placeholder}} type={{field.type}}>
     </mat-form-field>
-    <mat-form-field class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'select'">
+    <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'select'">
       <mat-select placeholder={{field.placeholder}}>
         <mat-option *ngFor="let option1 of field.selectOptions" [value]="option1">
           {{option1}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'date'">
+    <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'date'">
       <input matInput [matDatepicker]="picker" placeholder="Choose a date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <div class="col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-10" *ngSwitchCase="'check'" >
-      <h3>{{field.placeholder}}</h3>
-      <div *ngFor="let option2 of field.checkChoices" >
-        <mat-checkbox >
-          {{option2}}
+    <div class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'check'" >
+      <h3 style="margin-top:30px;margin-bottom:20px;">{{field.placeholder}}</h3>
+      <div style="font-weight:bold" *ngFor="let option2 of field.checkChoices" style="margin-top:10px;">
+        <mat-checkbox style="margin-right:5px;">
         </mat-checkbox>
+        {{option2}}
       </div>
     </div>
   </form>

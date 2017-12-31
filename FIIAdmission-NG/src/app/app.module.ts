@@ -19,6 +19,8 @@ import { MaterialUtilitiesModule } from './material-utilities/material-utilities
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { NewsComponent } from './news/news.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { ResetPassComponent } from './reset-pass/reset-pass.component';
+import { DocumentsComponent } from './documents/documents.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
     DashboardComponent,
     SidenavComponent,
     NewsComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ResetPassComponent,
+    DocumentsComponent
   ],
   imports: [
     BrowserModule,

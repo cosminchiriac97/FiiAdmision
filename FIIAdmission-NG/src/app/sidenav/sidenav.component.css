@@ -8,7 +8,7 @@
     right: 0;
   }
   #main{
-    background-color: rgba(31,50,79,0.9);
+    background-color: transparent;
   }
   .example-is-mobile .example-toolbar {
     position: fixed;

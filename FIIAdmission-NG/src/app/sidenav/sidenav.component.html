@@ -1,3 +1,4 @@
+<body  >
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" id="topbar" class="example-toolbar">
     <button mat-icon-button (click)="snav.toggle()">
@@ -7,12 +8,12 @@
       alt="FII Admis logo">
   </mat-toolbar>
 
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav-container style="background:rgba(31,50,79,0.9)" class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav id="rightbar" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
         <a class="sidenav-button" mat-list-item (click)="news()">News</a>
         <a class="sidenav-button" mat-list-item (click)="notifications()">Notifications</a>
-        <a class="sidenav-button" mat-list-item (click)="form()">Form</a>
+        <a class="sidenav-button" mat-list-item (click)="form()">Application Form</a>
         <a class="sidenav-button" mat-list-item (click)="documents()">Documents</a>
         <a class="sidenav-button" mat-list-item (click)="reset()">Reset Password</a>
         <a class="sidenav-button" mat-list-item (click)="logout()">Logout</a>
@@ -24,8 +25,5 @@
     </mat-sidenav-content>
 
   </mat-sidenav-container>
-
-</div>  <div>
-    <h4>&copy; 2017
-      <a href="https://www.info.uaic.ro">Faculty of Computer Science Ia&#351;i</a>. All rights reserved.</h4>
-  </div>
+</div>
+</body>
