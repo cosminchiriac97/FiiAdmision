@@ -4,7 +4,6 @@ using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using Api.Helpers;
 using Api.ModelView;
 using AutoMapper;
@@ -91,8 +90,8 @@ namespace Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("reset_password")]
-        public async Task<IActionResult> PasswordRecovery([FromBody]EmailModel model)
+        [HttpPost("password_recovery_s1")]
+        public async Task<IActionResult> PasswordRecoveryInitiate([FromBody]EmailModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -103,7 +102,7 @@ namespace Api.Controllers
 
             var code = await _userManager.GeneratePasswordResetTokenAsync(userIdentity);
             var callbackUrl = Url.Action(
-                "ResetPassword",
+                "PasswordRecoveryStep2",
                 "Account",
                 new { userId = userIdentity.Id, code },
                 HttpContext.Request.Scheme
@@ -113,15 +112,15 @@ namespace Api.Controllers
             {
                 EmailAdress = userIdentity.Email,
                 Subject = "PasswordReset",
-                TextBody = "Go to this link to reset your password: " + callbackUrl
+                TextBody = "Go to this link to reset your password: <a href=\"" + callbackUrl + "\">here</a>"
             });
 
             return Ok("Password reset link sent");
         }
 
         [AllowAnonymous]
-        [HttpGet("ResetPassword")]
-        public async Task<IActionResult> ResetPassword(string userId = "", string code = "")
+        [HttpGet("password_recovery_s2")]
+        public async Task<IActionResult> PasswordRecoveryStep2(string userId = "", string code = "")
         {
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
             {
@@ -141,17 +140,16 @@ namespace Api.Controllers
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            ResetPasswordModel model = new ResetPasswordModel
+            RecoverPasswordModel model = new RecoverPasswordModel
             {
                 Email = user.Email,
                 Password = "asdfghhhh",
-                ConfirmPassword = "asdfghhhh",
                 Code = code
             };
             string json = await Task.Run(() => JsonConvert.SerializeObject(model));
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _client.PutAsync(
-                $"api/account/reset", content);
+                $"api/account/password_recovery_s3", content);
             if (response.IsSuccessStatusCode)
             {
                 return Ok("ok");
@@ -160,8 +158,8 @@ namespace Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPut("Reset")]
-        public async Task<IActionResult> PasswordReset([FromBody]ResetPasswordModel model)
+        [HttpPut("password_recovery_s3")]
+        public async Task<IActionResult> PasswordRecoveryStep3([FromBody]RecoverPasswordModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -172,13 +170,42 @@ namespace Api.Controllers
             {
                 return BadRequest();
             }
-
+            
             var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return Ok("Password succesfully reset.");
             }
             return BadRequest(result);
+        }
+
+        [Authorize(Policy = "Applicant")]
+        [HttpPut("change_password")]
+        //[ValidateAntiForgeryToken]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        [ProducesResponseType(200)]
+        public async Task<IActionResult> ChangePassword([FromBody]ResetPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ApiResponse {ModelState = ModelState, Status = false});
+            }
+
+            var identityName = User.Identity.Name;
+            var user = await _userManager.FindByNameAsync(identityName);
+            bool passwordChecks = await _userManager.CheckPasswordAsync(user, model.CurrentPassword);
+
+            if (!passwordChecks)
+            {
+                return BadRequest("Current password is incorrect.");
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.Password);
+            if (result.Succeeded)
+            {
+                return Ok("Password successfully changed.");
+            }
+            return BadRequest(new ApiResponse{ModelState = ModelState, Status = false});
         }
 
         [HttpGet("{email}", Name = "GetUser")]
