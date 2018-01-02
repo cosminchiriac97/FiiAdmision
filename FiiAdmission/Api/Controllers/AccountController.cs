@@ -101,12 +101,14 @@ namespace Api.Controllers
             var userIdentity = await _userManager.FindByEmailAsync(model.Email);
 
             var code = await _userManager.GeneratePasswordResetTokenAsync(userIdentity);
-            var callbackUrl = Url.Action(
+            var callbackUrl = "https://fii-admission.firebaseapp.com/recovery?userEmail=" + userIdentity.Email +
+                              "&code=" + code;
+                /*Url.Action(
                 "PasswordRecoveryStep2",
                 "Account",
                 new { userId = userIdentity.Id, code },
                 HttpContext.Request.Scheme
-            );
+            );*/
 
             await _emailSender.SendEmail(new Email
             {
@@ -118,6 +120,7 @@ namespace Api.Controllers
             return Ok("Password reset link sent");
         }
 
+        /*
         [AllowAnonymous]
         [HttpGet("password_recovery_s2")]
         public async Task<IActionResult> PasswordRecoveryStep2(string userId = "", string code = "")
@@ -155,11 +158,11 @@ namespace Api.Controllers
                 return Ok("ok");
             }
             return BadRequest("Something went wrong");
-        }
+        }*/
 
         [AllowAnonymous]
-        [HttpPut("password_recovery_s3")]
-        public async Task<IActionResult> PasswordRecoveryStep3([FromBody]RecoverPasswordModel model)
+        [HttpPut("password_recovery_s2")]
+        public async Task<IActionResult> PasswordRecoveryStep2([FromBody]RecoverPasswordModel model)
         {
             if (!ModelState.IsValid)
             {
