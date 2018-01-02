@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using Api.Helpers;
 using Api.ModelView;
@@ -10,19 +8,18 @@ using AutoMapper;
 using Business.AccountsRepository;
 using Business.EmailServices;
 using Data.Domain;
-using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 
 namespace Api.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
-        private readonly HttpClient _client = new HttpClient();
+        //private readonly HttpClient _client = new HttpClient();
         private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
         private readonly IJobSeekerRepository _jobSeekerRepository;
@@ -34,32 +31,8 @@ namespace Api.Controllers
             _jobSeekerRepository = jobSeekerRepository;
             _emailSender = emailSender;
         }
-
-        [AllowAnonymous]
-        [HttpGet("ConfirmEmail")]
-        public async Task<IActionResult> ConfirmEmail(string userId = "", string code = "")
-        {
-            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
-            {
-                ModelState.AddModelError("", "User Id and Code are required");
-                return BadRequest(ModelState);
-            }
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return BadRequest("no such user");
-            }
-
-            IdentityResult result = await _userManager.ConfirmEmailAsync(user, code);
-            if (result.Succeeded)
-            {
-                result = await _userManager.AddClaimAsync(user, new Claim("Applier", "Applicant"));
-                return Redirect("https://fii-admission.firebaseapp.com/confirm?returnUrl=%252login");
-            }        
-            return BadRequest(result);
-        }
-
-        [AllowAnonymous]
+        
+        //account creation
         [HttpPost("create_account")]
         public async Task<IActionResult> AccountCreation([FromBody]RegistrationModel model)
         {
@@ -82,14 +55,42 @@ namespace Api.Controllers
                 HttpContext.Request.Scheme
             );
 
-            await _emailSender.SendEmail(new Email { EmailAdress = userIdentity.Email, Subject = "ConfirmationEmail", TextBody = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>" });
+            await _emailSender.SendEmail(new Email
+            {
+                EmailAdress = userIdentity.Email,
+                Subject = "FIIAdmis - Confirmarea email-ului",
+                TextBody = "Confirmati-va mailul, dand click pe acest link: <a href=\"" + callbackUrl + "\">here</a>"
+            });
 
             await _jobSeekerRepository.AddAsync(new JobSeeker { Id = new Guid(), IdentityId = userIdentity.Id });
 
             return Ok("Account created");
         }
 
-        [AllowAnonymous]
+        [HttpGet("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(string userId = "", string code = "")
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
+            {
+                ModelState.AddModelError("", "User Id and Code are required");
+                return BadRequest(ModelState);
+            }
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return BadRequest("no such user");
+            }
+
+            IdentityResult result = await _userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
+            {
+                result = await _userManager.AddClaimAsync(user, new Claim("User", "User"));
+                return Redirect("https://fii-admission.firebaseapp.com/confirm?returnUrl=%252login");
+            }
+            return BadRequest(result);
+        }
+
+        //password recovery
         [HttpPost("password_recovery_s1")]
         public async Task<IActionResult> PasswordRecoveryInitiate([FromBody]EmailModel model)
         {
@@ -113,8 +114,8 @@ namespace Api.Controllers
             await _emailSender.SendEmail(new Email
             {
                 EmailAdress = userIdentity.Email,
-                Subject = "PasswordReset",
-                TextBody = "Go to this link to reset your password: <a href=\"" + callbackUrl + "\">here</a>"
+                Subject = "FIIAdmis - Resetare parola",
+                TextBody = "Resetati-va parola utilizand acest link: <a href=\"" + callbackUrl + "\">here</a>"
             });
 
             return Ok("Password reset link sent");
@@ -160,7 +161,6 @@ namespace Api.Controllers
             return BadRequest("Something went wrong");
         }*/
 
-        [AllowAnonymous]
         [HttpPut("password_recovery_s2")]
         public async Task<IActionResult> PasswordRecoveryStep2([FromBody]RecoverPasswordModel model)
         {
@@ -182,7 +182,8 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [Authorize(Policy = "Applicant")]
+        //password change while logged in
+        [Authorize(Policy = "User")]
         [HttpPut("change_password")]
         //[ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponse), 400)]
@@ -211,7 +212,7 @@ namespace Api.Controllers
             return BadRequest(new ApiResponse{ModelState = ModelState, Status = false});
         }
 
-        [HttpGet("{email}", Name = "GetUser")]
+        /*[HttpGet("{email}", Name = "GetUser")]
         [NoCache]
         [ProducesResponseType(200)]
         [ProducesResponseType(204)]
@@ -228,6 +229,6 @@ namespace Api.Controllers
                 return NoContent();
             }
             return Ok();
-        }
+        }*/
     }
 }
