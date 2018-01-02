@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Api.Auth;
 using Data.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -7,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Api.ModelView;
-using Api.Auth;
 
 namespace Api.Controllers
 {
@@ -56,11 +58,24 @@ namespace Api.Controllers
             {
                 var appUser = _userManager.Users.SingleOrDefault(r => r.UserName == credentials.UserName);
                 var token = await JwtFactory.GenerateJwtToken(credentials.UserName, appUser, _configuration);
+
+                string role = "User";
+                IList<Claim> cl = await _userManager.GetClaimsAsync(appUser);
+                foreach (var claim in cl)
+                {
+                    if (claim.Value.Equals("Administrator"))
+                    {
+                        role = claim.Value;
+                        break;
+                    }
+                }
+                
                 var userModel = new SimpleUserModel
                 {
                     Email = appUser.Email,
                     FirstName = appUser.FirstName,
                     LastName = appUser.LastName,
+                    Role = role,
                     EmailIsConfirmed = appUser.EmailConfirmed
                 };
                 return Ok(new ApiResponseObject<SimpleUserModel>{Object = userModel, Status = true});

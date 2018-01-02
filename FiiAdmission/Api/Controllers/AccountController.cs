@@ -84,6 +84,13 @@ namespace Api.Controllers
             IdentityResult result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
+                /*IN CAZ CA VREI CONT DE ADMIN, DECOMENTEAZA INAINTE SA ITI CONFIRMI MAILUL DUPA CREARE
+                 * var cl = new List<Claim>
+                {
+                    new Claim("User", "User"),
+                    new Claim("Admin", "Administrator")
+                };
+                result = await _userManager.AddClaimsAsync(user, cl);*/
                 result = await _userManager.AddClaimAsync(user, new Claim("User", "User"));
                 return Redirect("https://fii-admission.firebaseapp.com/confirm?returnUrl=%252login");
             }
@@ -181,54 +188,5 @@ namespace Api.Controllers
             }
             return BadRequest(result);
         }
-
-        //password change while logged in
-        [Authorize(Policy = "User")]
-        [HttpPut("change_password")]
-        //[ValidateAntiForgeryToken]
-        [ProducesResponseType(typeof(ApiResponse), 400)]
-        [ProducesResponseType(200)]
-        public async Task<IActionResult> ChangePassword([FromBody]ResetPasswordModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(new ApiResponse {ModelState = ModelState, Status = false});
-            }
-
-            var identityName = User.Identity.Name;
-            var user = await _userManager.FindByNameAsync(identityName);
-            bool passwordChecks = await _userManager.CheckPasswordAsync(user, model.CurrentPassword);
-
-            if (!passwordChecks)
-            {
-                return BadRequest("Current password is incorrect.");
-            }
-
-            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.Password);
-            if (result.Succeeded)
-            {
-                return Ok("Password successfully changed.");
-            }
-            return BadRequest(new ApiResponse{ModelState = ModelState, Status = false});
-        }
-
-        /*[HttpGet("{email}", Name = "GetUser")]
-        [NoCache]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<IActionResult> GetUserInfo(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                return BadRequest(new ApiResponse { Status = false });
-            }
-            var user = await _userManager.FindByEmailAsync(email);
-            if (user == null)
-            {
-                return NoContent();
-            }
-            return Ok();
-        }*/
     }
 }
