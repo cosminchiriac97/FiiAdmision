@@ -15,7 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
-    [AllowAnonymous]
+    
+    
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
@@ -33,6 +34,7 @@ namespace Api.Controllers
         }
         
         //account creation
+        [AllowAnonymous]
         [HttpPost("create_account")]
         public async Task<IActionResult> AccountCreation([FromBody]RegistrationModel model)
         {
@@ -67,6 +69,7 @@ namespace Api.Controllers
             return Ok("Account created");
         }
 
+        [AllowAnonymous]
         [HttpGet("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string userId = "", string code = "")
         {
@@ -98,6 +101,7 @@ namespace Api.Controllers
         }
 
         //password recovery
+        [AllowAnonymous]
         [HttpPost("password_recovery_s1")]
         public async Task<IActionResult> PasswordRecoveryInitiate([FromBody]EmailModel model)
         {
@@ -168,6 +172,7 @@ namespace Api.Controllers
             return BadRequest("Something went wrong");
         }*/
 
+        [AllowAnonymous]
         [HttpPut("password_recovery_s2")]
         public async Task<IActionResult> PasswordRecoveryStep2([FromBody]RecoverPasswordModel model)
         {
@@ -187,6 +192,55 @@ namespace Api.Controllers
                 return Ok("Password succesfully reset.");
             }
             return BadRequest(result);
+        }
+
+        [Authorize(Policy = "User")]
+        [HttpPut("change_password")]
+        //[ValidateAntiForgeryToken]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        [ProducesResponseType(200)]
+        public async Task<IActionResult> ChangePassword([FromBody]ResetPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ApiResponse { ModelState = ModelState, Status = false });
+            }
+
+            var identityName = User.Identity.Name;
+            var user = await _userManager.FindByNameAsync(identityName);
+            bool passwordChecks = await _userManager.CheckPasswordAsync(user, model.CurrentPassword);
+
+            if (!passwordChecks)
+            {
+                return BadRequest("Current password is incorrect.");
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.Password);
+            if (result.Succeeded)
+            {
+                return Ok("Password successfully changed.");
+            }
+            return BadRequest(new ApiResponse { ModelState = ModelState, Status = false });
+        }
+
+        [Authorize(Policy = "Administrator")]
+        [HttpGet("{email}", Name = "GetUser")]
+        [NoCache]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        public async Task<IActionResult> GetUserInfo(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return BadRequest(new ApiResponse { Status = false });
+            }
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return NoContent();
+            }
+            return Ok();
         }
     }
 }
