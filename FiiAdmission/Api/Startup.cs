@@ -117,7 +117,7 @@ namespace Api
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Administrator", policy => policy.RequireClaim("Admin"));
-                options.AddPolicy("Applicant", policy => policy.RequireClaim("Applier"));
+                options.AddPolicy("User", policy => policy.RequireClaim("User"));
             });
 
             services.AddMvc();
