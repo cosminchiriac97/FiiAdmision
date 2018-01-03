@@ -16,6 +16,19 @@ header {
 .navbar-buttons-hover:hover{
 	text-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 1em white;
 }
+mat-spinner.small-spinner svg { width: 11px !important; height: 11spx !important; }
+::ng-deep snack-bar-container.custom-snack-bar-class {
+    background: rgb(221, 57, 65);
+  }
+  
+::ng-deep .custom-snack-bar-class .mat-simple-snackbar {
+    color: black;
+    font-weight: normal;
+}
+::ng-deep .custom-snack-bar-class .mat-simple-snackbar-action {
+    color: rgb(24, 29, 25);
+    font-weight: bold;
+}
 button {
     /*color: rgba(62, 156, 242, 0.5);*/
     font-weight: bold;
@@ -27,6 +40,7 @@ button {
 }
 
 #registerSubmit{
+    margin-left:5px;
     background: rgba(31,50,79,0.2);
     font-size: 1.2em;
 }

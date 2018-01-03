@@ -94,8 +94,11 @@ var UserService = (function () {
     UserService.prototype.create = function (user) {
         return this.http.post(this.config.apiUrl + '/api/account/create_account', user, this.jwt());
     };
-    UserService.prototype.getAll = function () {
-        return this.http.get(this.config.apiUrl + '/users', this.jwt()).map(function (response) { return response.json(); });
+    UserService.prototype.getCode = function (email) {
+        return this.http.post(this.config.apiUrl + '/api/Account/password_recovery_s1', { email: email });
+    };
+    UserService.prototype.retrievePassword = function (email, password, code) {
+        return this.http.put(this.config.apiUrl + '/api/Account/password_recovery_s2', { email: email, password: password, code: code });
     };
     // private helper methods
     UserService.prototype.jwt = function () {
@@ -146,6 +149,7 @@ var AppConfig = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dashboard_dashboard_component__ = __webpack_require__("../../../../../src/app/dashboard/dashboard.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__not_found_not_found_component__ = __webpack_require__("../../../../../src/app/not-found/not-found.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__authentication_guard__ = __webpack_require__("../../../../../src/app/authentication.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__recovery_recovery_component__ = __webpack_require__("../../../../../src/app/recovery/recovery.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -160,9 +164,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var routes = [
     { path: 'home', component: __WEBPACK_IMPORTED_MODULE_2__home_home_component__["a" /* HomeComponent */] },
-    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_3__login_login_component__["a" /* LoginComponent */] },
+    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_3__login_login_component__["b" /* LoginComponent */] },
+    { path: 'recovery', component: __WEBPACK_IMPORTED_MODULE_8__recovery_recovery_component__["a" /* RecoveryComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_4__register_register_component__["a" /* RegisterComponent */] },
     { path: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_5__dashboard_dashboard_component__["a" /* DashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_7__authentication_guard__["a" /* AuthenticationGuard */]] },
     { path: '', component: __WEBPACK_IMPORTED_MODULE_2__home_home_component__["a" /* HomeComponent */], pathMatch: 'full' },
@@ -267,12 +273,14 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__notifications_notifications_component__ = __webpack_require__("../../../../../src/app/notifications/notifications.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__reset_pass_reset_pass_component__ = __webpack_require__("../../../../../src/app/reset-pass/reset-pass.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__documents_documents_component__ = __webpack_require__("../../../../../src/app/documents/documents.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__recovery_recovery_component__ = __webpack_require__("../../../../../src/app/recovery/recovery.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -303,7 +311,7 @@ var AppModule = (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_6__home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_7__login_login_component__["a" /* LoginComponent */],
+                __WEBPACK_IMPORTED_MODULE_7__login_login_component__["b" /* LoginComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__register_register_component__["a" /* RegisterComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__not_found_not_found_component__["a" /* NotFoundComponent */],
                 __WEBPACK_IMPORTED_MODULE_10__dashboard_dashboard_component__["a" /* DashboardComponent */],
@@ -311,7 +319,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_18__news_news_component__["a" /* NewsComponent */],
                 __WEBPACK_IMPORTED_MODULE_19__notifications_notifications_component__["a" /* NotificationsComponent */],
                 __WEBPACK_IMPORTED_MODULE_20__reset_pass_reset_pass_component__["a" /* ResetPassComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__documents_documents_component__["a" /* DocumentsComponent */]
+                __WEBPACK_IMPORTED_MODULE_21__documents_documents_component__["a" /* DocumentsComponent */],
+                __WEBPACK_IMPORTED_MODULE_7__login_login_component__["a" /* DialogOverviewExampleDialogComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__recovery_recovery_component__["a" /* RecoveryComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -326,6 +336,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_13__authentication_guard__["a" /* AuthenticationGuard */],
                 __WEBPACK_IMPORTED_MODULE_12__services_authentication_service__["a" /* Authentication */],
                 __WEBPACK_IMPORTED_MODULE_15__services_user_service__["a" /* UserService */]
+            ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_7__login_login_component__["a" /* DialogOverviewExampleDialogComponent */],
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
         })
@@ -1301,7 +1314,7 @@ var FormUtilitiesModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_5__material_utilities_material_utilities_module__["a" /* MaterialUtilitiesModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-                __WEBPACK_IMPORTED_MODULE_6__angular_material__["p" /* MatNativeDateModule */]
+                __WEBPACK_IMPORTED_MODULE_6__angular_material__["s" /* MatNativeDateModule */]
             ],
             declarations: [__WEBPACK_IMPORTED_MODULE_4__fii_form_fii_form_component__["a" /* FiiFormComponent */]],
             exports: [__WEBPACK_IMPORTED_MODULE_4__fii_form_fii_form_component__["a" /* FiiFormComponent */]]
@@ -1414,6 +1427,13 @@ var HomeComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/login/dialog-overview-example-dialog.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h1 mat-dialog-title>Hello there!</h1>\r\n<div mat-dialog-content>\r\n  <p>In order to retrieve your password, the e-mail with which you registered will be necessary:</p>\r\n  <mat-form-field class=\"col-md-12 col-xs-12\">\r\n    <input placeholder=\"Your e-mail\" matInput tabindex=\"-1\" [(ngModel)]=\"data.email\">\r\n  </mat-form-field>\r\n</div>\r\n<div mat-dialog-actions class=\"col-md-8 col-xs-10 col-md-offset-4 col-xs-offset-2\">\r\n  <button mat-button class=\"col-md-offset-0 col-xs-offset-0\" (click)=\"onNoClick()\">Close</button>\r\n  <button mat-button class=\"col-md-offset-4 col-xs-offset-4\" [mat-dialog-close]=\"data.email\" cdkFocusInitial>Retrieve</button>\r\n</div>"
+
+/***/ }),
+
 /***/ "../../../../../src/app/login/login.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1422,7 +1442,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#welcome-panel{\r\n    padding-top: 10px;\r\n    background-color: rgba(255,255,255,0.9);;\r\n}\r\nheader {\r\n    background-color: rgba(31,50,79,0.9);\r\n\tmin-height:96vh;\r\n    padding-top: 150px;\r\n    padding-bottom: 10px;\r\n\t/*background: rgba(62, 156, 242, 0.1);*/\r\n}\r\n\r\n.input{\r\n    border-radius: 0 !important;\r\n}\r\n.navbar-buttons-hover:hover{\r\n\ttext-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 1em white;\r\n}\r\nbutton {\r\n    /*color: rgba(62, 156, 242, 0.5);*/\r\n    font-weight: bold;\r\n    padding: 10px 40px;\r\n    margin: 20px 0;\r\n    border: none;\r\n    cursor: pointer;\r\n    border-radius: 5px;\r\n}\r\n\r\n#registerSubmit{\r\n    background: rgba(31,50,79,0.2);\r\n    font-size: 1.2em;\r\n}\r\n#registerSubmit:hover{\r\n    color: black;\r\n    background: rgba(31,50,79,0.3);\r\n}\r\n.first {\r\n\tmargin-top: 5%;\r\n\tmargin-bottom: 7%;\r\n}\r\nh1{\r\n\tcolor: black;\r\n}\r\nh2 {\r\n\tcolor: white;\r\n}\r\n\r\n\r\n.right {\r\n\tfloat: right;\r\n}\r\nfooter {\r\n  background-color: rgba(39, 39, 39,1);\r\n  color: white;\r\n }\r\n\r\n footer a {\r\n \tcolor: white;\r\n }\r\n\r\n .social img {\r\n \twidth: 50px;\r\n \tmargin-right: 20px;\r\n }\r\n\r\n .social {\r\n \tpadding: 20px 20px 20px 0; \r\n }\r\n\r\n #bs-example-navbar-collapse-1{\r\n\t float: right !important;\r\n }\r\n\r\n @media screen and (max-width: 770px) {\r\n    #bs-example-navbar-collapse-1{\r\n\t\tfloat: left !important;\r\n\t}\r\n}\r\n", ""]);
+exports.push([module.i, "#welcome-panel{\r\n    padding-top: 10px;\r\n    background-color: rgba(255,255,255,0.9);;\r\n}\r\nheader {\r\n    background-color: rgba(31,50,79,0.9);\r\n\tmin-height:96vh;\r\n    padding-top: 150px;\r\n    padding-bottom: 10px;\r\n\t/*background: rgba(62, 156, 242, 0.1);*/\r\n}\r\n\r\n.input{\r\n    border-radius: 0 !important;\r\n}\r\n.navbar-buttons-hover:hover{\r\n\ttext-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 1em white;\r\n}\r\nmat-spinner.small-spinner svg { width: 11px !important; height: 11spx !important; }\r\n::ng-deep snack-bar-container.custom-snack-bar-class {\r\n    background: rgb(221, 57, 65);\r\n  }\r\n  \r\n::ng-deep .custom-snack-bar-class .mat-simple-snackbar {\r\n    color: black;\r\n    font-weight: normal;\r\n}\r\n::ng-deep .custom-snack-bar-class .mat-simple-snackbar-action {\r\n    color: rgb(24, 29, 25);\r\n    font-weight: bold;\r\n}\r\nbutton {\r\n    /*color: rgba(62, 156, 242, 0.5);*/\r\n    font-weight: bold;\r\n    padding: 10px 40px;\r\n    margin: 20px 0;\r\n    border: none;\r\n    cursor: pointer;\r\n    border-radius: 5px;\r\n}\r\n\r\n#registerSubmit{\r\n    margin-left:5px;\r\n    background: rgba(31,50,79,0.2);\r\n    font-size: 1.2em;\r\n}\r\n#registerSubmit:hover{\r\n    color: black;\r\n    background: rgba(31,50,79,0.3);\r\n}\r\n.first {\r\n\tmargin-top: 5%;\r\n\tmargin-bottom: 7%;\r\n}\r\nh1{\r\n\tcolor: black;\r\n}\r\nh2 {\r\n\tcolor: white;\r\n}\r\n\r\n\r\n.right {\r\n\tfloat: right;\r\n}\r\nfooter {\r\n  background-color: rgba(39, 39, 39,1);\r\n  color: white;\r\n }\r\n\r\n footer a {\r\n \tcolor: white;\r\n }\r\n\r\n .social img {\r\n \twidth: 50px;\r\n \tmargin-right: 20px;\r\n }\r\n\r\n .social {\r\n \tpadding: 20px 20px 20px 0; \r\n }\r\n\r\n #bs-example-navbar-collapse-1{\r\n\t float: right !important;\r\n }\r\n\r\n @media screen and (max-width: 770px) {\r\n    #bs-example-navbar-collapse-1{\r\n\t\tfloat: left !important;\r\n\t}\r\n}\r\n", ""]);
 
 // exports
 
@@ -1435,7 +1455,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"\">\n    <meta name=\"author\" content=\"\">\n\n    <title>FII Admis</title>\n\n</head>\n\n<body id=\"top\">\n    <nav class=\"navbar-inverse navbar-fixed-top\" role=\"navigation\">\n        <div class=\"container\">\n            <div class=\"navbar-header\">\n                <button type=\"button\" style=\"margin-right:10%;\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\"\n                    tabindex=\"1\" accesskey=\"m\">\n                    <span class=\"sr-only\">Toggle navigation</span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                </button>\n                <a class=\"navbar-brand\" href=\"#\">\n                    <img style=\"height:inherit;\" src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png\"\n                        alt=\"FII Admis logo\">\n                </a>\n            </div>\n            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n                <ul class=\"nav navbar-nav\">\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#beneficii\">\n                            <h2>Benefits</h2>\n                        </a>\n                    </li>\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#impresii\">\n                            <h2>Impressions</h2>\n                        </a>\n                    </li>\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#contact\">\n                            <h2>Contact</h2>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </nav>\n\n    <header>\n        <div class=\"container\">\n            <div class=\"col-md-8 col-md-offset-2\" id=\"welcome-panel\">\n                <h3 class=\"col-md-2 col-md-offset-5\">Sign in</h3>\n                <form name=\"form\" (ngSubmit)=\"f.form.valid && login()\" #f=\"ngForm\" novalidate>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !userName.valid }\">\n                        <label for=\"userName\">Username</label>\n                        <br>\n                        <input type=\"text\" class=\"form-control\" name=\"userName\" [(ngModel)]=\"model.userName\" #userName=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !userName.valid\" class=\"help-block\">Username is required</div>\n                    </div>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n                        <label for=\"password\">Password</label>\n                        <br>\n                        <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" #password=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\n                    </div>\n                    <br>\n                    <div class=\"col-md-8 col-md-offset-4\">\n                        <button class=\"col-md-5\" id=\"registerSubmit\" [disabled]=\"loading\">Login</button>\n                        <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"\n                        />\n                    </div>\n                </form>\n                <div class=\"col-md-8 col-md-offset-5\" style=\"padding-bottom: 3px;\">\n                    <h4>\n                        You don't have an account yet? Click\n                        <a [routerLink]=\"['/register']\">here</a> to sign up.</h4>\n                </div>\n            </div>\n        </div>\n    </header>\n\n\n    <footer>\n        <div class=\"container\">\n            <h4>&copy; 2017\n                <a href=\"https://www.info.uaic.ro\">Faculty of Computer Science Ia&#351;i</a>. All rights reserved.</h4>\n        </div>\n    </footer>\n</body>"
+module.exports = "<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"\">\n    <meta name=\"author\" content=\"\">\n\n    <title>FII Admis</title>\n\n</head>\n\n<body id=\"top\">\n    <nav class=\"navbar-inverse navbar-fixed-top\" role=\"navigation\">\n        <div class=\"container\">\n            <div class=\"navbar-header\">\n                <button type=\"button\" style=\"margin-right:10%;\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\"\n                    tabindex=\"1\" accesskey=\"m\">\n                    <span class=\"sr-only\">Toggle navigation</span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                </button>\n                <a class=\"navbar-brand\" href=\"#\">\n                    <img style=\"height:inherit;\" src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png\"\n                        alt=\"FII Admis logo\">\n                </a>\n            </div>\n            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n                <ul class=\"nav navbar-nav\">\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#beneficii\">\n                            <h2>Benefits</h2>\n                        </a>\n                    </li>\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#impresii\">\n                            <h2>Impressions</h2>\n                        </a>\n                    </li>\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#contact\">\n                            <h2>Contact</h2>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </nav>\n\n    <header>\n        <div class=\"container\">\n            <div class=\"col-md-8 col-md-offset-2\" id=\"welcome-panel\">\n                <h3 class=\"col-md-2 col-md-offset-5 col-xs-offset-4\">Sign in</h3>\n                <form name=\"form\" (ngSubmit)=\"f.form.valid && login()\" #f=\"ngForm\" novalidate>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !userName.valid }\">\n                        <label for=\"userName\">Username</label>\n                        <br>\n                        <input type=\"text\" class=\"form-control\" name=\"userName\" [(ngModel)]=\"model.userName\" #userName=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !userName.valid\" class=\"help-block\">Username is required</div>\n                    </div>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n                        <label for=\"password\">Password</label>\n                        <br>\n                        <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" #password=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\n                    </div>\n                    <div class=\"col-md-10 col-md-offset-4  col-xs-offset-3\">\n                        <button class=\"col-md-4 \" id=\"registerSubmit\" [disabled]=\"loading\">Login</button>\n                        <mat-spinner  class=\"col-xs-offset-0 col-xs-4 col-md-1 col-md-offset-0\" style=\"margin-left:16px;margin-top:26.5px;margin-left:16px;\" *ngIf=\"loading\" [diameter]=\"30\"></mat-spinner>\n                    </div>\n                </form>\n                <div class=\"col-md-9 col-md-offset-4\" style=\"padding-bottom: 3px;\">\n                    <h4>\n                        Forgot password? Click\n                        <a style=\"cursor: pointer;\" (click)=\"openDialog()\">here</a>. Not registered yet? Click\n                        <a [routerLink]=\"['/register']\">here</a>.</h4>\n                </div>\n            </div>\n        </div>\n    </header>\n\n\n    <footer>\n        <div class=\"container\">\n            <h4>&copy; 2017\n                <a href=\"https://www.info.uaic.ro\">Faculty of Computer Science Ia&#351;i</a>. All rights reserved.</h4>\n        </div>\n    </footer>\n</body>"
 
 /***/ }),
 
@@ -1443,11 +1463,13 @@ module.exports = "<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewpor
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return LoginComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogOverviewExampleDialogComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__ = __webpack_require__("../../../../../src/app/_services/authentication.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__("../../../../../src/app/_services/user.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1457,27 +1479,50 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
 
 
 
 
 var LoginComponent = (function () {
-    function LoginComponent(route, router, authenticationService, snackBar) {
+    function LoginComponent(route, router, authenticationService, snackBar, dialog, userService) {
         this.route = route;
         this.router = router;
         this.authenticationService = authenticationService;
         this.snackBar = snackBar;
+        this.dialog = dialog;
+        this.userService = userService;
         this.model = {};
         this.loading = false;
     }
     LoginComponent.prototype.openSnackBar = function (message, action) {
-        this.snackBar.open(message, action, {
-            duration: 5000,
-        });
+        var config = new __WEBPACK_IMPORTED_MODULE_3__angular_material__["C" /* MatSnackBarConfig */]();
+        config.extraClasses = ['custom-snack-bar-class'];
+        config.duration = 5000;
+        this.snackBar.open(message, action, config);
     };
     LoginComponent.prototype.ngOnInit = function () {
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    };
+    LoginComponent.prototype.openDialog = function () {
+        var _this = this;
+        var dialogRef = this.dialog.open(DialogOverviewExampleDialogComponent, {
+            data: { email: this.email }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            _this.email = result;
+            _this.userService.getCode(_this.email)
+                .subscribe(function (data) {
+                _this.openSnackBar(JSON.parse(JSON.stringify(data))['_body'], 'Got it');
+            }, function (error) {
+                _this.openSnackBar('The e-mail provided is invalid.', 'Got it');
+            });
+        });
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
@@ -1488,7 +1533,7 @@ var LoginComponent = (function () {
             _this.router.navigate([_this.returnUrl]);
         }, function (error) {
             if (error.status === 400) {
-                _this.openSnackBar(error, 'Close');
+                _this.openSnackBar('Invalid username or password.', 'Got it');
             }
             _this.loading = false;
         });
@@ -1502,9 +1547,36 @@ var LoginComponent = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* Authentication */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_material__["y" /* MatSnackBar */]])
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["B" /* MatSnackBar */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["i" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */]])
     ], LoginComponent);
     return LoginComponent;
+}());
+
+var DialogOverviewExampleDialogComponent = (function () {
+    function DialogOverviewExampleDialogComponent(dialogRef, dialModalRef, data) {
+        this.dialogRef = dialogRef;
+        this.dialModalRef = dialModalRef;
+        this.data = data;
+    }
+    DialogOverviewExampleDialogComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    DialogOverviewExampleDialogComponent.prototype.changePosition = function () {
+        this.dialModalRef.updatePosition({ top: '250px', left: '250px' });
+    };
+    DialogOverviewExampleDialogComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            // tslint:disable-next-line:component-selector
+            selector: 'dialog-overview-example-dialog',
+            template: __webpack_require__("../../../../../src/app/login/dialog-overview-example-dialog.html"),
+        }),
+        __param(2, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_material__["k" /* MatDialogRef */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["k" /* MatDialogRef */], Object])
+    ], DialogOverviewExampleDialogComponent);
+    return DialogOverviewExampleDialogComponent;
 }());
 
 
@@ -1535,36 +1607,36 @@ var MaterialUtilitiesModule = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* NgModule */])({
             exports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_cdk_table__["m" /* CdkTableModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["a" /* MatAutocompleteModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["b" /* MatButtonModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["c" /* MatButtonToggleModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["d" /* MatCardModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["e" /* MatCheckboxModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["f" /* MatChipsModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["g" /* MatDatepickerModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["h" /* MatDialogModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["i" /* MatExpansionModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MatFormFieldModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["k" /* MatGridListModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["l" /* MatIconModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["m" /* MatInputModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["n" /* MatListModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["o" /* MatMenuModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["r" /* MatProgressBarModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["s" /* MatProgressSpinnerModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["t" /* MatRadioModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["u" /* MatSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["w" /* MatSlideToggleModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["x" /* MatSliderModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["v" /* MatSidenavModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["z" /* MatSnackBarModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["B" /* MatStepperModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["D" /* MatTabsModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["E" /* MatToolbarModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["F" /* MatTooltipModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["q" /* MatPaginatorModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["A" /* MatSortModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["C" /* MatTableModule */]
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["b" /* MatAutocompleteModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["c" /* MatButtonModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["d" /* MatButtonToggleModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["e" /* MatCardModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["f" /* MatCheckboxModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["g" /* MatChipsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["h" /* MatDatepickerModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MatDialogModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["l" /* MatExpansionModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["m" /* MatFormFieldModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["n" /* MatGridListModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["o" /* MatIconModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["p" /* MatInputModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["q" /* MatListModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["r" /* MatMenuModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["u" /* MatProgressBarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["v" /* MatProgressSpinnerModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["w" /* MatRadioModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["x" /* MatSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["z" /* MatSlideToggleModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["A" /* MatSliderModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["y" /* MatSidenavModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["D" /* MatSnackBarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["F" /* MatStepperModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["H" /* MatTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["I" /* MatToolbarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["J" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["t" /* MatPaginatorModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["E" /* MatSortModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["G" /* MatTableModule */]
             ]
         })
     ], MaterialUtilitiesModule);
@@ -1758,6 +1830,121 @@ var NotificationsComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/recovery/recovery.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "#welcome-panel{\r\n    padding-top: 10px;\r\n    background-color: rgba(255,255,255,0.9);;\r\n}\r\nheader {\r\n    background-color: rgba(31,50,79,0.9);\r\n\tmin-height:96vh;\r\n    padding-top: 150px;\r\n    padding-bottom: 10px;\r\n\t/*background: rgba(62, 156, 242, 0.1);*/\r\n}\r\n\r\n.input{\r\n    border-radius: 0 !important;\r\n}\r\n.navbar-buttons-hover:hover{\r\n\ttext-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 1em white;\r\n}\r\n::ng-deep snack-bar-container.custom-snack-bar-class {\r\n    background: rgb(221, 57, 65);\r\n  }\r\n  \r\n::ng-deep .custom-snack-bar-class .mat-simple-snackbar {\r\n    color: black;\r\n    font-weight: normal;\r\n}\r\n::ng-deep .custom-snack-bar-class .mat-simple-snackbar-action {\r\n    color: rgb(24, 29, 25);\r\n    font-weight: bold;\r\n}\r\nbutton {\r\n    /*color: rgba(62, 156, 242, 0.5);*/\r\n    font-weight: bold;\r\n    padding: 10px 40px;\r\n    margin: 20px 0;\r\n    border: none;\r\n    cursor: pointer;\r\n    border-radius: 5px;\r\n}\r\n\r\n#registerSubmit{\r\n    margin-left:5px;\r\n    background: rgba(31,50,79,0.2);\r\n    font-size: 1.2em;\r\n}\r\n#registerSubmit:hover{\r\n    color: black;\r\n    background: rgba(31,50,79,0.3);\r\n}\r\n.first {\r\n\tmargin-top: 5%;\r\n\tmargin-bottom: 7%;\r\n}\r\nh1{\r\n\tcolor: black;\r\n}\r\nh2 {\r\n\tcolor: white;\r\n}\r\n\r\n\r\n.right {\r\n\tfloat: right;\r\n}\r\nfooter {\r\n  background-color: rgba(39, 39, 39,1);\r\n  color: white;\r\n }\r\n\r\n footer a {\r\n \tcolor: white;\r\n }\r\n\r\n .social img {\r\n \twidth: 50px;\r\n \tmargin-right: 20px;\r\n }\r\n\r\n .social {\r\n \tpadding: 20px 20px 20px 0; \r\n }\r\n\r\n #bs-example-navbar-collapse-1{\r\n\t float: right !important;\r\n }\r\n\r\n @media screen and (max-width: 770px) {\r\n    #bs-example-navbar-collapse-1{\r\n\t\tfloat: left !important;\r\n\t}\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/recovery/recovery.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"description\" content=\"\">\n  <meta name=\"author\" content=\"\">\n\n  <title>FII Admis</title>\n\n</head>\n\n<body id=\"top\">\n  <nav class=\"navbar-inverse navbar-fixed-top\" role=\"navigation\">\n      <div class=\"container\">\n          <div class=\"navbar-header\">\n              <button type=\"button\" style=\"margin-right:10%;\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\"\n                  tabindex=\"1\" accesskey=\"m\">\n                  <span class=\"sr-only\">Toggle navigation</span>\n                  <span class=\"icon-bar\"></span>\n                  <span class=\"icon-bar\"></span>\n                  <span class=\"icon-bar\"></span>\n              </button>\n              <a class=\"navbar-brand\" href=\"#\">\n                  <img style=\"height:inherit;\" src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png\"\n                      alt=\"FII Admis logo\">\n              </a>\n          </div>\n          <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n              <ul class=\"nav navbar-nav\">\n                  <li>\n                      <a class=\"navbar-buttons-hover\" href=\"#beneficii\">\n                          <h2>Benefits</h2>\n                      </a>\n                  </li>\n                  <li>\n                      <a class=\"navbar-buttons-hover\" href=\"#impresii\">\n                          <h2>Impressions</h2>\n                      </a>\n                  </li>\n                  <li>\n                      <a class=\"navbar-buttons-hover\" href=\"#contact\">\n                          <h2>Contact</h2>\n                      </a>\n                  </li>\n              </ul>\n          </div>\n      </div>\n  </nav>\n\n  <header>\n      <div class=\"container\">\n          <div class=\"col-md-8 col-md-offset-2\" id=\"welcome-panel\">\n              <h3 class=\"col-md-6 col-md-offset-4 col-xs-offset-2\" style=\"margin-bottom:30px;\">Submit New Passord</h3>\n              <form name=\"form\" (ngSubmit)=\"f.form.valid && recover()\" #f=\"ngForm\" novalidate>\n                  <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n                      <label for=\"password\">Password</label>\n                      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" (input)=\"checkConfirmPass()\" #password=\"ngModel\" required />\n                      <div *ngIf=\"f.submitted && !password.valid\" style=\"color:red;\">Password is required</div>\n                  </div>\n                  <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n                      <label>Confirm Password</label>\n\n                      <input type=\"password\" class=\"form-control\" name=\"confirmPassword\" (input)=\"checkConfirmPass()\" required />\n                      <div id=\"confirmError\" style=\"color:red;display:none;\">Passwords don't match</div>\n                  </div>\n                  <div class=\"col-md-10 col-md-offset-4  col-xs-offset-3\">\n                      <button class=\"col-md-4 \" id=\"registerSubmit\" [disabled]=\"loading\">Submit</button>\n                      <mat-spinner  class=\"col-xs-offset-0 col-xs-4 col-md-1 col-md-offset-0\" style=\"margin-left:16px;margin-top:26.5px;margin-left:16px;\" *ngIf=\"loading\" [diameter]=\"30\"></mat-spinner>\n                  </div>\n              </form>\n          </div>\n      </div>\n  </header>\n\n\n  <footer>\n      <div class=\"container\">\n          <h4>&copy; 2017\n              <a href=\"https://www.info.uaic.ro\">Faculty of Computer Science Ia&#351;i</a>. All rights reserved.</h4>\n      </div>\n  </footer>\n</body>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/recovery/recovery.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecoveryComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../src/app/_services/user.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var RecoveryComponent = (function () {
+    function RecoveryComponent(route, router, userService, snackBar) {
+        this.route = route;
+        this.router = router;
+        this.userService = userService;
+        this.snackBar = snackBar;
+        this.model = {};
+    }
+    RecoveryComponent.prototype.ngOnInit = function () {
+        this.userEmail = this.route.snapshot.queryParams['userEmail'];
+        this.code = this.route.snapshot.queryParams['code'];
+        if (!this.userEmail || !this.code) {
+            this.router.navigate(['/']);
+        }
+    };
+    RecoveryComponent.prototype.checkConfirmPass = function () {
+        var pass = document.getElementsByName('password')[0].value;
+        var confirmPass = document.getElementsByName('confirmPassword')[0].value;
+        // tslint:disable-next-line:one-line
+        if (pass !== confirmPass && confirmPass !== '') {
+            document.getElementById('confirmError').style.display = 'block';
+            return true;
+        }
+        else {
+            document.getElementById('confirmError').style.display = 'none';
+            return false;
+        }
+    };
+    RecoveryComponent.prototype.openSnackBar = function (message, action) {
+        var config = new __WEBPACK_IMPORTED_MODULE_2__angular_material__["C" /* MatSnackBarConfig */]();
+        config.extraClasses = ['custom-snack-bar-class'];
+        config.duration = 5000;
+        this.snackBar.open(message, action, config);
+    };
+    RecoveryComponent.prototype.recover = function () {
+        var _this = this;
+        this.userService.retrievePassword(this.userEmail, this.model.password, this.code)
+            .subscribe(function (data) {
+            if (_this.checkConfirmPass()) {
+                _this.openSnackBar(JSON.stringify(data), 'Got it');
+            }
+            _this.router.navigate(['/login']);
+        }, function (error) {
+            _this.openSnackBar(JSON.stringify(error), 'Got it');
+            if (_this.checkConfirmPass()) {
+                _this.openSnackBar('Confirm password invalid.', 'Got it');
+            }
+            _this.loading = false;
+        });
+    };
+    RecoveryComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-recovery',
+            template: __webpack_require__("../../../../../src/app/recovery/recovery.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/recovery/recovery.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_material__["B" /* MatSnackBar */]])
+    ], RecoveryComponent);
+    return RecoveryComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/register/register.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1766,7 +1953,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#welcome-panel{\r\n    padding-top: 10px;\r\n    background-color: rgba(255,255,255,0.9);;\r\n}\r\nheader {\r\n    background-color: rgba(31,50,79,0.9);\r\n\tmin-height:96vh;\r\n    padding-top: 150px;\r\n    padding-bottom: 10px;\r\n\t/*background: rgba(62, 156, 242, 0.1);*/\r\n}\r\n\r\n.input{\r\n    border-radius: 0 !important;\r\n}\r\n.navbar-buttons-hover:hover{\r\n\ttext-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 1em white;\r\n}\r\nbutton {\r\n    /*color: rgba(62, 156, 242, 0.5);*/\r\n    font-weight: bold;\r\n    padding: 10px 40px;\r\n    margin: 20px 0;\r\n    border: none;\r\n    cursor: pointer;\r\n    border-radius: 5px;\r\n}\r\n\r\n#registerSubmit{\r\n    background: rgba(31,50,79,0.2);\r\n    font-size: 1.2em;\r\n}\r\n#registerSubmit:hover{\r\n    color: black;\r\n    background: rgba(31,50,79,0.3);\r\n}\r\n.first {\r\n\tmargin-top: 5%;\r\n\tmargin-bottom: 7%;\r\n}\r\nh1{\r\n\tcolor: black;\r\n}\r\nh2 {\r\n\tcolor: white;\r\n}\r\n\r\n\r\n.right {\r\n\tfloat: right;\r\n}\r\nfooter {\r\n  background-color: rgba(39, 39, 39,1);\r\n  color: white;\r\n }\r\n\r\n footer a {\r\n \tcolor: white;\r\n }\r\n\r\n .social img {\r\n \twidth: 50px;\r\n \tmargin-right: 20px;\r\n }\r\n\r\n .social {\r\n \tpadding: 20px 20px 20px 0; \r\n }\r\n\r\n #bs-example-navbar-collapse-1{\r\n\t float: right !important;\r\n }\r\n\r\n @media screen and (max-width: 770px) {\r\n    #bs-example-navbar-collapse-1{\r\n\t\tfloat: left !important;\r\n\t}\r\n}\r\n", ""]);
+exports.push([module.i, "#welcome-panel{\r\n    padding-top: 10px;\r\n    background-color: rgba(255,255,255,0.9);;\r\n}\r\nheader {\r\n    background-color: rgba(31,50,79,0.9);\r\n\tmin-height:96vh;\r\n    padding-top: 150px;\r\n    padding-bottom: 10px;\r\n\t/*background: rgba(62, 156, 242, 0.1);*/\r\n}\r\n\r\n.input{\r\n    border-radius: 0 !important;\r\n}\r\n.navbar-buttons-hover:hover{\r\n\ttext-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 1em white;\r\n}\r\n::ng-deep snack-bar-container.custom-snack-bar-class {\r\n    background: rgb(221, 57, 65);\r\n  }\r\n  \r\n::ng-deep .custom-snack-bar-class .mat-simple-snackbar {\r\n    color: black;\r\n    font-weight: normal;\r\n}\r\n::ng-deep .custom-snack-bar-class .mat-simple-snackbar-action {\r\n    color: rgb(24, 29, 25);\r\n    font-weight: bold;\r\n}\r\nbutton {\r\n    /*color: rgba(62, 156, 242, 0.5);*/\r\n    font-weight: bold;\r\n    padding: 10px 40px;\r\n    margin: 20px 0;\r\n    border: none;\r\n    cursor: pointer;\r\n    border-radius: 5px;\r\n}\r\n\r\n#registerSubmit{\r\n    margin-left:5px;\r\n    background: rgba(31,50,79,0.2);\r\n    font-size: 1.2em;\r\n}\r\n#registerSubmit:hover{\r\n    color: black;\r\n    background: rgba(31,50,79,0.3);\r\n}\r\n.first {\r\n\tmargin-top: 5%;\r\n\tmargin-bottom: 7%;\r\n}\r\nh1{\r\n\tcolor: black;\r\n}\r\nh2 {\r\n\tcolor: white;\r\n}\r\n\r\n\r\n.right {\r\n\tfloat: right;\r\n}\r\nfooter {\r\n  background-color: rgba(39, 39, 39,1);\r\n  color: white;\r\n }\r\n\r\n footer a {\r\n \tcolor: white;\r\n }\r\n\r\n .social img {\r\n \twidth: 50px;\r\n \tmargin-right: 20px;\r\n }\r\n\r\n .social {\r\n \tpadding: 20px 20px 20px 0; \r\n }\r\n\r\n #bs-example-navbar-collapse-1{\r\n\t float: right !important;\r\n }\r\n\r\n @media screen and (max-width: 770px) {\r\n    #bs-example-navbar-collapse-1{\r\n\t\tfloat: left !important;\r\n\t}\r\n}\r\n", ""]);
 
 // exports
 
@@ -1779,7 +1966,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"\">\n    <meta name=\"author\" content=\"\">\n\n    <title>FII Admis</title>\n\n</head>\n\n<body id=\"top\">\n    <nav class=\"navbar-inverse navbar-fixed-top\" role=\"navigation\">\n        <div class=\"container\">\n            <div class=\"navbar-header\">\n                <button type=\"button\" style=\"margin-right:10%;\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\"\n                    tabindex=\"1\" accesskey=\"m\">\n                    <span class=\"sr-only\">Toggle navigation</span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                </button>\n                <a class=\"navbar-brand\" href=\"#\">\n                    <img style=\"height:inherit;\" src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png\"\n                        alt=\"FII Admis logo\">\n                </a>\n            </div>\n            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n                <ul class=\"nav navbar-nav\">\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#beneficii\">\n                            <h2>Benefits</h2>\n                        </a>\n                    </li>\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#impresii\">\n                            <h2>Impressions</h2>\n                        </a>\n                    </li>\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#contact\">\n                            <h2>Contact</h2>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </nav>\n\n    <header>\n        <div class=\"container\">\n            <div class=\"col-md-8 col-md-offset-2\" id=\"welcome-panel\">\n                <h3 class=\"col-md-2 col-md-offset-5\">Sign up</h3>\n                <form name=\"form\" (ngSubmit)=\"f.form.valid && register()\" #f=\"ngForm\" novalidate>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !email.valid }\">\n                        <label for=\"email\">Email</label>\n                        <br>\n                        <input type=\"text\" class=\"form-control\" name=\"email\" [(ngModel)]=\"model.email\" #email=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !email.valid\" style=\"color:red;\">Email is required</div>\n                    </div>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n                        <label for=\"password\">Password</label>\n\n                        <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" (input)=\"checkConfirmPass()\" #password=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !password.valid\" style=\"color:red;\">Password is required</div>\n                    </div>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n                        <label>Confirm Password</label>\n\n                        <input type=\"password\" class=\"form-control\" name=\"confirmPassword\" (input)=\"checkConfirmPass()\" required />\n                        <div id=\"confirmError\" style=\"color:red;display:none;\">Passwords don't match</div>\n                    </div>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !email.valid }\">\n                        <label for=\"firstName\">First Name</label>\n\n                        <input type=\"text\" class=\"form-control\" name=\"firstName\" [(ngModel)]=\"model.firstName\" #firstName=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !firstName.valid\" style=\"color:red;\">First Name is required</div>\n                    </div>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !email.valid }\">\n                        <label for=\"lastName\">Last Name</label>\n                        <input type=\"text\" class=\"form-control\" name=\"lastName\" [(ngModel)]=\"model.lastName\" #lastName=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !lastName.valid\" style=\"color:red;\">Last Name is required</div>\n                    </div>\n                    <div class=\"col-md-8 col-md-offset-4\">\n                        <button class=\"col-md-5\" id=\"registerSubmit\" [disabled]=\"loading\">Register</button>\n                        <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"\n                        />\n                    </div>\n                </form>\n                <div class=\"col-md-7 col-md-offset-6\" style=\"padding-bottom: 3px;\">\n                    <h4>\n                        Already registered here? Click\n                        <a [routerLink]=\"['/login']\">here</a> to login.</h4>\n                </div>\n            </div>\n        </div>\n    </header>\n\n\n    <footer>\n        <div class=\"container\">\n            <h4>&copy; 2017\n                <a href=\"https://www.info.uaic.ro\">Faculty of Computer Science Ia&#351;i</a>. All rights reserved.</h4>\n        </div>\n    </footer>\n</body>"
+module.exports = "<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"\">\n    <meta name=\"author\" content=\"\">\n\n    <title>FII Admis</title>\n\n</head>\n\n<body id=\"top\">\n    <nav class=\"navbar-inverse navbar-fixed-top\" role=\"navigation\">\n        <div class=\"container\">\n            <div class=\"navbar-header\">\n                <button type=\"button\" style=\"margin-right:10%;\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\"\n                    tabindex=\"1\" accesskey=\"m\">\n                    <span class=\"sr-only\">Toggle navigation</span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                </button>\n                <a class=\"navbar-brand\" href=\"#\">\n                    <img style=\"height:inherit;\" src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png\"\n                        alt=\"FII Admis logo\">\n                </a>\n            </div>\n            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n                <ul class=\"nav navbar-nav\">\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#beneficii\">\n                            <h2>Benefits</h2>\n                        </a>\n                    </li>\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#impresii\">\n                            <h2>Impressions</h2>\n                        </a>\n                    </li>\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#contact\">\n                            <h2>Contact</h2>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </nav>\n\n    <header>\n        <div class=\"container\">\n            <div class=\"col-md-8 col-md-offset-2\" id=\"welcome-panel\">\n                <h3 class=\"col-md-2 col-md-offset-5 col-xs-offset-4\">Sign up</h3>\n                <form name=\"form\" (ngSubmit)=\"f.form.valid && register()\" #f=\"ngForm\" novalidate>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !email.valid }\">\n                        <label for=\"email\">Email</label>\n                        <br>\n                        <input type=\"text\" class=\"form-control\" name=\"email\" [(ngModel)]=\"model.email\" #email=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !email.valid\" style=\"color:red;\">Email is required</div>\n                    </div>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n                        <label for=\"password\">Password</label>\n\n                        <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" (input)=\"checkConfirmPass()\" #password=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !password.valid\" style=\"color:red;\">Password is required</div>\n                    </div>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n                        <label>Confirm Password</label>\n\n                        <input type=\"password\" class=\"form-control\" name=\"confirmPassword\" (input)=\"checkConfirmPass()\" required />\n                        <div id=\"confirmError\" style=\"color:red;display:none;\">Passwords don't match</div>\n                    </div>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !email.valid }\">\n                        <label for=\"firstName\">First Name</label>\n\n                        <input type=\"text\" class=\"form-control\" name=\"firstName\" [(ngModel)]=\"model.firstName\" #firstName=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !firstName.valid\" style=\"color:red;\">First Name is required</div>\n                    </div>\n                    <div class=\"form-group col-md-6 col-md-offset-3\" [ngClass]=\"{ 'has-error': f.submitted && !email.valid }\">\n                        <label for=\"lastName\">Last Name</label>\n                        <input type=\"text\" class=\"form-control\" name=\"lastName\" [(ngModel)]=\"model.lastName\" #lastName=\"ngModel\" required />\n                        <div *ngIf=\"f.submitted && !lastName.valid\" style=\"color:red;\">Last Name is required</div>\n                    </div>\n                    <div class=\"col-md-10 col-md-offset-4  col-xs-offset-3\">\n                        <button class=\"col-md-4 \" id=\"registerSubmit\" [disabled]=\"loading\">Register</button>\n                        <mat-spinner  class=\"col-xs-offset-0 col-xs-4 col-md-1 col-md-offset-0\" style=\"margin-left:16px;margin-top:26.5px;margin-left:16px;\" *ngIf=\"loading\" [diameter]=\"30\"></mat-spinner>\n                    </div>\n                </form>\n                <div class=\"col-md-7 col-md-offset-6\" style=\"padding-bottom: 3px;\">\n                    <h4>\n                        Already registered here? Click\n                        <a [routerLink]=\"['/login']\">here</a> to login.</h4>\n                </div>\n            </div>\n        </div>\n    </header>\n\n\n    <footer>\n        <div class=\"container\">\n            <h4>&copy; 2017\n                <a href=\"https://www.info.uaic.ro\">Faculty of Computer Science Ia&#351;i</a>. All rights reserved.</h4>\n        </div>\n    </footer>\n</body>"
 
 /***/ }),
 
@@ -1814,9 +2001,10 @@ var RegisterComponent = (function () {
         this.loading = false;
     }
     RegisterComponent.prototype.openSnackBar = function (message, action) {
-        this.snackBar.open(message, action, {
-            duration: 5000,
-        });
+        var config = new __WEBPACK_IMPORTED_MODULE_3__angular_material__["C" /* MatSnackBarConfig */]();
+        config.extraClasses = ['custom-snack-bar-class'];
+        config.duration = 5000;
+        this.snackBar.open(message, action, config);
     };
     RegisterComponent.prototype.register = function () {
         var _this = this;
@@ -1825,8 +2013,21 @@ var RegisterComponent = (function () {
             .subscribe(function (data) {
             _this.router.navigate(['/login']);
         }, function (error) {
+            var x = JSON.parse(JSON.stringify(error));
+            var y = JSON.parse(x['_body']);
             if (error.status === 400) {
-                _this.openSnackBar('E-mail already in use', 'Close');
+                if (JSON.parse(JSON.stringify(y))['Email']) {
+                    _this.openSnackBar(JSON.parse(JSON.stringify(y))['Email'], 'Got it');
+                }
+                if (JSON.parse(JSON.stringify(y))['PasswordTooShort']) {
+                    _this.openSnackBar(JSON.parse(JSON.stringify(y))['PasswordTooShort'], 'Got it');
+                }
+                if (JSON.parse(JSON.stringify(y))['DuplicateUserName']) {
+                    _this.openSnackBar(JSON.parse(JSON.stringify(y))['DuplicateUserName'], 'Got it');
+                }
+                if (_this.checkConfirmPass()) {
+                    _this.openSnackBar('Confirm password invalid.', 'Got it');
+                }
             }
             _this.loading = false;
         });
@@ -1837,9 +2038,11 @@ var RegisterComponent = (function () {
         // tslint:disable-next-line:one-line
         if (pass !== confirmPass && confirmPass !== '') {
             document.getElementById('confirmError').style.display = 'block';
+            return true;
         }
         else {
             document.getElementById('confirmError').style.display = 'none';
+            return false;
         }
     };
     RegisterComponent = __decorate([
@@ -1851,7 +2054,7 @@ var RegisterComponent = (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_material__["y" /* MatSnackBar */]])
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["B" /* MatSnackBar */]])
     ], RegisterComponent);
     return RegisterComponent;
 }());

@@ -12,8 +12,12 @@ export class UserService {
     return this.http.post(this.config.apiUrl + '/api/account/create_account', user, this.jwt());
   }
 
-  getAll() {
-    return this.http.get(this.config.apiUrl + '/users', this.jwt()).map((response: Response) => response.json());
+  getCode(email: string) {
+    return this.http.post(this.config.apiUrl + '/api/Account/password_recovery_s1', { email: email});
+  }
+
+  retrievePassword(email: string, password: string, code: string) {
+    return this.http.put(this.config.apiUrl + '/api/Account/password_recovery_s2', { email: email, password: password, code: code});
   }
   // private helper methods
 

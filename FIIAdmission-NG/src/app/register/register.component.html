@@ -49,7 +49,7 @@
     <header>
         <div class="container">
             <div class="col-md-8 col-md-offset-2" id="welcome-panel">
-                <h3 class="col-md-2 col-md-offset-5">Sign up</h3>
+                <h3 class="col-md-2 col-md-offset-5 col-xs-offset-4">Sign up</h3>
                 <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
                     <div class="form-group col-md-6 col-md-offset-3" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
                         <label for="email">Email</label>
@@ -80,10 +80,9 @@
                         <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
                         <div *ngIf="f.submitted && !lastName.valid" style="color:red;">Last Name is required</div>
                     </div>
-                    <div class="col-md-8 col-md-offset-4">
-                        <button class="col-md-5" id="registerSubmit" [disabled]="loading">Register</button>
-                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-                        />
+                    <div class="col-md-10 col-md-offset-4  col-xs-offset-3">
+                        <button class="col-md-4 " id="registerSubmit" [disabled]="loading">Register</button>
+                        <mat-spinner  class="col-xs-offset-0 col-xs-4 col-md-1 col-md-offset-0" style="margin-left:16px;margin-top:26.5px;margin-left:16px;" *ngIf="loading" [diameter]="30"></mat-spinner>
                     </div>
                 </form>
                 <div class="col-md-7 col-md-offset-6" style="padding-bottom: 3px;">

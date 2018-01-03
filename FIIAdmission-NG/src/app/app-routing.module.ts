@@ -6,10 +6,12 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthenticationGuard } from './authentication.guard';
+import { RecoveryComponent } from './recovery/recovery.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'recovery', component: RecoveryComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard] },
   { path: '', component: HomeComponent, pathMatch: 'full' },

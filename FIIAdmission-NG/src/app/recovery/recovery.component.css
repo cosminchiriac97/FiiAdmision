@@ -1,0 +1,91 @@
+#welcome-panel{
+    padding-top: 10px;
+    background-color: rgba(255,255,255,0.9);;
+}
+header {
+    background-color: rgba(31,50,79,0.9);
+	min-height:96vh;
+    padding-top: 150px;
+    padding-bottom: 10px;
+	/*background: rgba(62, 156, 242, 0.1);*/
+}
+
+.input{
+    border-radius: 0 !important;
+}
+.navbar-buttons-hover:hover{
+	text-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 1em white;
+}
+::ng-deep snack-bar-container.custom-snack-bar-class {
+    background: rgb(221, 57, 65);
+  }
+  
+::ng-deep .custom-snack-bar-class .mat-simple-snackbar {
+    color: black;
+    font-weight: normal;
+}
+::ng-deep .custom-snack-bar-class .mat-simple-snackbar-action {
+    color: rgb(24, 29, 25);
+    font-weight: bold;
+}
+button {
+    /*color: rgba(62, 156, 242, 0.5);*/
+    font-weight: bold;
+    padding: 10px 40px;
+    margin: 20px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#registerSubmit{
+    margin-left:5px;
+    background: rgba(31,50,79,0.2);
+    font-size: 1.2em;
+}
+#registerSubmit:hover{
+    color: black;
+    background: rgba(31,50,79,0.3);
+}
+.first {
+	margin-top: 5%;
+	margin-bottom: 7%;
+}
+h1{
+	color: black;
+}
+h2 {
+	color: white;
+}
+
+
+.right {
+	float: right;
+}
+footer {
+  background-color: rgba(39, 39, 39,1);
+  color: white;
+ }
+
+ footer a {
+ 	color: white;
+ }
+
+ .social img {
+ 	width: 50px;
+ 	margin-right: 20px;
+ }
+
+ .social {
+ 	padding: 20px 20px 20px 0; 
+ }
+
+ #bs-example-navbar-collapse-1{
+	 float: right !important;
+ }
+
+ @media screen and (max-width: 770px) {
+    #bs-example-navbar-collapse-1{
+		float: left !important;
+	}
+}

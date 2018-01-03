@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Hello there!</h1>
+<div mat-dialog-content>
+  <p>In order to retrieve your password, the e-mail with which you registered will be necessary:</p>
+  <mat-form-field class="col-md-12 col-xs-12">
+    <input placeholder="Your e-mail" matInput tabindex="-1" [(ngModel)]="data.email">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="col-md-8 col-xs-10 col-md-offset-4 col-xs-offset-2">
+  <button mat-button class="col-md-offset-0 col-xs-offset-0" (click)="onNoClick()">Close</button>
+  <button mat-button class="col-md-offset-4 col-xs-offset-4" [mat-dialog-close]="data.email" cdkFocusInitial>Retrieve</button>
+</div>
