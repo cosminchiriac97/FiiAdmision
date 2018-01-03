@@ -61,7 +61,7 @@ namespace Api.Controllers
             {
                 EmailAdress = userIdentity.Email,
                 Subject = "FIIAdmis - Confirmarea email-ului",
-                TextBody = "Confirmati-va mailul, dand click pe acest link: <a href=\"" + callbackUrl + "\">here</a>"
+                TextBody = "Confirmati-va mailul, utilizand acest <a href=\"" + callbackUrl + "\">link</a>"
             });
 
             await _jobSeekerRepository.AddAsync(new JobSeeker { Id = new Guid(), IdentityId = userIdentity.Id });
@@ -126,7 +126,7 @@ namespace Api.Controllers
             {
                 EmailAdress = userIdentity.Email,
                 Subject = "FIIAdmis - Resetare parola",
-                TextBody = "Resetati-va parola utilizand acest link: <a href=\"" + callbackUrl + "\">here</a>"
+                TextBody = "Resetati-va parola utilizand acest <a href=\"" + callbackUrl + "\">link</a>"
             });
 
             return Ok("Password reset link sent");
