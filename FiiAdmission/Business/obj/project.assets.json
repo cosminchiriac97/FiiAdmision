@@ -2479,6 +2479,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "2.0.1",
           "Microsoft.Extensions.Identity.Stores": "2.0.1",
           "Microsoft.IdentityModel.Tokens": "5.1.5"
         },
@@ -7685,32 +7686,30 @@
       "Data.Domain >= 1.0.0",
       "Data.Persistence >= 1.0.0",
       "MailKit >= 1.22.0",
+      "Microsoft.EntityFrameworkCore >= 2.0.1",
       "Microsoft.NETCore.App >= 2.0.0",
       "WindowsAzure.Storage >= 8.7.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alexander\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\andre\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj",
+      "projectUniqueName": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj",
       "projectName": "Business",
-      "projectPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj",
-      "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Business\\obj\\",
+      "projectPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+      "outputPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Business\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -7722,11 +7721,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj": {
-              "projectPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj"
+            "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj": {
+              "projectPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj"
             },
-            "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj": {
-              "projectPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj"
+            "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj": {
+              "projectPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj"
             }
           }
         }
@@ -7740,19 +7739,23 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "MailKit": {
-            "target": "Package",
-            "version": "[1.22.0, )"
-          },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.0, )",
+            "version": "2.0.0",
             "autoReferenced": true
+          },
+          "MailKit": {
+            "target": "Package",
+            "version": "1.22.0"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "2.0.1"
           },
           "WindowsAzure.Storage": {
             "target": "Package",
-            "version": "[8.7.0, )"
+            "version": "8.7.0"
           }
         },
         "imports": [

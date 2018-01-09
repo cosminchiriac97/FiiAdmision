@@ -6,6 +6,7 @@ using Data.Persistence.ContentDb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
+
 namespace Business.AnnouncementsRepo
 {
     public class AnnouncementsRepository : IAnnouncementsRepository
