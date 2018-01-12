@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using AutoMapper;
 using Business.AccountsRepository;
+using Business.AnnouncementsRepo;
 using Business.EmailServices;
 using Business.StorageAzureServices.Implementation;
 using Business.StorageAzureServices.Interfaces;
@@ -35,6 +36,8 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IApplicationUserDbContext, ApplicationUserDbContext>();
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IAnnouncementsRepository, AnnouncementsRepository>();
             services.AddTransient<IJobSeekerRepository, JobSeekerRepository>();
             services.AddTransient<IContentDbContext, ContentDbContext>();
 
@@ -104,7 +107,7 @@ namespace Api
                     .AllowAnyHeader();
             }));
             // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
+           
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
             
             services.AddAutoMapper();
