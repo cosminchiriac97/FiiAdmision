@@ -1,3 +1,42 @@
-<p>
-  dashboard works!
-</p>
+<body style="background:black">
+  <dashboard-sidenav>
+    <div class="dash-container">
+      <div id="news">
+        <div class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" id="welcome-panel">
+          <h2 class="col-md-4 col-md-offset-5 col-xs-offset-3 col-xs-7" style="margin-bottom:20px;">News</h2>
+          <app-news class="col-md-10 col-xs-10 col-md-offset-1"></app-news>
+        </div>
+      </div>
+    </div>
+    <div class="dash-container">
+      <div id="notifications">
+        <div class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" id="welcome-panel">
+          <h2 class="col-md-4 col-md-offset-5 col-xs-offset-2 col-xs-8" style="margin-bottom:20px;">Notifications</h2>
+          <app-notifications class="col-md-10 col-xs-10 col-md-offset-1">
+          </app-notifications>
+        </div>
+      </div>
+    </div>
+    <div class="dash-container" id="form">
+      <div class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" id="welcome-panel" style="word-wrap: break-word;">
+        <h2 class="col-md-4 col-md-offset-5 col-xs-offset-1 col-xs-10" style="margin-bottom:20px;">Application Form</h2>
+        <app-fii-form class="col-md-8 col-md-offset-2" [fields]="fields">
+        </app-fii-form>
+      </div>
+    </div>
+    <div class="dash-container" id="documents">
+      <div class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" id="welcome-panel">
+        <h2 class="col-md-4 col-md-offset-5 col-xs-offset-2 col-xs-8" style="margin-bottom:20px;">Documents</h2>
+        <app-documents class="col-md-8 col-md-offset-2">
+        </app-documents>
+      </div>
+    </div>
+    <div class="dash-container" id="reset">
+      <div class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" id="welcome-panel">
+        <h2 class="col-md-4 col-md-offset-5 col-xs-offset-1 col-xs-10" style="margin-bottom:20px;">Reset Password</h2>
+        <app-reset-pass class="col-md-8 col-md-offset-2">
+        </app-reset-pass>
+      </div>
+    </div>
+  </dashboard-sidenav>
+</body>

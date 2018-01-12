@@ -85,7 +85,7 @@ namespace Api
                     o.Password.RequireUppercase = false;
                     o.Password.RequireNonAlphanumeric = false;
                     o.Password.RequiredLength = 6;
-                    o.SignIn.RequireConfirmedEmail = true;
+                    //o.SignIn.RequireConfirmedEmail = true;
                 })
                 .AddEntityFrameworkStores<ApplicationUserDbContext>()
                 .AddDefaultTokenProviders();
@@ -119,8 +119,8 @@ namespace Api
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("AdminOnly", policy => policy.RequireClaim("Role"));
-                options.AddPolicy("NotAdmin", policy => policy.RequireClaim("Role1"));
+                options.AddPolicy("Administrator", policy => policy.RequireClaim("Admin"));
+                options.AddPolicy("User", policy => policy.RequireClaim("User"));
             });
 
             services.AddMvc();
