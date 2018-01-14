@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Data.Domain;
-using Data.Persistence.RepartitionDb;
+using Data.Persistence.ContentDb;
 using Microsoft.Extensions.Logging;
 
 namespace Business.RepartitionRepo
 {
     public class RepartitionRepository : IRepartitionRepository
     {
-        private readonly IRepartitionDbContext _databaseContext;
+        private readonly IContentDbContext _databaseContext;
         private readonly ILogger _logger;
 
-        public RepartitionRepository(IRepartitionDbContext databaseContext, ILogger logger)
+        public RepartitionRepository(IContentDbContext databaseContext, ILogger logger)
         {
             _databaseContext = databaseContext;
             _logger = logger;
