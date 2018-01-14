@@ -26,7 +26,7 @@ namespace Api.Controllers
             _formRepository = formRepository;
         }
 
-        [HttpGet("{id}", Name = "GetAnnouncementsRoute")]
+        [HttpGet("{id}", Name = "GetFormsRoute")]
         [NoCache]
         [ProducesResponseType(typeof(JObject), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
