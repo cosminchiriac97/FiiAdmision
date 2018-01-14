@@ -18,7 +18,9 @@ namespace Api.Controllers
         private readonly IAnnouncementsRepository _announcementsRepository;
         private readonly IMapper _mapper;
         readonly ILogger _logger;
-        public AnnouncementController(IAnnouncementsRepository announcementsRepository, IMapper mapper, ILoggerFactory loggerFactory)
+
+        public AnnouncementController(IAnnouncementsRepository announcementsRepository, IMapper mapper,
+            ILoggerFactory loggerFactory)
         {
             _announcementsRepository = announcementsRepository;
             _mapper = mapper;
@@ -44,7 +46,7 @@ namespace Api.Controllers
             catch (Exception exp)
             {
                 _logger.LogError(exp.Message);
-                return BadRequest(new ApiResponse{Status = false});
+                return BadRequest(new ApiResponse {Status = false});
             }
         }
 
@@ -63,7 +65,7 @@ namespace Api.Controllers
             catch (Exception exp)
             {
                 _logger.LogError(exp.Message);
-                return BadRequest(new ApiResponse { Status = false });
+                return BadRequest(new ApiResponse {Status = false});
             }
         }
 
@@ -71,11 +73,11 @@ namespace Api.Controllers
         [ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponseObject<AnnouncementModel>), 201)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<IActionResult> CreateAnnouncement([FromBody]AnnouncementModel model)
+        public async Task<IActionResult> CreateAnnouncement([FromBody] AnnouncementModel model)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ApiResponse{Status = false, ModelState=ModelState});
+                return BadRequest(new ApiResponse {Status = false, ModelState = ModelState});
             }
             try
             {
@@ -86,13 +88,13 @@ namespace Api.Controllers
                 {
                     return BadRequest(new ApiResponse {Status = false});
                 }
-                return CreatedAtRoute("GetAnnouncementsRoute", new { id = newAnnouncement.Id },
-                    new ApiResponseObject<AnnouncementModel> { Status = true, Object = newAnnouncementModel });
+                return CreatedAtRoute("GetAnnouncementsRoute", new {id = newAnnouncement.Id},
+                    new ApiResponseObject<AnnouncementModel> {Status = true, Object = newAnnouncementModel});
             }
             catch (Exception exp)
             {
                 _logger.LogError(exp.Message);
-                return BadRequest(new ApiResponse { Status = false });
+                return BadRequest(new ApiResponse {Status = false});
             }
         }
 
@@ -100,11 +102,11 @@ namespace Api.Controllers
         [ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponseObject<AnnouncementModel>), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<ActionResult> UpdateCustomer(int id, [FromBody]AnnouncementModel announcementModel)
+        public async Task<ActionResult> UpdateCustomer(int id, [FromBody] AnnouncementModel announcementModel)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ApiResponse { Status = false, ModelState = ModelState });
+                return BadRequest(new ApiResponse {Status = false, ModelState = ModelState});
             }
 
             try
@@ -113,14 +115,14 @@ namespace Api.Controllers
                 var status = await _announcementsRepository.Edit(announcement);
                 if (!status)
                 {
-                    return BadRequest(new ApiResponse { Status = false });
+                    return BadRequest(new ApiResponse {Status = false});
                 }
-                return Ok(new ApiResponseObject<AnnouncementModel>{ Status = true, Object = announcementModel });
+                return Ok(new ApiResponseObject<AnnouncementModel> {Status = true, Object = announcementModel});
             }
             catch (Exception exp)
             {
                 _logger.LogError(exp.Message);
-                return BadRequest(new ApiResponse { Status = false });
+                return BadRequest(new ApiResponse {Status = false});
             }
         }
 
@@ -135,16 +137,15 @@ namespace Api.Controllers
                 var status = await _announcementsRepository.Delete(id);
                 if (!status)
                 {
-                    return BadRequest(new ApiResponse { Status = false });
+                    return BadRequest(new ApiResponse {Status = false});
                 }
-                return Ok(new ApiResponse { Status = true });
+                return Ok(new ApiResponse {Status = true});
             }
             catch (Exception exp)
             {
                 _logger.LogError(exp.Message);
-                return BadRequest(new ApiResponse { Status = false });
+                return BadRequest(new ApiResponse {Status = false});
             }
         }
-
     }
 }
