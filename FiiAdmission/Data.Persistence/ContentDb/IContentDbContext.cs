@@ -8,6 +8,9 @@ namespace Data.Persistence.ContentDb
     public interface IContentDbContext
     {
         DbSet<Announcement> Announcements  { get; set; }
+        DbSet<Form> Forms { get; set; }
+        DbSet<Candidate> Candidates { get; set; }
+        DbSet<AnswerToAdmissionForm> AnswerToAdmissionForms { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -5,7 +5,8 @@ namespace Api.Helpers
 {
     public static class Errors
     {
-        public static ModelStateDictionary AddErrorsToModelState(IdentityResult identityResult, ModelStateDictionary modelState)
+        public static ModelStateDictionary AddErrorsToModelState(IdentityResult identityResult,
+            ModelStateDictionary modelState)
         {
             foreach (var e in identityResult.Errors)
             {
@@ -15,7 +16,8 @@ namespace Api.Helpers
             return modelState;
         }
 
-        public static ModelStateDictionary AddErrorToModelState(string code, string description, ModelStateDictionary modelState)
+        public static ModelStateDictionary AddErrorToModelState(string code, string description,
+            ModelStateDictionary modelState)
         {
             modelState.TryAddModelError(code, description);
             return modelState;

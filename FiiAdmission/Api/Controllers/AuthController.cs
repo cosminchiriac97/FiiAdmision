@@ -37,7 +37,7 @@ namespace Api.Controllers
         [Authorize(Policy = "Administrator")]
         [HttpGet]
         public IActionResult Protected()
-        {    
+        {
             return Ok("Protected area");
         }
 
@@ -50,7 +50,7 @@ namespace Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ApiResponse{ModelState = ModelState, Status = false});
+                return BadRequest(new ApiResponse {ModelState = ModelState, Status = false});
             }
             var result =
                 await _signInManager.PasswordSignInAsync(credentials.UserName, credentials.Password, false, false);
@@ -69,7 +69,7 @@ namespace Api.Controllers
                         break;
                     }
                 }
-                
+
                 var userModel = new SimpleUserModel
                 {
                     Email = appUser.Email,
@@ -78,11 +78,9 @@ namespace Api.Controllers
                     Role = role,
                     EmailIsConfirmed = appUser.EmailConfirmed
                 };
-                return Ok(new ApiResponseObject<SimpleUserModel>{Object = userModel, Status = true});
+                return Ok(new ApiResponseObject<SimpleUserModel> {Object = userModel, Status = true});
             }
             return BadRequest("INVALID_LOGIN_ATTEMPT");
         }
     }
-
-
 }
