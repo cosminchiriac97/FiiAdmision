@@ -19,15 +19,14 @@ namespace Api.Controllers
         private readonly IAzureBlobStorage _storage;
         private readonly ILogger _logger;
         private readonly IFormRepository _formRepository;
-        public FormController(IAzureBlobStorage storage, ILogger logger, IFormRepository formRepository)
+        public FormController(IAzureBlobStorage storage, IFormRepository formRepository, ILoggerFactory loggerFactory)
         {
             _storage = storage;
-            _logger = logger;
+            _logger = loggerFactory.CreateLogger(nameof(FormController));
             _formRepository = formRepository;
         }
 
         [HttpGet("{id}", Name = "GetFormsRoute")]
-        [NoCache]
         [ProducesResponseType(typeof(JObject), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         public async Task<IActionResult> GetForm(Guid Id)
@@ -38,14 +37,13 @@ namespace Api.Controllers
                 JObject jsonObject;
                 using(var memoryStream = await _storage.DownloadAsync(form.Id.ToString()))
                 {
-                    jsonObject = new JObject(memoryStream);
+                    jsonObject = new JObject(memoryStream.ToArray().ToString());
                 }
 
                 if (!jsonObject.HasValues)
                 {
                     return BadRequest(new ApiResponse { Status = false });
-                }
-            
+                }            
 
                 return Ok(jsonObject);
             }
@@ -56,11 +54,10 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost] 
         [ProducesResponseType(typeof(ApiResponse), 201)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<IActionResult> CreateForm(CreationFormModel formModel)
+        public async Task<IActionResult> CreateForm([FromBody]CreationFormModel formModel)
         {
             if (!ModelState.IsValid)
             {
@@ -69,22 +66,27 @@ namespace Api.Controllers
             try
             {
                 Form form = new Form {Id = new Guid(), UserId = formModel.Email};
+                
                 using (var memoryStream = new MemoryStream())
                 {
                     using (Stream s = Convertors.GenerateStreamFromString(formModel.BlobObject))
                     {
+                       
                         await s.CopyToAsync(memoryStream);
+
+                        form = await _formRepository.Add(form);
+                        if (form == null)
+                        {
+                            return BadRequest(new ApiResponse { Status = false });
+                        }
+                        //TO DO: to make a candidate object
                         await _storage.UploadAsync(form.Id.ToString(), memoryStream);
+                     
                     }
                 }
-                var newForm = await _formRepository.Add(form);
-                if (newForm == null)
-                {
-                    return BadRequest(new ApiResponse { Status = false });
-                }
-                //TO DO: to make a candidate object
-                return CreatedAtRoute("GetFormsRoute", new { id = newForm.Id },
-                    new ApiResponse { Status = true});
+                return CreatedAtRoute("GetFormsRoute", new { id = form.Id },
+                    new ApiResponse { Status = true });
+
             }
             catch (Exception exp)
             {
