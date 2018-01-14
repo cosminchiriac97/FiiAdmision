@@ -6,6 +6,7 @@ using Business.AccountsRepository;
 using Business.AnnouncementsRepo;
 using Business.EmailServices;
 using Business.FormRepo;
+using Business.SignalR;
 using Business.StorageAzureServices.Implementation;
 using Business.StorageAzureServices.Interfaces;
 using Data.Domain;
@@ -142,7 +143,7 @@ namespace Api
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<Chat>("chat");
+                routes.MapHub<Signal>("signal");
             });
 
             app.UseCors("MyPolicy");
