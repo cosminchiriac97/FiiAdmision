@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,7 +22,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { RecoveryComponent } from './recovery/recovery.component';
-
+import { DashAdminComponent } from './dash-admin/dash-admin.component';
+import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { RecoveryComponent } from './recovery/recovery.component';
     ResetPassComponent,
     DocumentsComponent,
     DialogOverviewExampleDialogComponent,
-    RecoveryComponent
+    RecoveryComponent,
+    DashAdminComponent,
+    SidenavAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ import { RecoveryComponent } from './recovery/recovery.component';
     HttpModule,
     AppRoutingModule,
     FormUtilitiesModule,
-    MaterialUtilitiesModule
+    MaterialUtilitiesModule,
   ],
   providers: [
     AppConfig,

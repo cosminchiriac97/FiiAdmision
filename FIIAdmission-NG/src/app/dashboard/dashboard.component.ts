@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
     },
 
     {
-      name: 'last-name',
+      name: 'last-name-id',
       placeholder: 'Your last name ( from identity card )',
       type: 'text',
       checkChoices: [],
@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
     },
 
     {
-      name: 'full-name',
+      name: 'father-name',
       placeholder: 'Your father\'s name',
       type: 'text',
       checkChoices: [],
@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
     },
 
     {
-      name: 'full-name',
+      name: 'mother-name',
       placeholder: 'Your mother\'s name',
       type: 'text',
       checkChoices: [],
@@ -263,7 +263,7 @@ export class DashboardComponent implements OnInit {
       placeholder: 'Special social state',
       type: 'check',
       checkChoices: ['Came from foster homes', 'Came from foster care', 'Came from single-parent households',
-       'Orphan of one parent', 'Orphan of both parents', 'Candidate falls within disabled people category'],
+        'Orphan of one parent', 'Orphan of both parents', 'Candidate falls within disabled people category'],
       selectOptions: [],
       value: ''
     },
@@ -788,12 +788,24 @@ export class DashboardComponent implements OnInit {
       value: ''
     },
 
+    {
+      name: 'submit-button',
+      placeholder: '',
+      type: 'submit',
+      checkChoices: [],
+      selectOptions: [],
+      value: ''
+    },
 
   ];
   constructor(private userService: UserService,
     private authenticationService: Authentication,
     private router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  onSubmit(form) {
+    alert('sakura');
   }
 
   ngOnInit() {

@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FiiFormComponent } from './fii-form/fii-form.component';
 import { MaterialUtilitiesModule } from '../material-utilities/material-utilities.module';
 import { MatNativeDateModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { MatNativeDateModule } from '@angular/material';
     MaterialUtilitiesModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    FormsModule
 
   ],
   declarations: [FiiFormComponent],

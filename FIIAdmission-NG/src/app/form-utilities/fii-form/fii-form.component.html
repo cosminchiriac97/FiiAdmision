@@ -1,35 +1,53 @@
-<div class='example-container' *ngFor="let field of fields">
-  <form [ngSwitch]="field.type">
-    <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'text'">
-      <input matInput placeholder={{field.placeholder}} type={{field.type}}>
-    </mat-form-field>
-    <mat-form-field *ngSwitchCase="'password'">
-      <input matInput placeholder={{field.placeholder}} type={{field.type}}>
-    </mat-form-field>
-    <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'select'">
-      <mat-select placeholder={{field.placeholder}}>
-        <mat-option *ngFor="let option1 of field.selectOptions" [value]="option1">
-          {{option1}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'date'">
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <div class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'check'" >
-      <h3 style="margin-top:30px;margin-bottom:20px;">{{field.placeholder}}</h3>
-      <div style="font-weight:bold" *ngFor="let option2 of field.checkChoices" style="margin-top:10px;">
-        <mat-checkbox style="margin-right:5px;">
-        </mat-checkbox>
-        {{option2}}
+<mat-horizontal-stepper [linear]=false>
+  <div *ngFor="let j of [0,1,2,3,4,5,6]">
+    <mat-step [stepControl]="'firstFormGroup'">
+      <form *ngFor="let field of fields; let z = index">
+        <div *ngIf="z<(fields.length)/7*(j+1) && z>(fields.length)/7*j " [ngSwitch]="field.type">
+          <ng-template matStepLabel>Step {{j+1}}</ng-template>
+          <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'text'">
+            <input matInput placeholder={{field.placeholder}} type={{field.type}} id={{field.name}} (input)="inputElementListener(field.name)">
+          </mat-form-field>
+          <mat-form-field *ngSwitchCase="'password'">
+            <input matInput placeholder={{field.placeholder}} type={{field.type}} id={{field.name}} (input)="inputElementListener(field.name)">
+          </mat-form-field>
+          <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'select'">
+            <mat-select placeholder={{field.placeholder}} name={{field.name}} [(ngModel)]="selectedValue" (change)="selectElementListener(field.name)">
+              <mat-option *ngFor="let option1 of field.selectOptions" [value]="option1">
+                {{option1}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'date'">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" id={{field.name}} (dateInput)="addEvent(field.name, $event)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'check'">
+            <h3 style="margin-top:30px;margin-bottom:20px;">{{field.placeholder}}</h3>
+            <div style="font-weight:bold" *ngFor="let option2 of field.checkChoices; let i = index" [attr.data-index]="i" style="margin-top:10px;">
+              <mat-checkbox style="margin-right:5px;" name={{field.name}} (click)="checkBox(field.name, i)">
+              </mat-checkbox>
+              {{option2}}
+            </div>
+          </div>
+          <div class="col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3" *ngSwitchCase="'submit'">
+            <input (click)="onSubmit()" type="submit" mat-button class="col-md-5  btn btn-primary" id="registerSubmit" style="font-size:30px;margin-bottom:30px;margin-top:40px;"
+              value="Submit" [disabled]="loading">
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+            />
+          </div>
+        </div>
+      </form>
+      <div class="col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3" *ngIf="j>0 && j<6">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
       </div>
-    </div>
-  </form>
-</div>
-<div class="col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3">
-    <button mat-button class="col-md-5  btn btn-primary" id="registerSubmit" style="font-size:30px;margin-bottom:30px;margin-top:40px;" [disabled]="loading">Submit</button>
-    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-    />
+      <div class="col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3" *ngIf="j==6">
+        <button mat-button matStepperPrevious>Back</button>
+      </div>
+      <div class="col-md-8 col-md-offset-5 col-xs-4 col-xs-offset-3" *ngIf="j==0">
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
   </div>
+</mat-horizontal-stepper>
