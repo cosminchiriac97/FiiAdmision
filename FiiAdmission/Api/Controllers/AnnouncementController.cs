@@ -73,11 +73,7 @@ namespace Api.Controllers
         //[ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponseObject<AddAnnouncementModel>), 201)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-<<<<<<< HEAD
         public async Task<IActionResult> CreateAnnouncement([FromBody]AddAnnouncementModel model)
-=======
-        public async Task<IActionResult> CreateAnnouncement([FromBody] AnnouncementModel model)
->>>>>>> 4784d57da8fcb6b31554e7fbd68412b1da66137e
         {
             if (!ModelState.IsValid)
             {
@@ -92,13 +88,8 @@ namespace Api.Controllers
                 {
                     return BadRequest(new ApiResponse {Status = false});
                 }
-<<<<<<< HEAD
                 return CreatedAtRoute("GetAnnouncementsRoute", new { id = newAnnouncement.Id },
                     new ApiResponseObject<AddAnnouncementModel> { Status = true, Object = newAnnouncementModel });
-=======
-                return CreatedAtRoute("GetAnnouncementsRoute", new {id = newAnnouncement.Id},
-                    new ApiResponseObject<AnnouncementModel> {Status = true, Object = newAnnouncementModel});
->>>>>>> 4784d57da8fcb6b31554e7fbd68412b1da66137e
             }
             catch (Exception exp)
             {
@@ -111,11 +102,7 @@ namespace Api.Controllers
         //[ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponseObject<AnnouncementModel>), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-<<<<<<< HEAD
         public async Task<ActionResult> UpdateAnnouncement([FromBody]AnnouncementModel announcementModel)
-=======
-        public async Task<ActionResult> UpdateCustomer(int id, [FromBody] AnnouncementModel announcementModel)
->>>>>>> 4784d57da8fcb6b31554e7fbd68412b1da66137e
         {
             if (!ModelState.IsValid)
             {
