@@ -7,6 +7,7 @@ using Business.FormRepo;
 using Business.StorageAzureServices.Interfaces;
 using Data.Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Sockets.Internal;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 
@@ -26,32 +27,34 @@ namespace Api.Controllers
             _formRepository = formRepository;
         }
 
-        [HttpGet("{id}", Name = "GetFormsRoute")]
+        [HttpGet("{email}", Name = "GetFormsRoute")]
         [ProducesResponseType(typeof(JObject), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<IActionResult> GetForm(Guid Id)
+        public async Task<IActionResult> GetForm(string email)
         {
+         
             try
             {
-                var form = await _formRepository.GetForm(Id);
-                JObject jsonObject;
-                using(var memoryStream = await _storage.DownloadAsync(form.Id.ToString()))
+                var form = await _formRepository.GetForm(email);
+                if (form == null)
                 {
-                    jsonObject = new JObject(memoryStream.ToArray().ToString());
+                    return BadRequest(new ApiResponse {Status = false});
                 }
-
+                var json = await _storage.DownloadAsync(form.Id.ToString());
+                JObject jsonObject = JObject.Parse(json);
                 if (!jsonObject.HasValues)
                 {
-                    return BadRequest(new ApiResponse { Status = false });
-                }            
+                    return BadRequest(new ApiResponse {Status = false});
+                }
 
                 return Ok(jsonObject);
             }
             catch (Exception exp)
             {
                 _logger.LogError(exp.Message);
-                return BadRequest(new ApiResponse { Status = false });
+                return BadRequest(new ApiResponse {Status = false});
             }
+          
         }
 
         [HttpPost] 
@@ -65,7 +68,7 @@ namespace Api.Controllers
             }
             try
             {
-                Form form = new Form {Id = new Guid(), UserId = formModel.Email};
+                Form form = new Form {Id = new Guid(), UserEmail = formModel.Email};
                 
                 using (var memoryStream = new MemoryStream())
                 {

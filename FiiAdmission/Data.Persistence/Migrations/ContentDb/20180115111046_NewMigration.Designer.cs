@@ -11,9 +11,10 @@ using System;
 namespace Data.Persistence.Migrations.ContentDb
 {
     [DbContext(typeof(ContentDbContext))]
-    partial class ContentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180115111046_NewMigration")]
+    partial class NewMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,7 +80,7 @@ namespace Data.Persistence.Migrations.ContentDb
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("UserEmail");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 

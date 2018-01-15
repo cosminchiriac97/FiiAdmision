@@ -7,6 +7,6 @@ namespace Data.Domain
     public class Form
     {
         public Guid Id { get; set; }
-        public string UserId { get; set; }   
+        public string UserEmail { get; set; }   
     }
 }

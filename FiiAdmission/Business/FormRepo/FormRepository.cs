@@ -32,9 +32,9 @@ namespace Business.FormRepo
             return form;
         }
 
-        public async Task<Form> GetForm(Guid id)
+        public async Task<Form> GetForm(string email)
         {
-            return await _databaseContext.Forms.SingleOrDefaultAsync(x => x.Id == id);
+            return await _databaseContext.Forms.SingleOrDefaultAsync(x => x.UserEmail.Equals(email));
         }
     }
 }
