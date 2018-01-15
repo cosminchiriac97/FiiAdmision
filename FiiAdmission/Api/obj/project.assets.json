@@ -13874,24 +13874,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\andre\\.nuget\\packages\\": {},
+    "C:\\Users\\Alexander\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Api\\Api.csproj",
+      "projectUniqueName": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Api\\Api.csproj",
       "projectName": "Api",
-      "projectPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Api\\Api.csproj",
-      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Api\\obj\\",
+      "projectPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Api\\Api.csproj",
+      "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -13903,14 +13909,14 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj": {
-              "projectPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj"
+            "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj": {
+              "projectPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj"
             },
-            "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj": {
-              "projectPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj"
+            "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj": {
+              "projectPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Data.Domain\\Data.Domain.csproj"
             },
-            "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj": {
-              "projectPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj"
+            "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj": {
+              "projectPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj"
             }
           }
         }
@@ -13924,78 +13930,78 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Microsoft.NETCore.App": {
-            "target": "Package",
-            "version": "2.0.0",
-            "autoReferenced": true
-          },
           "AutoMapper": {
             "target": "Package",
-            "version": "6.2.2"
+            "version": "[6.2.2, )"
           },
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
-            "version": "3.2.0"
+            "version": "[3.2.0, )"
           },
           "FluentValidation.AspNetCore": {
             "target": "Package",
-            "version": "7.3.1"
+            "version": "[7.3.1, )"
           },
           "Microsoft.AspNetCore.All": {
             "target": "Package",
-            "version": "2.0.3"
+            "version": "[2.0.3, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.1, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.1, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.1, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.1, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer.Design": {
             "target": "Package",
-            "version": "1.1.5"
+            "version": "[1.1.5, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.1, )"
           },
           "Microsoft.Extensions.Identity.Stores": {
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.1, )"
           },
           "Microsoft.IdentityModel.Tokens": {
             "target": "Package",
-            "version": "5.1.5"
+            "version": "[5.1.5, )"
+          },
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "[2.0.0, )",
+            "autoReferenced": true
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.1, )"
           },
           "Sendgrid": {
             "target": "Package",
-            "version": "9.9.0"
+            "version": "[9.9.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
-            "version": "1.1.0"
+            "version": "[1.1.0, )"
           },
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",
-            "version": "5.1.5"
+            "version": "[5.1.5, )"
           },
           "WindowsAzure.Storage": {
             "target": "Package",
-            "version": "8.7.0"
+            "version": "[8.7.0, )"
           }
         },
         "imports": [

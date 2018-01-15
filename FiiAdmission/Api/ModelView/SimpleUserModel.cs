@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Api.ModelView
 {
@@ -6,6 +7,7 @@ namespace Api.ModelView
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Id { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
         public bool EmailIsConfirmed { get; set; }

@@ -22,6 +22,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { RecoveryComponent } from './recovery/recovery.component';
+import { AnnouncementsComponent } from './announcements/announcements.component';
+import { AnnouncementsService } from './_services/announcements.service';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { RecoveryComponent } from './recovery/recovery.component';
     ResetPassComponent,
     DocumentsComponent,
     DialogOverviewExampleDialogComponent,
-    RecoveryComponent
+    RecoveryComponent,
+    AnnouncementsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { RecoveryComponent } from './recovery/recovery.component';
     AppConfig,
     AuthenticationGuard,
     Authentication,
-    UserService
+    UserService,
+    AnnouncementsService
   ],
   entryComponents: [
     DialogOverviewExampleDialogComponent,

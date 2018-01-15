@@ -68,10 +68,10 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [ProducesResponseType(typeof(ApiResponseObject<AnnouncementModel>), 201)]
+        //[ValidateAntiForgeryToken]
+        [ProducesResponseType(typeof(ApiResponseObject<AddAnnouncementModel>), 201)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<IActionResult> CreateAnnouncement([FromBody]AnnouncementModel model)
+        public async Task<IActionResult> CreateAnnouncement([FromBody]AddAnnouncementModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -81,13 +81,13 @@ namespace Api.Controllers
             {
                 var announcement = _mapper.Map<Announcement>(model);
                 var newAnnouncement = await _announcementsRepository.Add(announcement);
-                var newAnnouncementModel = _mapper.Map<AnnouncementModel>(announcement);
+                var newAnnouncementModel = _mapper.Map<AddAnnouncementModel>(announcement);
                 if (newAnnouncement == null)
                 {
                     return BadRequest(new ApiResponse {Status = false});
                 }
                 return CreatedAtRoute("GetAnnouncementsRoute", new { id = newAnnouncement.Id },
-                    new ApiResponseObject<AnnouncementModel> { Status = true, Object = newAnnouncementModel });
+                    new ApiResponseObject<AddAnnouncementModel> { Status = true, Object = newAnnouncementModel });
             }
             catch (Exception exp)
             {
@@ -96,11 +96,11 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        [ValidateAntiForgeryToken]
+        [HttpPut]
+        //[ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponseObject<AnnouncementModel>), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<ActionResult> UpdateCustomer(int id, [FromBody]AnnouncementModel announcementModel)
+        public async Task<ActionResult> UpdateAnnouncement([FromBody]AnnouncementModel announcementModel)
         {
             if (!ModelState.IsValid)
             {
@@ -125,10 +125,10 @@ namespace Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<ActionResult> DeleteCustomer(Guid id)
+        public async Task<ActionResult> DeleteAnnouncement(Guid id)
         {
             try
             {

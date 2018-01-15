@@ -2,7 +2,7 @@
 using Data.Domain;
 using Data.Persistence.ApplicationUserDb;
 
-namespace Business.AccountsRepository
+namespace Business.AccountsRepo
 {
     public class JobSeekerRepository : IJobSeekerRepository
     {

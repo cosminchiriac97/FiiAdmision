@@ -9816,24 +9816,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\andre\\.nuget\\packages\\": {},
+    "C:\\Users\\Alexander\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\IntegrationTests\\IntegrationTests.csproj",
+      "projectUniqueName": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\IntegrationTests\\IntegrationTests.csproj",
       "projectName": "IntegrationTests",
-      "projectPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\IntegrationTests\\IntegrationTests.csproj",
-      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\IntegrationTests\\obj\\",
+      "projectPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\IntegrationTests\\IntegrationTests.csproj",
+      "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\IntegrationTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -9845,11 +9851,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj": {
-              "projectPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj"
+            "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj": {
+              "projectPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj"
             },
-            "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj": {
-              "projectPath": "D:\\proiect-net\\FiiAdmission\\FiiAdmission\\Data.Persistence\\Data.Persistence.csproj"
+            "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj": {
+              "projectPath": "C:\\Users\\Alexander\\Documents\\GitHub\\FiiAdmission\\FiiAdmission\\Business\\Business.csproj"
             }
           }
         }
@@ -9863,31 +9869,30 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Microsoft.NETCore.App": {
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "2.0.0",
-            "autoReferenced": true
-          },
           "FluentAssertions.Mvc5": {
             "target": "Package",
-            "version": "0.6.0"
-          },
-          "Microsoft.EntityFrameworkCore": {
-            "target": "Package",
-            "version": "2.0.1"
-          },
-          "Microsoft.NET.Test.Sdk": {
-            "target": "Package",
-            "version": "15.5.0"
+            "version": "[0.6.0, )"
           },
           "MSTest.TestAdapter": {
             "target": "Package",
-            "version": "1.2.0"
+            "version": "[1.2.0, )"
           },
           "MSTest.TestFramework": {
             "target": "Package",
-            "version": "1.2.0"
+            "version": "[1.2.0, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[2.0.1, )"
+          },
+          "Microsoft.NET.Test.Sdk": {
+            "target": "Package",
+            "version": "[15.5.0, )"
+          },
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "[2.0.0, )",
+            "autoReferenced": true
           }
         },
         "imports": [
