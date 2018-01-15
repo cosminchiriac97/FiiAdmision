@@ -7,7 +7,7 @@ namespace Business.StorageAzureServices.Interfaces
 {
     public interface IAzureBlobStorage
     {
-        Task<MemoryStream> DownloadAsync(string blobName);
+        Task<string> DownloadAsync(string blobName);
         Task DownloadAsync(string blobName, string path);
         Task<List<AzureBlobItem>> ListAsync();
         Task<List<string>> ListFoldersAsync();

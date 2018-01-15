@@ -37,6 +37,54 @@ namespace Data.Persistence.Migrations.ContentDb
 
                     b.ToTable("Announcements");
                 });
+
+            modelBuilder.Entity("Data.Domain.AnswerToAdmissionForm", b =>
+                {
+                    b.Property<string>("Email")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Reason");
+
+                    b.Property<string>("Status");
+
+                    b.HasKey("Email");
+
+                    b.ToTable("AnswerToAdmissionForms");
+                });
+
+            modelBuilder.Entity("Data.Domain.Candidate", b =>
+                {
+                    b.Property<string>("Email")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<Guid>("FormId");
+
+                    b.Property<bool>("IsAccepted");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("School");
+
+                    b.Property<string>("Subject");
+
+                    b.HasKey("Email");
+
+                    b.ToTable("Candidates");
+                });
+
+            modelBuilder.Entity("Data.Domain.Form", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("UserEmail");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Forms");
+                });
 #pragma warning restore 612, 618
         }
     }

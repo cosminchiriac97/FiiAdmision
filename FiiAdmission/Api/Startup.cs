@@ -5,6 +5,8 @@ using AutoMapper;
 using Business.AccountsRepo;
 using Business.AnnouncementsRepo;
 using Business.EmailServices;
+using Business.FormRepo;
+using Business.SignalR;
 using Business.StorageAzureServices.Implementation;
 using Business.StorageAzureServices.Interfaces;
 using Data.Domain;
@@ -38,6 +40,7 @@ namespace Api
             services.AddTransient<IApplicationUserDbContext, ApplicationUserDbContext>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IAnnouncementsRepository, AnnouncementsRepository>();
+            services.AddTransient<IFormRepository, FormRepository>();
             services.AddTransient<IJobSeekerRepository, JobSeekerRepository>();
             services.AddTransient<IContentDbContext, ContentDbContext>();
 
@@ -123,6 +126,8 @@ namespace Api
                 options.AddPolicy("User", policy => policy.RequireClaim("User"));
             });
 
+            services.AddSignalR();
+
             services.AddMvc();
             
     
@@ -136,13 +141,18 @@ namespace Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<Signal>("signal");
+            });
+
             app.UseCors("MyPolicy");
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
             /*
             var options = new RewriteOptions()
                 .AddRedirectToHttps();
-
+           
             app.UseRewriter(options);
             */
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.

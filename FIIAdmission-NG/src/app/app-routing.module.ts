@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthenticationGuard } from './authentication.guard';
 import { RecoveryComponent } from './recovery/recovery.component';
+import { DashAdminComponent } from './dash-admin/dash-admin.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'recovery', component: RecoveryComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard] },
+  { path: 'dashmin', component: DashAdminComponent, canActivate: [AuthenticationGuard] },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];

@@ -44,7 +44,7 @@ namespace Api.Controllers
             }
 
             var userIdentity = _mapper.Map<AppUser>(model);
-
+            
             var result = await _userManager.CreateAsync(userIdentity, model.Password);
 
             if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));

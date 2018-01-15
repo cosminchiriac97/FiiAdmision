@@ -90,16 +90,29 @@ namespace Business.StorageAzureServices.Implementation
             await blockBlob.UploadFromStreamAsync(stream);
         }
 
-        public async Task<MemoryStream> DownloadAsync(string blobName)
+        public async Task<string> DownloadAsync(string blobName)
         {
             //Blob
             CloudBlockBlob blockBlob = await GetBlockBlobAsync(blobName);
 
             //Download
-            using (var stream = new MemoryStream())
+            StreamReader sr=null;
+            try
             {
-                await blockBlob.DownloadToStreamAsync(stream);
-                return stream;
+                using (var stream = new MemoryStream())
+                {
+                    await blockBlob.DownloadToStreamAsync(stream);
+                    stream.Position = 0;
+                    sr = new StreamReader(stream);
+                    return sr.ReadToEnd();
+                }
+            }
+            finally
+            {
+                if (sr != null)
+                {
+                    sr.Dispose();
+                }
             }
         }
 
