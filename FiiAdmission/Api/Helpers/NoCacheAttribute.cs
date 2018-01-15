@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Api.Helpers
 {
-
     //https://github.com/aspnet/JavaScriptServices/blob/2ba5a0ac930a055acc6e711a701ed43aa993ec8b/samples/angular/MusicStore/Infrastructure/NoCacheAttribute.cs
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class NoCacheAttribute : ActionFilterAttribute
