@@ -66,7 +66,14 @@ export class FiiFormComponent implements OnInit {
     const x = JSON.parse(localStorage.getItem('currentUser'));
     const y = JSON.parse(x['_body']);
     const email = JSON.stringify(y['object']['email']);
-    this.userService.sendForm(email, this.fields)
+    let status = true;
+    for (let i = 0; i < this.fields.length; i++) {
+      if (this.fields[i].value === '') {
+        status = false;
+        break;
+      }
+    }
+    this.userService.sendForm(email, this.fields, status)
     .subscribe(
     data => {
       alert(data);

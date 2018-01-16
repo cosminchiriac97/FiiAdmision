@@ -14,7 +14,7 @@ export class UserService {
     headers.append('Content-Type', 'application/json');
     const authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
-    return this.http.put(this.config.apiUrl + '/api/account/change_password/giosanu.george@gmail.com',
+    return this.http.put(this.config.apiUrl + '/api/account/change_password/',
       { currentPassword: currentPassword, password: password}, {headers});
   }
 
@@ -32,8 +32,8 @@ export class UserService {
     return this.http.put(this.config.apiUrl + '/api/Account/password_recovery_s2', { email: email, password: password, code: code });
   }
 
-  sendForm(email: string, form: Object) {
-    return this.http.post(this.config.apiUrl + '/api/Form', { Email: email, BlobObject: { form } });
+  sendForm(email: string, form: Object, status: boolean) {
+    return this.http.post(this.config.apiUrl + '/api/Form', { email: email, blobObject: { form } , status: status});
   }// private helper methods
 
   private jwt() {
