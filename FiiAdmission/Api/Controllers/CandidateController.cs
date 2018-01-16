@@ -93,6 +93,8 @@ namespace Api.Controllers
                 .UseSqlServer(new SqlConnection(_configuration.GetConnectionString("ContentDbConnection")))
                 .Options;
 
+           
+
             using (var context = new ContentDbContext(options))
             {
                 using (var transaction = context.Database.BeginTransaction())
@@ -100,9 +102,24 @@ namespace Api.Controllers
                     try
                     {
                         GenerateCandidate generate = new GenerateCandidate();
-                        var candidat = generate.Generate(formModel.BlobObject, formModel.Email);
-                        context.Candidates.Add(candidat);
+                        var candidateIncomplete = new Candidate
+                        {
+                            Email = formModel.Email,
+                            Approved = formModel.Approved,
+                            Completed = formModel.Completed
+                        };
+                        var candidate = generate.Generate(formModel.BlobObject,  candidateIncomplete);
+
+                        var actualCandidate =
+                            await context.Candidates.SingleOrDefaultAsync(x => x.Email.Equals(formModel.Email));
+                        if (actualCandidate != null)
+                            context.Candidates.Remove(actualCandidate);
                         await context.SaveChangesAsync();
+                        context.Candidates.Add(candidate);
+                        await context.SaveChangesAsync();
+
+                        //Now Delete existing blob
+                        await _storage.DeleteAsync(formModel.Email);
 
                         using (var memoryStream = new MemoryStream())
                         {

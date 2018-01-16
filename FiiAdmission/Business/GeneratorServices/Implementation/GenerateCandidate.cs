@@ -10,10 +10,9 @@ namespace Business.GeneratorServices.Implementation
 {
     public class GenerateCandidate : IGenerateCandidate
     {
-        public Candidate Generate(JObject formJObject, string email)
+        public Candidate Generate(JObject formJObject, Candidate candidate)
         {
             dynamic dynJson = JsonConvert.DeserializeObject(formJObject.ToString());
-            var candidate = new Candidate { Email = email};
             foreach (var item in dynJson)
             {
                 if (item.name.Equals("last-name-id"))
@@ -23,9 +22,6 @@ namespace Business.GeneratorServices.Implementation
                 if (item.name.Equals("CNP"))
                     candidate.CNP = item.value;
                 if (item.name.Equals("institution"))
-                    candidate.School = item.value;
-                if (item.name.Equals("status"))
-                    candidate.Status=item.value;
                 if (item.name.Equals("exam-choice"))
                     candidate.Subject = item.value;
             }

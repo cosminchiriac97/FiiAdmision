@@ -141,5 +141,14 @@ namespace Business.StorageAzureServices.Implementation
                        .OrderBy(i => i)
                        .ToList();
         }
+
+        public async Task DeleteAsync(string blobName)
+        {
+            //Blob
+            CloudBlockBlob blockBlob = await GetBlockBlobAsync(blobName);
+
+            //Delete the blob
+            await blockBlob.DeleteAsync();
+        }
     }
 }
