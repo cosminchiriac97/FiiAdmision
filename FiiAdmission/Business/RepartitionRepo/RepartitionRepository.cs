@@ -29,13 +29,18 @@ namespace Business.RepartitionRepo
             {
                 capacity = capacity + classroom.Capacity;
             }
+             
             if (_candidateRepository.GetApprovedCandidatesNumber() > capacity)
             {
                 return false;
             }
-
+            
             var approvedCandidates = await _candidateRepository.GetApprovedCandidates();
 
+
+            // de continuat algorimul (ai toate datele necesare acum)
+
+            return true;
         }
 
         public Task<Repartition> GetCandidateRepartition(Guid id)
