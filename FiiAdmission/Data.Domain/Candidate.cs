@@ -12,6 +12,7 @@ namespace Data.Domain
         public string LastName { get; set; }
         public string Subject { get; set; }
         public string School { get; set; }
-        public string Status { get; set; }
+        public Boolean Completed { get; set; }
+        public Boolean Approved { get; set; }
     }
 }
