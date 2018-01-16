@@ -23,63 +23,59 @@ export class AnnouncementsComponent implements OnInit {
   ngOnInit() {
   }
 
-  getAllAnnouncements(){
+  getAllAnnouncements() {
     this.loading = true;
     this.announcementsService.getAnnouncements()
-    .subscribe(
+      .subscribe(
       data => {
         console.log(data);
       },
       error => {
         alert('fail');
-      }
-    )
+      });
   }
 
-  getAnnouncement(id){
+  getAnnouncement(id) {
     this.loading = true;
     this.announcementsService.getAnnouncement(id)
-    .subscribe(
+      .subscribe(
       data => {
         console.log(data);
       },
       error => {
         alert('fail');
-      }
-    )
+      });
   }
 
-  addAnnouncement(){
+  addAnnouncement() {
     this.loading = true;
     this.model.adminId = 'c4e3c477-eff5-45b5-a4c6-2d6d28eae60d';
     this.model.publishDate = new Date().toJSON();
     this.announcementsService.addAnnouncement(this.model)
-    .subscribe(
+      .subscribe(
       data => {
         console.log(data);
       },
       error => {
         console.log(error);
-      }
-    );
+      });
   }
 
-  updateAnnouncement(){
+  updateAnnouncement() {
     this.loading = true;
     this.model2.adminId = 'c4e3c477-eff5-45b5-a4c6-2d6d28eae60d';
     this.model2.publishDate = new Date().toJSON();
     this.announcementsService.updateAnnouncement(this.model2)
-    .subscribe(
+      .subscribe(
       data => {
         console.log(data);
       },
       error => {
         console.log(error);
-      }
-    );
+      });
   }
 
-  deleteAnnouncement(id){
+  deleteAnnouncement(id) {
     this.loading = true;
     this.announcementsService.deleteAnnouncement(id).subscribe(
       data => {
@@ -87,7 +83,6 @@ export class AnnouncementsComponent implements OnInit {
       },
       error => {
         console.log(error);
-      }
-    );
+      });
   }
 }
