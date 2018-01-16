@@ -26,6 +26,7 @@ import { AnnouncementsComponent } from './announcements/announcements.component'
 import { AnnouncementsService } from './_services/announcements.service';
 import { DashAdminComponent } from './dash-admin/dash-admin.component';
 import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
+import { AnnouncementsAdminComponent } from './announcements-admin/announcements-admin.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
     RecoveryComponent,
     AnnouncementsComponent,
     DashAdminComponent,
-    SidenavAdminComponent
+    SidenavAdminComponent,
+    AnnouncementsAdminComponent
   ],
   imports: [
     BrowserModule,

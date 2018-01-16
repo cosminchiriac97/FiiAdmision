@@ -11,23 +11,23 @@ export class AnnouncementsService {
   constructor(private http: Http, private config: AppConfig) { }
 
   getAnnouncements() {
-    return this.http.get('http://localhost:64115/api/Announcement');
+    return this.http.get(this.config.apiUrl + '/api/Announcement');
   }
 
   getAnnouncement(id: string) {
-    return this.http.get('http://localhost:64115/api/Announcement/' + id);
+    return this.http.get(this.config.apiUrl + '/api/Announcement/' + id);
   }
 
   addAnnouncement(announcement: AddAnnouncementModel) {
-    return this.http.post('http://localhost:64115/api/Announcement', announcement);
+    return this.http.post(this.config.apiUrl + '/api/Announcement', announcement);
   }
 
-  updateAnnouncement(announcement: AnnouncementModel){
+  updateAnnouncement(announcement: AnnouncementModel) {
     console.log(announcement);
-    return this.http.put('http://localhost:64115/api/Announcement/', announcement);
+    return this.http.put(this.config.apiUrl + 'api/Announcement/', announcement);
   }
-  
-  deleteAnnouncement(id: string){
-    return this.http.delete('http://localhost:64115/api/Announcement/' + id);
+
+  deleteAnnouncement(id: string) {
+    return this.http.delete(this.config.apiUrl + '/api/Announcement/' + id);
   }
 }
