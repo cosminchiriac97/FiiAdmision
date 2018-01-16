@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 namespace Api.ModelView
 {
     [Validator(typeof(FormularModelValidator))]
-    public class CreationFormModel
+    public class FormModel
     {
         
         public string Email { get; set; }

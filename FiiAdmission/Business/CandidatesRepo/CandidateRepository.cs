@@ -28,7 +28,7 @@ namespace Business.CandidatesRepo
 
         public async Task<Candidate> GetByFormEmail(string email)
         {
-            return await _databaseContext.Candidates.SingleOrDefaultAsync(x => x.Email == email);
+            return await _databaseContext.Candidates.SingleOrDefaultAsync(x => x.Email.Equals(email));
         }
 
         public async Task<PagingResult<Candidate>> GetCandidatesPageAsync(int skip, int take)

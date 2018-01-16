@@ -57,7 +57,7 @@ namespace Api.Controllers
         [HttpGet("{email}", Name = "GetFormsRoute")]
         [ProducesResponseType(typeof(JObject), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<IActionResult> GetForm(EmailModel email)
+        public async Task<IActionResult> GetForm(string email)
         {
             if (!ModelState.IsValid)
             {
@@ -65,13 +65,21 @@ namespace Api.Controllers
             }
             try
             {
-                var json = await _storage.DownloadAsync(email.Email);
+                var json = await _storage.DownloadAsync(email);
                 JObject jsonObject = JObject.Parse(json);
                 if (!jsonObject.HasValues)
                 {
                     return BadRequest(new ApiResponse {Status = false});
                 }
-                return Ok(jsonObject);
+                var candidat = await _candidateRepository.GetByFormEmail(email);
+                var formModel = new FormModel
+                {
+                    Email = email,
+                    Approved = candidat.Approved,
+                    Completed = candidat.Completed,
+                    BlobObject = jsonObject
+                };
+                return Ok(formModel);
             }
             catch (Exception exp)
             {
@@ -83,18 +91,18 @@ namespace Api.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(ApiResponse), 201)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<IActionResult> CreateForm([FromBody] CreationFormModel formModel)
+        public async Task<IActionResult> CreateForm([FromBody] FormModel formModel)
         {
+
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ApiResponse {Status = false, ModelState = ModelState});
+                return BadRequest(new ApiResponse { Status = false, ModelState = ModelState });
             }
+
             var options = new DbContextOptionsBuilder<ContentDbContext>()
                 .UseSqlServer(new SqlConnection(_configuration.GetConnectionString("ContentDbConnection")))
                 .Options;
-
-           
-
+            
             using (var context = new ContentDbContext(options))
             {
                 using (var transaction = context.Database.BeginTransaction())
@@ -108,8 +116,8 @@ namespace Api.Controllers
                             Approved = formModel.Approved,
                             Completed = formModel.Completed
                         };
-                        var candidate = generate.Generate(formModel.BlobObject,  candidateIncomplete);
 
+                        var candidate = generate.Generate(formModel.BlobObject,  candidateIncomplete);
                         var actualCandidate =
                             await context.Candidates.SingleOrDefaultAsync(x => x.Email.Equals(formModel.Email));
                         if (actualCandidate != null)
@@ -119,7 +127,8 @@ namespace Api.Controllers
                         await context.SaveChangesAsync();
 
                         //Now Delete existing blob
-                        await _storage.DeleteAsync(formModel.Email);
+                        if(await _storage.ExistBlob(formModel.Email))
+                            await _storage.DeleteAsync(formModel.Email);
 
                         using (var memoryStream = new MemoryStream())
                         {

@@ -150,5 +150,13 @@ namespace Business.StorageAzureServices.Implementation
             //Delete the blob
             await blockBlob.DeleteAsync();
         }
+
+        public async Task<bool> ExistBlob(string blobName)
+        {
+            //Blob
+            CloudBlockBlob blockBlob = await GetBlockBlobAsync(blobName);
+
+            return await blockBlob.ExistsAsync();
+        }
     }
 }
