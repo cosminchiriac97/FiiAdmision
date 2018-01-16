@@ -35,11 +35,31 @@ namespace Business.CandidatesRepo
         {
             var totalRecords = await _databaseContext.Candidates.CountAsync();
             var customers = await _databaseContext.Candidates
+                .Where(c=>c.Approved==false)
+                .Where(c=>c.Completed)
                 .OrderBy(c => c.LastName)
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
             return new PagingResult<Candidate>(customers, totalRecords);
+        }
+
+        public async Task<List<Candidate>> GetApprovedCandidates()
+        {
+            var customers = await _databaseContext.Candidates
+                .Where(c => c.Approved)
+                .Where(c => c.Completed)
+                .OrderBy(c => c.LastName)
+                .ToListAsync();
+
+            return customers;
+        }
+
+        public  int GetApprovedCandidatesNumber()
+        {
+            var count =  _databaseContext.Candidates.Count(c => c.Approved);
+
+            return count;
         }
     }
 }

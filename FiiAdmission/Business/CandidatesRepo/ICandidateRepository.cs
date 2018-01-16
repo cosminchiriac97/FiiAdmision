@@ -10,6 +10,8 @@ namespace Business.CandidatesRepo
     {
         Task<List<Candidate>> GetAll();
         Task<Candidate> GetByFormEmail(string email);
+        Task<List<Candidate>> GetApprovedCandidates();
+        int GetApprovedCandidatesNumber();
         Task<PagingResult<Candidate>> GetCandidatesPageAsync(int skip, int take);
     }
 }

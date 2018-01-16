@@ -10,7 +10,6 @@ namespace Business.RepartitionRepo
     {
         Task<List<Repartition>> GetClassRooms();
         Task<Repartition> GetCandidateRepartition(Guid id);
-        Task<List<Repartition>> GetCandidates(Repartition repartition);
-        Task<Repartition> GenerateRepartition();
+        Task<Boolean> GenerateRepartition(RepartitionConfiguration configuration);
     }
 }
