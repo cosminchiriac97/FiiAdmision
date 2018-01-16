@@ -15,16 +15,17 @@ namespace Business.GeneratorServices.Implementation
             dynamic dynJson = JsonConvert.DeserializeObject(formJObject.GetValue("form").ToString());
             foreach (var item in dynJson)
             {
-                if (item.name.Equals("last-name-id"))
-                    candidate.LastName = item.value;
-                if (item.name.Equals("first-name"))
-                    candidate.FirstName = item.value;
-                if (item.name.Equals("CNP"))
-                    candidate.CNP = item.value;
-                if (item.name.Equals("institution"))
-                    candidate.School = item.value;
-                if (item.name.Equals("exam-choice"))
-                    candidate.Subject = item.value;
+                 
+                   if (item.name.ToString().Equals("last-name-id"))
+                       candidate.LastName = item.value.ToString();
+                   if (item.name.ToString().Equals("first-name"))
+                       candidate.FirstName = item.value.ToString();
+                   if (item.name.ToString().Equals("CNP"))
+                       candidate.CNP = item.value.ToString();
+                   if (item.name.ToString().Equals("institution"))
+                       candidate.School = item.value.ToString();
+                   if (item.name.ToString().Equals("exam-choice"))
+                       candidate.Subject = item.value.ToString();                            
             }
             return  candidate;
         }
