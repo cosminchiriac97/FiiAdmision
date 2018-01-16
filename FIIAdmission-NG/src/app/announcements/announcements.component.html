@@ -1,6 +1,6 @@
 
-  <div *ngFor="let ann of announcements">
-      <h3>{{ann.title}}</h3>
-      <p>{{ann.publishDate}}: {{ann.body}}</p>
+  <div id="ann" *ngFor="let ann of announcements">
+      <dt>{{ann.title}}</dt>
+      <dd>{{ann.body}} - <strong>{{ann.publishDate}}</strong></dd>
   </div>
   

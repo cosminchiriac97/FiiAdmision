@@ -11,7 +11,7 @@
     <mat-sidenav-container style="background:rgba(31,50,79,0.9)" class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
       <mat-sidenav id="rightbar" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <mat-nav-list>
-          <a class="sidenav-button" mat-list-item (click)="news()">Announcements</a>
+          <a class="sidenav-button" mat-list-item (click)="announcements()">Announcements</a>
           <a class="sidenav-button" mat-list-item (click)="form()">Forms</a>
           <a class="sidenav-button" mat-list-item (click)="logout()">Logout</a>
         </mat-nav-list>

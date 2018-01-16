@@ -37,10 +37,8 @@ export class HomeComponent implements OnInit {
   get user(): any {
     const x = JSON.parse(localStorage.getItem('currentUser'));
     const y = JSON.parse(x['_body']);
-    let fName = JSON.stringify(y['object']['firstName']).replace('"', '').replace('"', '').toLowerCase();
-    fName = fName.charAt(0).toUpperCase() + fName.slice(1);
-    let lName = JSON.stringify(y['object']['lastName']).replace('"', '').replace('"', '').toLowerCase();
-    lName = lName.charAt(0).toUpperCase() + lName.slice(1);
+    const fName = y.firstName;
+    const lName = y.lastName;
     return fName + ' ' + lName;
   }
   logout() {

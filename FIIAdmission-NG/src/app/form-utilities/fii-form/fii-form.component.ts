@@ -73,7 +73,7 @@ export class FiiFormComponent implements OnInit {
         break;
       }
     }
-    this.userService.sendForm(email, this.fields, status)
+    this.userService.sendForm(email, this.fields, status, false)
     .subscribe(
     data => {
       alert(data);

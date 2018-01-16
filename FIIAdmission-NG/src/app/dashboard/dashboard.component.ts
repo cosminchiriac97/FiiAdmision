@@ -801,11 +801,6 @@ export class DashboardComponent implements OnInit {
   constructor(private userService: UserService,
     private authenticationService: Authentication,
     private router: Router) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  }
-
-  onSubmit(form) {
-    alert('sakura');
   }
 
   ngOnInit() {

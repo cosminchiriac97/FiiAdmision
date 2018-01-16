@@ -32,8 +32,12 @@ export class UserService {
     return this.http.put(this.config.apiUrl + '/api/Account/password_recovery_s2', { email: email, password: password, code: code });
   }
 
-  sendForm(email: string, form: Object, status: boolean) {
-    return this.http.post(this.config.apiUrl + '/api/Form', { email: email, blobObject: { form } , status: status});
+  sendForm(email: string, form: Object, completed: boolean, approved: boolean) {
+    email = String(email).replace('"', '');
+    email = String(email).replace('"', '');
+    console.log(form);
+    return this.http.post(this.config.apiUrl + '/api/Form',
+    { email: email , completed: completed, approved: approved, blobObject: { form }});
   }// private helper methods
 
   private jwt() {

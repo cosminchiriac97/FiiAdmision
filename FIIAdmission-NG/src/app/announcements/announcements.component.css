@@ -1,5 +1,11 @@
-#div {
-    display: block;
-    border: 5px black;
-    margin: 1px;
+dd{
+    padding-left: 30px;
+    padding-top: 20px;
+}
+dt{
+    padding-top: 20px;
+    font-size: 25px;
+}
+#ann{
+    margin-bottom: 20px;
 }
