@@ -1,37 +1,6 @@
-<body>
-  <button (click)="getAllAnnouncements()">Get all announcements</button>
-  <div>
-    <form>
-      <label for="getAnnouncement">Announcement ID</label>
-      <input type="text" name="getAnnouncement" [(ngModel)]="announcementId" #annId="ngModel" required>
-      <button (click)="getAnnouncement(announcementId)">Get announcement by id</button>
-    </form>
+
+  <div *ngFor="let ann of announcements">
+      <h3>{{ann.title}}</h3>
+      <p>{{ann.publishDate}}: {{ann.body}}</p>
   </div>
-  <div>
-    <form>
-      <label for="announcementTitle">Title</label>
-      <input type="text" name="announcementTitle" [(ngModel)]="model.title" #title="ngModel" required>
-      <label for="announcementBody">Body</label>
-      <input type="text" name="announcementBody" [(ngModel)]="model.body" #body="ngModel" required>
-      <button (click)="addAnnouncement(model)">Add announcement</button>
-    </form>
-  </div>
-  <div>
-    <form>
-      <label for="announcementId">Id</label>
-      <input type="text" name="announcementId" [(ngModel)]="model2.id" #annId="ngModel" required>
-      <label for="announcementTitle">Title</label>
-      <input type="text" name="announcementTitle" [(ngModel)]="model2.title" #title="ngModel" required>
-      <label for="announcementBody">Body</label>
-      <input type="text" name="announcementBody" [(ngModel)]="model2.body" #body="ngModel" required>
-      <button (click)="updateAnnouncement(model2)">Modify announcement</button>
-    </form>
-  </div>
-  <div>
-      <form>
-        <label for="announcementId">Id</label>
-        <input type="text" name="announcementId" [(ngModel)]="announcementId3" #annId="ngModel" required>
-        <button (click)="deleteAnnouncement(announcementId3)">Delete announcement</button>
-      </form>
-    </div>
-</body>
+  

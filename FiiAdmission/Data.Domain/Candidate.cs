@@ -7,11 +7,12 @@ namespace Data.Domain
     {
         [Key]
         public string Email { get; set; }
-        public Guid FormId { get; set; }
+        public string CNP { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Subject { get; set; }
         public string School { get; set; }
-        public Boolean IsAccepted { get; set; }
+        public Boolean Completed { get; set; }
+        public Boolean Approved { get; set; }
     }
 }

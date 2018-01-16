@@ -24,6 +24,9 @@ import { DocumentsComponent } from './documents/documents.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { AnnouncementsService } from './_services/announcements.service';
+import { DashAdminComponent } from './dash-admin/dash-admin.component';
+import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
+import { AnnouncementsAdminComponent } from './announcements-admin/announcements-admin.component';
 
 
 @NgModule({
@@ -41,7 +44,10 @@ import { AnnouncementsService } from './_services/announcements.service';
     DocumentsComponent,
     DialogOverviewExampleDialogComponent,
     RecoveryComponent,
-    AnnouncementsComponent
+    AnnouncementsComponent,
+    DashAdminComponent,
+    SidenavAdminComponent,
+    AnnouncementsAdminComponent
   ],
   imports: [
     BrowserModule,

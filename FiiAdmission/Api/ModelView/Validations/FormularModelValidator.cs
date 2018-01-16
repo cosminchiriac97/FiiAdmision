@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Api.ModelView.Validations
 {
-    public class FormularModelValidator : AbstractValidator<CreationFormModel>
+    public class FormularModelValidator : AbstractValidator<FormModel>
     {
         public FormularModelValidator()
         {
-            RuleFor(st => st.BlobObject).NotEmpty().WithMessage("BlobObject cannot be empty!");
-            RuleFor(st => st.Email).NotEmpty().WithMessage("Email cannot be empty!");
-           
+            RuleFor(st => st.Email).NotEmpty().WithMessage("Email cannot be empty!");       
         }
     }
 }
