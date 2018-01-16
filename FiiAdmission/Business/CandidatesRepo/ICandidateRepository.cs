@@ -9,8 +9,7 @@ namespace Business.CandidatesRepo
     public interface ICandidateRepository
     {
         Task<List<Candidate>> GetAll();
-        Task<Candidate> GetByFormId(Guid formId);
         Task<Candidate> GetByFormEmail(string email);
-        Task<Candidate> Add(Candidate candidate);
+        Task<PagingResult<Candidate>> GetCandidatesPageAsync(int skip, int take);
     }
 }

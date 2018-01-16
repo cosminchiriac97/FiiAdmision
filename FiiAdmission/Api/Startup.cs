@@ -1,11 +1,14 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Text;
 using AutoMapper;
 using Business.AccountsRepository;
 using Business.AnnouncementsRepo;
+using Business.CandidatesRepo;
 using Business.EmailServices;
-using Business.FormRepo;
+using Business.GeneratorServices.Implementation;
+using Business.GeneratorServices.Interfaces;
 using Business.SignalR;
 using Business.StorageAzureServices.Implementation;
 using Business.StorageAzureServices.Interfaces;
@@ -13,6 +16,7 @@ using Data.Domain;
 using Data.Persistence.ApplicationUserDb;
 using Data.Persistence.ContentDb;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,9 +44,10 @@ namespace Api
             services.AddTransient<IApplicationUserDbContext, ApplicationUserDbContext>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IAnnouncementsRepository, AnnouncementsRepository>();
-            services.AddTransient<IFormRepository, FormRepository>();
             services.AddTransient<IJobSeekerRepository, JobSeekerRepository>();
             services.AddTransient<IContentDbContext, ContentDbContext>();
+            services.AddTransient<IGenerateCandidate,GenerateCandidate>();
+            services.AddTransient<ICandidateRepository, CandidateRepository>();
 
             services.AddDbContext<ContentDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ContentDbConnection")));
@@ -82,19 +87,20 @@ namespace Api
             services.AddIdentity<AppUser, IdentityRole>
                 (o =>
                 {
-                    // configure identity options
+      
                     o.Password.RequireDigit = false;
                     o.Password.RequireLowercase = false;
                     o.Password.RequireUppercase = false;
                     o.Password.RequireNonAlphanumeric = false;
                     o.Password.RequiredLength = 6;
+
                     //o.SignIn.RequireConfirmedEmail = true;
                 })
                 .AddEntityFrameworkStores<ApplicationUserDbContext>()
                 .AddDefaultTokenProviders();
 
-            // Add azure blob storage services
-            
+          
+
             services.AddScoped<IAzureBlobStorage>(factory =>
             {
                 return new AzureBlobStorage(new AzureBlobSetings(
