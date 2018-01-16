@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.CandidatesRepo;
 using Data.Domain;
 using Data.Persistence.ContentDb;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Business.RepartitionRepo
@@ -43,19 +45,9 @@ namespace Business.RepartitionRepo
             return true;
         }
 
-        public Task<Repartition> GetCandidateRepartition(Guid id)
+        public async Task<Repartition> GetCandidateRepartition(string email)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Repartition>> GetCandidates(Repartition repartition)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Repartition>> GetClassRooms()
-        {
-            throw new NotImplementedException();
+            return await _databaseContext.Repartitions.SingleOrDefaultAsync(c => c.ApprovedCandidateEmail.Equals(email));
         }
     }
 }

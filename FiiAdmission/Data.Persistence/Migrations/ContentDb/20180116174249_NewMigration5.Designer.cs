@@ -11,9 +11,10 @@ using System;
 namespace Data.Persistence.Migrations.ContentDb
 {
     [DbContext(typeof(ContentDbContext))]
-    partial class ContentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180116174249_NewMigration5")]
+    partial class NewMigration5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

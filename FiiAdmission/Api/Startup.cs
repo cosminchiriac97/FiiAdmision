@@ -51,6 +51,7 @@ namespace Api
       services.AddTransient<IAnnouncementsRepository, AnnouncementsRepository>();
       services.AddTransient<IJobSeekerRepository, JobSeekerRepository>();
       services.AddTransient<IContentDbContext, ContentDbContext>();
+      services.AddTransient<ICandidateRepository, CandidateRepository>();
       services.AddSingleton<IJwtFactory, JwtFactory>();
 
       services.AddDbContext<ContentDbContext>(options =>
