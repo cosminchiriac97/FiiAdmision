@@ -3,8 +3,10 @@
     <mat-tab label="All Announcements">
       <div id="ann" *ngFor="let ann of announcements">
         <dt>{{ann.title}}</dt>
-        <dd>{{ann.body}} -
-          <strong>ANNOUNCEMENT ID: {{ann.id}}</strong>
+        <dd>{{ann.body}}
+        </dd>
+        <dd>
+            <strong>ANNOUNCEMENT ID: {{ann.id}}</strong>
         </dd>
       </div>
     </mat-tab>
