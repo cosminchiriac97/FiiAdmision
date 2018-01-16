@@ -9,13 +9,21 @@ import { AppConfig } from '../app-config';
 export class Authentication {
   constructor(private http: Http, private config: AppConfig) { }
   login(userName: string, password: string) {
-    const res = this.http.post(this.config.apiUrl + '/api/Auth/login', { userName: userName, password: password });
-    res.subscribe(
-      data => {
-        localStorage.setItem('currentUser', JSON.stringify(data));
-      },
-    );
-    return res;
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.config.apiUrl + '/api/Auth/login', { userName: userName, password: password }, { headers })
+    .map(res => res.json())
+    .map(res => {
+      localStorage.setItem('currentUser', JSON.stringify(res));
+      localStorage.setItem('auth_token', res.auth_token);
+      return true;
+    });
+    // res.subscribe(
+    //   data => {
+    //     localStorage.setItem('currentUser', JSON.stringify(data));
+    //   },
+    // );
+    // return res;
   }
 
   logout() {

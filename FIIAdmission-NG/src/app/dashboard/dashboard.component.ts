@@ -724,8 +724,8 @@ export class DashboardComponent implements OnInit {
       name: 'exam-choice',
       placeholder: 'Your option for the writen test :',
       type: 'check',
-      checkChoices: ['Mathematics', 'Informatics (Pascal)', 'informatics (C)'],
-      selectOptions: [],
+      checkChoices: [],
+      selectOptions: ['Mathematics', 'Informatics (Pascal)', 'informatics (C)'],
       value: ''
     },
 

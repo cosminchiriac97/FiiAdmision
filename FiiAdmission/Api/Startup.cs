@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Text;
 using AutoMapper;
-using Business.AccountsRepository;
+using Business.AccountsRepo;
 using Business.AnnouncementsRepo;
 using Business.CandidatesRepo;
 using Business.EmailServices;

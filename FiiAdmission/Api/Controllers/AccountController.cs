@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Api.Helpers;
 using Api.ModelView;
 using AutoMapper;
-using Business.AccountsRepository;
+using Business.AccountsRepo;
 using Business.EmailServices;
 using Data.Domain;
 using Microsoft.AspNetCore.Authorization;
@@ -64,7 +64,7 @@ namespace Api.Controllers
                 TextBody = "Confirmati-va mailul, utilizand acest <a href=\"" + callbackUrl + "\">link</a>"
             });
 
-            await _jobSeekerRepository.AddAsync(new JobSeeker { Id = new Guid(), IdentityId = userIdentity.Id });
+            //await _jobSeekerRepository.AddAsync(new JobSeeker { Id = new Guid(), IdentityId = userIdentity.Id });
 
             return Ok("Account created");
         }

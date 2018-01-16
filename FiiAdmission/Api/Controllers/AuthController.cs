@@ -75,6 +75,7 @@ namespace Api.Controllers
                     Email = appUser.Email,
                     FirstName = appUser.FirstName,
                     LastName = appUser.LastName,
+                    Id = appUser.Id,
                     Role = role,
                     EmailIsConfirmed = appUser.EmailConfirmed
                 };

@@ -21,6 +21,7 @@ namespace Business.AnnouncementsRepo
 
         public async Task<Announcement> Add(Announcement announcement)
         {
+            announcement.Id = Guid.NewGuid();
             _databaseContext.Announcements.Add(announcement);
             try
             {

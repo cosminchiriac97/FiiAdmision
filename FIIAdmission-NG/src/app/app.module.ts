@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,8 +22,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { RecoveryComponent } from './recovery/recovery.component';
-import { DashAdminComponent } from './dash-admin/dash-admin.component';
-import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
+import { AnnouncementsComponent } from './announcements/announcements.component';
+import { AnnouncementsService } from './_services/announcements.service';
+
 
 @NgModule({
   declarations: [
@@ -40,8 +41,7 @@ import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
     DocumentsComponent,
     DialogOverviewExampleDialogComponent,
     RecoveryComponent,
-    DashAdminComponent,
-    SidenavAdminComponent
+    AnnouncementsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,13 +49,14 @@ import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
     HttpModule,
     AppRoutingModule,
     FormUtilitiesModule,
-    MaterialUtilitiesModule,
+    MaterialUtilitiesModule
   ],
   providers: [
     AppConfig,
     AuthenticationGuard,
     Authentication,
-    UserService
+    UserService,
+    AnnouncementsService
   ],
   entryComponents: [
     DialogOverviewExampleDialogComponent,

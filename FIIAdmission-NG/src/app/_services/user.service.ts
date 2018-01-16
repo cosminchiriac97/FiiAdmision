@@ -8,8 +8,20 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 export class UserService {
   constructor(private http: Http, private config: AppConfig) { }
 
-  create(user: Object) {
-    return this.http.post(this.config.apiUrl + '/api/account/create_account', user, this.jwt());
+
+  resetPassword( currentPassword: string, password: string): any {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+    return this.http.put(this.config.apiUrl + '/api/account/change_password/giosanu.george@gmail.com',
+      { currentPassword: currentPassword, password: password}, {headers});
+  }
+
+  create(user: User) {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this.http.post(this.config.apiUrl + '/api/account/create_account', user, options);
   }
 
   getCode(email: string) {
@@ -21,11 +33,10 @@ export class UserService {
   }
 
   sendForm(email: string, form: Object) {
-    return this.http.post(this.config.apiUrl + '/api/Form', { Email: email, BlobObject: {form} });
+    return this.http.post(this.config.apiUrl + '/api/Form', { Email: email, BlobObject: { form } });
   }// private helper methods
 
   private jwt() {
-    // create authorization header with jwt token
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.token) {
       const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });

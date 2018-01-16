@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Data.Domain;
 
-namespace Business.AccountsRepository
+namespace Business.AccountsRepo
 {
     public interface IJobSeekerRepository
     {
