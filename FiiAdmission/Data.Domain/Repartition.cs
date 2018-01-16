@@ -6,11 +6,8 @@ namespace Data.Domain
 {
    public class Repartition
     {
-        public Guid Id { get; set; }
-        public string Class { get; set; }
-        public int NumberOfSeats { get; set; }
-        public DateTime StartDate { get; set; }
-        public string Notification { get; set; }
-
+       public string ApprovedCandidateEmail { set; get; }
+       public Classroom RClassroom { set; get; }
+       public DateTime ExamTime { set; get; }
     }
 }

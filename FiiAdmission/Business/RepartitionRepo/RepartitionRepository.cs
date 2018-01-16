@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Business.CandidatesRepo;
 using Data.Domain;
 using Data.Persistence.ContentDb;
 using Microsoft.Extensions.Logging;
@@ -12,16 +13,29 @@ namespace Business.RepartitionRepo
     {
         private readonly IContentDbContext _databaseContext;
         private readonly ILogger _logger;
-
-        public RepartitionRepository(IContentDbContext databaseContext, ILogger logger)
+        private readonly ICandidateRepository _candidateRepository;
+        public RepartitionRepository(IContentDbContext databaseContext, ILogger logger, ICandidateRepository candidateRepository)
         {
             _databaseContext = databaseContext;
+            _candidateRepository = candidateRepository;
             _logger = logger;
         }
 
-        public Task<Repartition> GenerateRepartition()
+        public async Task<Boolean> GenerateRepartition(RepartitionConfiguration configuration)
         {
-            throw new NotImplementedException();
+            //Get Capacity
+            int capacity = 0;
+            foreach (var classroom in configuration.AvailableClassrooms)
+            {
+                capacity = capacity + classroom.Capacity;
+            }
+            if (_candidateRepository.GetApprovedCandidatesNumber() > capacity)
+            {
+                return false;
+            }
+
+            var approvedCandidates = await _candidateRepository.GetApprovedCandidates();
+
         }
 
         public Task<Repartition> GetCandidateRepartition(Guid id)
