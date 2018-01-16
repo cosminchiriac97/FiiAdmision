@@ -17,7 +17,7 @@ export class SidenavAdminComponent implements OnInit {
   private _mobileQueryListener: () => void;
 
   ngOnInit() {
-    
+
   }
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
