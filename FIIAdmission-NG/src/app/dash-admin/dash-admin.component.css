@@ -1,0 +1,18 @@
+#notifications{
+    display: none;
+}
+
+#form{
+    display: none;
+}
+#documents{
+    display: none;
+}
+#reset{
+    display: none;
+}
+#welcome-panel{
+    margin-top: 50px;    
+    background-color: rgba(255,255,255,0.9);
+    margin-bottom: 30px;
+}

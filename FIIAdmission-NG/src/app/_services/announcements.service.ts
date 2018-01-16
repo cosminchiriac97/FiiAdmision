@@ -19,7 +19,11 @@ export class AnnouncementsService {
   }
 
   addAnnouncement(announcement: AddAnnouncementModel) {
-    return this.http.post(this.config.apiUrl + '/api/Announcement', announcement);
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
+    });
+    return this.http.post(this.config.apiUrl + '/api/Announcement', announcement, { headers });
   }
 
   updateAnnouncement(announcement: AnnouncementModel) {

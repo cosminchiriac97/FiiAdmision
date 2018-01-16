@@ -38,51 +38,23 @@ export class SidenavAdminComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  news() {
-    this.toggle(1, 0, 0, 0, 0);
+  announcements() {
+    this.toggle(1, 0);
   }
-
-  notifications() {
-    this.toggle(0, 1, 0, 0, 0);
-  }
-
   form() {
-    this.toggle(0, 0, 1, 0, 0);
+    this.toggle(0, 1);
   }
 
-  documents() {
-    this.toggle(0, 0, 0, 1, 0);
-  }
-
-  reset() {
-    this.toggle(0, 0, 0, 0, 1);
-  }
-
-  toggle(a, b, c, d, e) {
+  toggle(a, b) {
     if (a === 1) {
-      document.getElementById('news').style.display = 'block';
+      document.getElementById('announcements').style.display = 'block';
     } else {
-      document.getElementById('news').style.display = 'none';
+      document.getElementById('announcements').style.display = 'none';
     }
     if (b === 1) {
-      document.getElementById('notifications').style.display = 'block';
-    } else {
-      document.getElementById('notifications').style.display = 'none';
-    }
-    if (c === 1) {
       document.getElementById('form').style.display = 'block';
     } else {
       document.getElementById('form').style.display = 'none';
-    }
-    if (d === 1) {
-      document.getElementById('documents').style.display = 'block';
-    } else {
-      document.getElementById('documents').style.display = 'none';
-    }
-    if (e === 1) {
-      document.getElementById('reset').style.display = 'block';
-    } else {
-      document.getElementById('reset').style.display = 'none';
     }
   }
 }
