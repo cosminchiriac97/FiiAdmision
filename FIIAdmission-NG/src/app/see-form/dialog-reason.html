@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Dialog</h1>
+<div mat-dialog-content>
+    <p>Write the reason for which the input is invalid:</p>
+    <mat-form-field class="col-md-12 col-xs-12">
+        <input placeholder="Reason" matInput tabindex="-1" [(ngModel)]="data.reason">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions class="col-md-8 col-xs-10 col-md-offset-2 col-xs-offset-2">
+    <button mat-button class="col-md-4  col-xs-offset-4" [mat-dialog-close]="data.reason" cdkFocusInitial>Add reason</button>
+    <button mat-button class="col-md-4  col-xs-offset-0" (click)="onNoClick()">Close</button>
+</div>

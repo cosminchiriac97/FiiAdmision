@@ -6,7 +6,8 @@ import { MatDatepickerInputEvent } from '@angular/material';
 import { UserService } from '../../_services/user.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import * as saveAs from 'file-saver';
+// tslint:disable-next-line:import-blacklist
+import 'rxjs/Rx' ;
 
 @Component({
   selector: 'app-fii-form',
@@ -29,13 +30,8 @@ export class FiiFormComponent implements OnInit {
       this.userService.getForm(this.currentUserMail).subscribe(
         data => {
           this.fields = JSON.parse(JSON.parse(JSON.stringify(data))._body).blobObject.form;
-          for (let i = 0; i < this.fields.length; i++) {
-            if (this.fields[i].value !== '') {
-            }
-          }
         },
         error => {
-          console.log(error);
         });
     }
     // tslint:disable-next-line:one-line
@@ -1172,11 +1168,41 @@ export class FiiFormComponent implements OnInit {
   }
 
   saveFile(src, filename) {
-    const FileSaver = require('file-saver');
-    const blob = new Blob([src], {type: src.split(';')[0].split(':')[1]});
-    FileSaver.saveAs(blob, filename);
+    const a = <HTMLAnchorElement>document.createElement('a');
+    document.body.appendChild(a);
+    a.style.display = 'none';
+    const blob = this.b64toBlob(src.split(',')[1], src.split(';')[0].split(':')[1]);
+    const url = window.URL.createObjectURL(blob);
+    a.href = url;
+    a.download = filename;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    window.open(url);
   }
 
+  b64toBlob(b64Data, contentType) {
+    contentType = contentType || '';
+    const sliceSize =  512;
+
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      const byteNumbers = new Array(slice.length);
+        for (let i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        const byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+    }
+
+    const blob = new Blob(byteArrays, {type: contentType});
+  return blob;
+}
 
   changeListener($event, index): void {
     this.readThis($event.target, index);
@@ -1213,6 +1239,7 @@ export class FiiFormComponent implements OnInit {
     for (let i = 0; i < this.fields.length - 1; i++) {
       this.fields[i].reason = '';
       if (this.fields[i].value === '') {
+        alert(this.fields[i].name);
         status = false;
         break;
       }

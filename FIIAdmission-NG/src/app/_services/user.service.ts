@@ -41,6 +41,11 @@ export class UserService {
     { email: email , completed: completed, approved: approved, blobObject: { form }});
   }// private helper methods
 
+  getCandidates(skip, take) {
+    return this.http.get(this.config.apiUrl + '/api/Form/page/' + skip + '/' + take);
+  }
+
+
   getForm(email: string) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
