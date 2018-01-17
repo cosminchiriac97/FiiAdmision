@@ -8,7 +8,8 @@ namespace Data.Domain
    public class Repartition
     {
        [Key]
-       public string ApprovedCandidateEmail { set; get; }
+       public Guid Id { set; get; }
+       public Candidate ApprovedCandidate { set; get; }
        public Classroom RClassroom { set; get; }
        public DateTime ExamTime { set; get; }
     }
