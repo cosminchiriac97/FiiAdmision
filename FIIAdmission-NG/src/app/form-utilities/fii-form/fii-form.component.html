@@ -1,35 +1,82 @@
-<mat-horizontal-stepper style="background: transparent;" [linear]=false>
+<mat-horizontal-stepper class="col-md-12 col-md-offset-0 col-xs-offset-0 col-xs-12" style="background: transparent;width:100%;"
+  [linear]=true>
   <div *ngFor="let j of [0,1,2,3,4,5,6]">
     <mat-step [stepControl]="'firstFormGroup'">
       <form *ngFor="let field of fields; let z = index">
-        <div *ngIf="z<(fields.length)/7*(j+1) && z>(fields.length)/7*j " [ngSwitch]="field.type">
+        <div *ngIf="z<(fields.length)/7*(j+1) && z>=(fields.length)/7*j " [ngSwitch]="field.type">
           <ng-template matStepLabel>Step {{j+1}}</ng-template>
           <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'text'">
-            <input matInput placeholder={{field.placeholder}} type={{field.type}} id={{field.name}} (input)="inputElementListener(field.name)">
+            <input matInput placeholder={{field.placeholder}} disabled={{field.checked}} type={{field.type}} id={{field.name}} value={{field.value}}
+              (input)="inputElementListener(field.name)" required>
+            <mat-hint>
+              <div style="color: green;" *ngIf="field.checked">
+                <i style="font-size:15px; color: green;" class="material-icons">done</i> Field checked by an admin.</div>
+              <div *ngIf="!field.checked && noReason(field.reason)">{{field.hint}}</div>
+              <div *ngIf="!field.checked && !noReason(field.reason)" style="color:red;font-weight:400;">{{field.reason}}</div>
+            </mat-hint>
           </mat-form-field>
-          <mat-form-field *ngSwitchCase="'password'">
-            <input matInput placeholder={{field.placeholder}} type={{field.type}} id={{field.name}} (input)="inputElementListener(field.name)">
+          <div style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12" *ngSwitchCase="'file'">
+            <h3 style="margin-top:20px;margin-bottom:20px;">{{field.placeholder}}</h3>
+            <input type={{field.type}} id={{field.name}} accept="image/*" (change)="changeListener($event, z)" >
+            <img *ngIf="fields[z].value.length > 1" src={{fields[z].value}} style="height: 100%; width:100%; cursor: pointer;margin-bottom:15px;margin-top:15px;" (click)="zoom(fields[z].value)">
+            <button *ngIf="fields[z].value.length > 1" (click)="saveFile(fields[z].value, fields[z].name)"  style="margin-top:15px;margin-bottom:15px;">Save file</button>
+            <mat-hint >
+              <div style="margin-top:15px;color: green;" *ngIf="field.checked" >
+                <i style="font-size:15px" class="material-icons">done</i> Field checked by an admin.</div>
+              <div style="margin-top:15px;" *ngIf="!field.checked && noReason(field.reason)">{{field.hint}}</div>
+              <div style="margin-top:15px;"*ngIf="!field.checked && !noReason(field.reason)" style="color:red;font-weight:400;">Reason: {{field.reason}}</div>
+            </mat-hint>
+          </div>
+          <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'number'">
+            <input matInput placeholder={{field.placeholder}} disabled={{field.checked}} type={{field.type}} id={{field.name}} value={{field.value}}
+              (input)="inputElementListener(field.name)" required>
+            <mat-hint>
+              <div style="color: green;" *ngIf="field.checked">
+                <i style="font-size:15px" class="material-icons">done</i> Field checked by an admin.</div>
+              <div *ngIf="!field.checked && noReason(field.reason)">Hint: {{field.hint}}</div>
+              <div *ngIf="!field.checked && !noReason(field.reason)" style="color:red;font-weight:400;">Reason: {{field.reason}}</div>
+            </mat-hint>
           </mat-form-field>
           <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'select'">
-            <mat-select placeholder={{field.placeholder}} name={{field.name}} [(ngModel)]="selectedValue" (change)="selectElementListener(field.name)">
+            <mat-select placeholder={{field.placeholder}} disabled={{field.checked}} name={{field.name}} id={{field.name}} [(ngModel)]="fields[z].value">
               <mat-option *ngFor="let option1 of field.selectOptions" [value]="option1">
                 {{option1}}
               </mat-option>
             </mat-select>
+            <mat-hint>
+              <div style="color: green;" *ngIf="field.checked">
+                <i style="font-size:15px" class="material-icons">done</i> Field checked by an admin.</div>
+              <div *ngIf="!field.checked && noReason(field.reason)">{{field.hint}}</div>
+              <div *ngIf="!field.checked && !noReason(field.reason)" style="color:red;font-weight:400;">Reason: {{field.reason}}</div>
+            </mat-hint>
           </mat-form-field>
+          <div style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12" *ngSwitchCase="'radio'">
+            <h3 style="margin-top:20px;margin-bottom:20px;">{{field.placeholder}}</h3>
+            <mat-radio-group disabled={{field.checked}} name={{field.name}} id={{field.name}} [(ngModel)]="fields[z].value">
+              <mat-radio-button class="col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12" style="margin-top:10px;" *ngFor="let option3 of field.checkChoices"
+                [value]="option3">
+                <br> {{option3}}
+              </mat-radio-button>
+            </mat-radio-group>
+            <mat-hint style="margin-top:10px;" class="col-md-8 col-md-offset-0 col-xs-offset-1 col-xs-10">
+              <div style="color: green;" *ngIf="field.checked">
+                <i style="font-size:15px" class="material-icons">done</i> Field checked by an admin.</div>
+              <div *ngIf="!field.checked && noReason(field.reason)">{{field.hint}}</div>
+              <div *ngIf="!field.checked && !noReason(field.reason)" style="color:red;font-weight:400;">Reason: {{field.reason}}</div>
+            </mat-hint>
+          </div>
           <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'date'">
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date" id={{field.name}} (dateInput)="addEvent(field.name, $event)">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" value={{field.value}} id={{field.name}} name={{field.name}}
+              (dateInput)="addEvent(field.name, $event)">
+            <mat-hint>
+              <div style="color: green;" *ngIf="field.checked">
+                <i style="font-size:15px" class="material-icons">done</i> Field checked by an admin.</div>
+              <div *ngIf="!field.checked && noReason(field.reason)">{{field.hint}}</div>
+              <div *ngIf="!field.checked && !noReason(field.reason)" style="color:red;font-weight:400;">Reason: {{field.reason}}</div>
+            </mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
-          <div class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'check'">
-            <h3 style="margin-top:30px;margin-bottom:20px;">{{field.placeholder}}</h3>
-            <div style="font-weight:bold" *ngFor="let option2 of field.checkChoices; let i = index" [attr.data-index]="i" style="margin-top:10px;">
-              <mat-checkbox style="margin-right:5px;" name={{field.name}} (click)="checkBox(field.name, i)">
-              </mat-checkbox>
-              {{option2}}
-            </div>
-          </div>
           <div class="col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3" *ngSwitchCase="'submit'">
             <input (click)="onSubmit()" type="submit" mat-button class="col-md-5  btn btn-primary" id="registerSubmit" style="font-size:30px;margin-bottom:30px;margin-top:40px;"
               value="Submit" [disabled]="loading">
@@ -42,12 +89,14 @@
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
-      <div class="col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3" *ngIf="j==6">
-        <button mat-button matStepperPrevious>Back</button>
-      </div>
       <div class="col-md-8 col-md-offset-5 col-xs-4 col-xs-offset-3" *ngIf="j==0">
         <button mat-button matStepperNext>Next</button>
       </div>
     </mat-step>
   </div>
 </mat-horizontal-stepper>
+<div id="myModal" class="modal">
+    <span (click)="closeModal()" class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>

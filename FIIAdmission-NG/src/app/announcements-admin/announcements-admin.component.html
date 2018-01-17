@@ -6,7 +6,7 @@
         <dd>{{ann.body}}
         </dd>
         <dd>
-            <strong>ANNOUNCEMENT ID: {{ann.id}}</strong>
+          <strong>ANNOUNCEMENT ID: {{ann.id}}</strong>
         </dd>
       </div>
     </mat-tab>
@@ -17,7 +17,7 @@
           <input matInput placeholder="Title" type="text" name="announcementTitle" [(ngModel)]="model.title" #title="ngModel" required>
         </mat-form-field>
         <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-2 col-xs-8">
-          <input matInput placeholder="Body" type="text" name="announcementBody" [(ngModel)]="model.body" #body="ngModel" required>
+          <textarea matInput placeholder="Body" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" type="text" name="announcementBody" [(ngModel)]="model.body" #body="ngModel" required></textarea>
         </mat-form-field>
         <div class="col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3">
           <button mat-button class="col-md-5  btn btn-primary" (click)="addAnnouncement(model)" style="margin-bottom: 40px;">Add announcement</button>
@@ -34,7 +34,7 @@
           <input matInput placeholder="Title" type="text" name="announcementTitle" [(ngModel)]="model2.title" #title="ngModel" required>
         </mat-form-field>
         <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-2 col-xs-8">
-          <input matInput placeholder="Body" type="text" name="announcementBody" [(ngModel)]="model2.body" #body="ngModel" required>
+          <textarea matInput placeholder="Body" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" type="text" name="announcementBody" [(ngModel)]="model2.body" #body="ngModel" required></textarea>
         </mat-form-field>
         <div class="col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3">
           <button mat-button class="col-md-5  btn btn-primary" (click)="updateAnnouncement(model2)" style="margin-bottom: 40px;">Modify announcement</button>

@@ -5,4 +5,7 @@ export class FiiFormField {
     value: string | string[];
     checkChoices: string[];
     selectOptions: string[];
+    checked: boolean;
+    reason: string;
+    hint: string;
 }
