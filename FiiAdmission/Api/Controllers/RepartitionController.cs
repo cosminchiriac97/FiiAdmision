@@ -30,7 +30,7 @@ namespace Api.Controllers
        
         [HttpGet("{classroomName}")]
         [NoCache]
-        [ProducesResponseType(typeof(List<RepartitionConfigurationModel>), 200)]
+        [ProducesResponseType(typeof(List<Repartition>), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         public async Task<IActionResult> GetRepartitionsByClassroomName(string classroomName)
         {
@@ -47,7 +47,25 @@ namespace Api.Controllers
                 return BadRequest(new ApiResponse {Status = false});
             }
         }
-  
+        [HttpGet("email/{email}")]
+        [NoCache]
+        [ProducesResponseType(typeof(Repartition), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        public async Task<IActionResult> GetRepartitionByEmail(string email)
+        {
+            if (email == null)
+                return BadRequest(new ApiResponse { Status = false });
+            try
+            {
+                var repartitions = await _repartitionRepository.GetCandidateRepartition(email);
+                return Ok(repartitions);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message);
+                return BadRequest(new ApiResponse { Status = false });
+            }
+        }
         [HttpPost]
         [ProducesResponseType(typeof(ApiResponse), 201)]
         [ProducesResponseType(typeof(ApiResponse), 400)]

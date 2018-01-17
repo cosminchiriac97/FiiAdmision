@@ -34,7 +34,7 @@ namespace Business.RepartitionRepo
                     capacity = capacity + classroom.Capacity;
                 }
 
-                var dusmani = _candidateRepository.GetApprovedCandidatesNumber();
+        
                 if (_candidateRepository.GetApprovedCandidatesNumber() > capacity)
                 {
                     return false;
@@ -122,7 +122,8 @@ namespace Business.RepartitionRepo
 
         public async Task<Repartition> GetCandidateRepartition(string email)
         {
-            return await _databaseContext.Repartitions.SingleOrDefaultAsync(c => c.ApprovedCandidateEmail.Equals(email));
+            return await _databaseContext.Repartitions.Include(c => c.RClassroom).SingleOrDefaultAsync(c =>
+                c.ApprovedCandidateEmail.Equals(email));
         }
 
         public async Task<PagingResult<Repartition>> GetCandidatesPageAsync(string classRoomName)

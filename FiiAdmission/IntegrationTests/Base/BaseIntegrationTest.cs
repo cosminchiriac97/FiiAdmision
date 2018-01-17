@@ -1,50 +1,69 @@
-﻿using Data.Persistence.ContentDb;
+﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Data.Persistence.ContentDb;
 
 namespace IntegrationTests.Base
 {
     public abstract class BaseIntegrationTest
     {
-        private string ConnectionString= "Server=tcp:fiiadmission.database.windows.net,1433;Initial Catalog=ContentDatabase;Persist Security Info=False;User ID=cosmin;Password=Kl97lpo69!;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        protected virtual bool UseSqlServer => false;
 
         [TestInitialize]
-        public virtual void TestInitialize()
+        public void TestInitialie()
         {
-            DestroyDatabase();
+            DeleteDatabase();
             CreateDatabase();
         }
 
         [TestCleanup]
-        public virtual void TestCleanup()
+        public void CleanUp()
         {
-            DestroyDatabase();
+            DeleteDatabase();
         }
 
         protected void RunOnDatabase(Action<ContentDbContext> action)
         {
-            RunOnSqlServer(action);
-        }
-
-        private void RunOnSqlServer(Action<ContentDbContext> action)
-        {
-            var options = new DbContextOptionsBuilder<ContentDbContext>().UseSqlServer(ConnectionString).Options;
-
-            using (var context = new ContentDbContext(options))
+            if (UseSqlServer)
             {
-                action(context);
+                RunOnSqlServer(action);
+            }
+            else
+            {
+                RunOnMemory(action);
             }
         }
-
-        private void DestroyDatabase()
+        public void RunOnSqlServer(Action<ContentDbContext> databaseAction)
         {
-            RunOnDatabase(context => context.Database.EnsureDeleted());
+            var connection = @"Server = .\SQLEXPRESS; Database=Stock.Development.Test; Trusted_Connection=True";
+            var options = new DbContextOptionsBuilder<ContentDbContext>()
+                .UseSqlServer(connection)
+                .Options;
+            using (var context = new ContentDbContext(options))
+            {
+                databaseAction(context);
+            }
+        }
+        private void RunOnMemory(Action<ContentDbContext> databaseAction)
+        {
+            var options = new DbContextOptionsBuilder<ContentDbContext>()
+                .UseInMemoryDatabase("FiiAdmissionDb")
+                .Options;
+            using (var context = new ContentDbContext(options))
+            {
+                databaseAction(context);
+            }
         }
 
         private void CreateDatabase()
         {
             RunOnDatabase(context => context.Database.EnsureCreated());
-                }
+        }
+
+        private void DeleteDatabase()
+        {
+            RunOnDatabase(context => context.Database.EnsureDeleted());
+        }
     }
 }

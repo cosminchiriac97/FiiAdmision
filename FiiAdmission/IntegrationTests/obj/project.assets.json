@@ -2,30 +2,6 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
-      "FluentAssertions/3.3.0": {
-        "type": "package",
-        "compile": {
-          "lib/net45/FluentAssertions.Core.dll": {},
-          "lib/net45/FluentAssertions.dll": {}
-        },
-        "runtime": {
-          "lib/net45/FluentAssertions.Core.dll": {},
-          "lib/net45/FluentAssertions.dll": {}
-        }
-      },
-      "FluentAssertions.Mvc5/0.6.0": {
-        "type": "package",
-        "dependencies": {
-          "FluentAssertions": "3.3.0",
-          "Microsoft.AspNet.Mvc": "5.0.0"
-        },
-        "compile": {
-          "lib/net45/FluentAssertions.Mvc5.dll": {}
-        },
-        "runtime": {
-          "lib/net45/FluentAssertions.Mvc5.dll": {}
-        }
-      },
       "MailKit/1.22.0": {
         "type": "package",
         "dependencies": {
@@ -46,47 +22,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/MailKit.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Mvc/5.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "3.0.0",
-          "Microsoft.AspNet.WebPages": "3.0.0"
-        },
-        "compile": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Razor/3.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net45/System.Web.Razor.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Razor.dll": {}
-        }
-      },
-      "Microsoft.AspNet.WebPages/3.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "3.0.0",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-        },
-        "compile": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authentication/2.0.1": {
@@ -648,6 +583,18 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Design.dll": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.InMemory/2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "2.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.InMemory.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.InMemory.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/2.0.1": {
         "type": "package",
         "dependencies": {
@@ -662,11 +609,11 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Relational.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational.Design/1.1.5": {
+      "Microsoft.EntityFrameworkCore.Relational.Design/2.0.0-preview1-final": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "1.1.5",
-          "NETStandard.Library": "1.6.1"
+          "Microsoft.EntityFrameworkCore.Relational": "2.0.0-preview1-final",
+          "NETStandard.Library": "2.0.0-preview1-25301-01"
         },
         "compile": {
           "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll": {}
@@ -688,12 +635,12 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.SqlServer.Design/1.1.5": {
+      "Microsoft.EntityFrameworkCore.SqlServer.Design/2.0.0-preview1-final": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational.Design": "1.1.5",
-          "Microsoft.EntityFrameworkCore.SqlServer": "1.1.5",
-          "NETStandard.Library": "1.6.1"
+          "Microsoft.EntityFrameworkCore.Relational.Design": "2.0.0-preview1-final",
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.0.0-preview1-final",
+          "NETStandard.Library": "2.0.0-preview1-25301-01"
         },
         "compile": {
           "lib/netstandard1.3/Microsoft.EntityFrameworkCore.SqlServer.Design.dll": {}
@@ -1412,15 +1359,6 @@
           "lib/netstandard1.5/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll": {
             "locale": "zh-Hant"
           }
-        }
-      },
-      "Microsoft.Web.Infrastructure/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
-        },
-        "runtime": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
         }
       },
       "Microsoft.Win32.Primitives/4.3.0": {
@@ -3632,95 +3570,6 @@
     }
   },
   "libraries": {
-    "FluentAssertions/3.3.0": {
-      "sha512": "/nvTu0y49M/d+l181nRD2HQv0rZI97Gb4LdO+F+ATEGhrKTRb6Mga9VYaVzFY3ak75cJUaA/QKz7Nf0aY+Xj9Q==",
-      "type": "package",
-      "path": "fluentassertions/3.3.0",
-      "files": [
-        "fluentassertions.3.3.0.nupkg.sha512",
-        "fluentassertions.nuspec",
-        "lib/net40/FluentAssertions.Core.dll",
-        "lib/net40/FluentAssertions.Core.pdb",
-        "lib/net40/FluentAssertions.Core.xml",
-        "lib/net40/FluentAssertions.dll",
-        "lib/net40/FluentAssertions.pdb",
-        "lib/net40/FluentAssertions.xml",
-        "lib/net45/FluentAssertions.Core.dll",
-        "lib/net45/FluentAssertions.Core.pdb",
-        "lib/net45/FluentAssertions.Core.xml",
-        "lib/net45/FluentAssertions.dll",
-        "lib/net45/FluentAssertions.pdb",
-        "lib/net45/FluentAssertions.xml",
-        "lib/portable-monotouch+monoandroid+xamarin.ios/FluentAssertions.Core.dll",
-        "lib/portable-monotouch+monoandroid+xamarin.ios/FluentAssertions.Core.pdb",
-        "lib/portable-monotouch+monoandroid+xamarin.ios/FluentAssertions.Core.xml",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/FluentAssertions.Core.dll",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/FluentAssertions.Core.pdb",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/FluentAssertions.Core.xml",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/FluentAssertions.XML",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/FluentAssertions.dll",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/FluentAssertions.pdb",
-        "lib/portable-win81+wpa81/FluentAssertions.Core.dll",
-        "lib/portable-win81+wpa81/FluentAssertions.Core.pdb",
-        "lib/portable-win81+wpa81/FluentAssertions.Core.xml",
-        "lib/portable-win81+wpa81/FluentAssertions.dll",
-        "lib/portable-win81+wpa81/FluentAssertions.pdb",
-        "lib/portable-win81+wpa81/FluentAssertions.xml",
-        "lib/sl5/FluentAssertions.Core.dll",
-        "lib/sl5/FluentAssertions.Core.pdb",
-        "lib/sl5/FluentAssertions.Core.xml",
-        "lib/sl5/FluentAssertions.dll",
-        "lib/sl5/FluentAssertions.pdb",
-        "lib/sl5/FluentAssertions.xml",
-        "lib/sl5/Microsoft.CSharp.dll",
-        "lib/sl5/Microsoft.CSharp.xml",
-        "lib/sl5/Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll",
-        "lib/sl5/Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.xml",
-        "lib/sl5/System.Xml.Linq.dll",
-        "lib/sl5/System.Xml.Linq.xml",
-        "lib/sl5/de/Microsoft.CSharp.resources.dll",
-        "lib/sl5/de/System.Xml.Linq.resources.dll",
-        "lib/sl5/es/Microsoft.CSharp.resources.dll",
-        "lib/sl5/es/System.Xml.Linq.resources.dll",
-        "lib/sl5/fr/Microsoft.CSharp.resources.dll",
-        "lib/sl5/fr/System.Xml.Linq.resources.dll",
-        "lib/sl5/it/Microsoft.CSharp.resources.dll",
-        "lib/sl5/it/System.Xml.Linq.resources.dll",
-        "lib/sl5/ja/Microsoft.CSharp.resources.dll",
-        "lib/sl5/ja/System.Xml.Linq.resources.dll",
-        "lib/sl5/ko/Microsoft.CSharp.resources.dll",
-        "lib/sl5/ko/System.Xml.Linq.resources.dll",
-        "lib/sl5/ru/Microsoft.CSharp.resources.dll",
-        "lib/sl5/ru/System.Xml.Linq.resources.dll",
-        "lib/sl5/zh-Hans/Microsoft.CSharp.resources.dll",
-        "lib/sl5/zh-Hans/System.Xml.Linq.resources.dll",
-        "lib/sl5/zh-Hant/Microsoft.CSharp.resources.dll",
-        "lib/sl5/zh-Hant/System.Xml.Linq.resources.dll",
-        "lib/win8/FluentAssertions.Core.dll",
-        "lib/win8/FluentAssertions.Core.pdb",
-        "lib/win8/FluentAssertions.Core.xml",
-        "lib/win8/FluentAssertions.XML",
-        "lib/win8/FluentAssertions.dll",
-        "lib/win8/FluentAssertions.pdb",
-        "lib/wp8/FluentAssertions.Core.dll",
-        "lib/wp8/FluentAssertions.Core.pdb",
-        "lib/wp8/FluentAssertions.Core.xml",
-        "lib/wp8/FluentAssertions.dll",
-        "lib/wp8/FluentAssertions.pdb",
-        "lib/wp8/FluentAssertions.xml"
-      ]
-    },
-    "FluentAssertions.Mvc5/0.6.0": {
-      "sha512": "zOZ1KvJRfQj5HZkIDmv0h1ItxqO1oz1cmCFOv/uCGDL5GumeiMzfaLpAyzi8wfRTylFVg8wTukpKs3FmtBELcQ==",
-      "type": "package",
-      "path": "fluentassertions.mvc5/0.6.0",
-      "files": [
-        "fluentassertions.mvc5.0.6.0.nupkg.sha512",
-        "fluentassertions.mvc5.nuspec",
-        "lib/net45/FluentAssertions.Mvc5.dll",
-        "lib/net45/FluentAssertions.Mvc5.xml"
-      ]
-    },
     "MailKit/1.22.0": {
       "sha512": "VA9vK90WFt2vFNfOme6tpzAlEAzJX6MpmSiUV+7treEudArGtWpoFcgn+IKyAZS9ImnyAkGWjx8CKZ0QuNfqWw==",
       "type": "package",
@@ -3744,45 +3593,6 @@
         "lib/wpa81/MailKit.xml",
         "mailkit.1.22.0.nupkg.sha512",
         "mailkit.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.Mvc/5.0.0": {
-      "sha512": "Dj4C1Nwa1PyxhGtjQx9p6WNTBdvN46gJZMcjQAjxB+2Lmcr+ixior9FGHf9PjH6UUxR9vCZVz16zMlofFdwbPQ==",
-      "type": "package",
-      "path": "microsoft.aspnet.mvc/5.0.0",
-      "files": [
-        "lib/net45/System.Web.Mvc.dll",
-        "lib/net45/System.Web.Mvc.xml",
-        "microsoft.aspnet.mvc.5.0.0.nupkg.sha512",
-        "microsoft.aspnet.mvc.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.Razor/3.0.0": {
-      "sha512": "mU1W0PRd1uQAb+triRGp51YYkw26RQ9q1tWPX57eHqxDqjx1smRHhejQhhnoAGr3bZDkl8AoUxegGR3tNM+YKA==",
-      "type": "package",
-      "path": "microsoft.aspnet.razor/3.0.0",
-      "files": [
-        "lib/net45/System.Web.Razor.dll",
-        "lib/net45/System.Web.Razor.xml",
-        "microsoft.aspnet.razor.3.0.0.nupkg.sha512",
-        "microsoft.aspnet.razor.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.WebPages/3.0.0": {
-      "sha512": "wkz/rBJlALE/tVfhVFpadcaBK0oLGOb8AbuyWQ5qr84JPHtqWjsJUe3Lfyzu2ZixdYrQ9NuKMNlKIshaJUsCFA==",
-      "type": "package",
-      "path": "microsoft.aspnet.webpages/3.0.0",
-      "files": [
-        "lib/net45/System.Web.Helpers.dll",
-        "lib/net45/System.Web.Helpers.xml",
-        "lib/net45/System.Web.WebPages.Deployment.dll",
-        "lib/net45/System.Web.WebPages.Deployment.xml",
-        "lib/net45/System.Web.WebPages.Razor.dll",
-        "lib/net45/System.Web.WebPages.Razor.xml",
-        "lib/net45/System.Web.WebPages.dll",
-        "lib/net45/System.Web.WebPages.xml",
-        "microsoft.aspnet.webpages.3.0.0.nupkg.sha512",
-        "microsoft.aspnet.webpages.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authentication/2.0.1": {
@@ -4342,6 +4152,17 @@
         "microsoft.entityframeworkcore.design.nuspec"
       ]
     },
+    "Microsoft.EntityFrameworkCore.InMemory/2.0.1": {
+      "sha512": "PIkjqb3gqli8d86OX2HeQpPv5vGXareCuf2IBrVf1+GoIyveZlwLSmsRtqgR3yXPbdeDZzqjCq4X/BDocvYrPg==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.inmemory/2.0.1",
+      "files": [
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.InMemory.dll",
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.InMemory.xml",
+        "microsoft.entityframeworkcore.inmemory.2.0.1.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.nuspec"
+      ]
+    },
     "Microsoft.EntityFrameworkCore.Relational/2.0.1": {
       "sha512": "aZgfEDEzub+n9Kmsz/l4iiUHfB+R2iDDAFtW55OLpT7ANj7mS8k/bq8mqd60rVPgWKKy1l0+BK26ao4el/07lA==",
       "type": "package",
@@ -4353,16 +4174,14 @@
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Relational.Design/1.1.5": {
-      "sha512": "WqPO8M9Ho0CiJ1tnIgWgXoAPt8/oIE8lcELZYbvmiVyr59f395HmHQhGCXti0/DePgPb7N6EHTIgCczRyuqIkg==",
+    "Microsoft.EntityFrameworkCore.Relational.Design/2.0.0-preview1-final": {
+      "sha512": "3BtBHSgNJaUrj+r5ARBTeRxjMq/og8NdzzdfuyYjwLT6QCX79mCAQ44/MMl5NfwRmPRIerCTUifunQmEZtMQ/w==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational.design/1.1.5",
+      "path": "microsoft.entityframeworkcore.relational.design/2.0.0-preview1-final",
       "files": [
-        "lib/net451/Microsoft.EntityFrameworkCore.Relational.Design.dll",
-        "lib/net451/Microsoft.EntityFrameworkCore.Relational.Design.xml",
         "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll",
         "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.xml",
-        "microsoft.entityframeworkcore.relational.design.1.1.5.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.design.2.0.0-preview1-final.nupkg.sha512",
         "microsoft.entityframeworkcore.relational.design.nuspec"
       ]
     },
@@ -4377,16 +4196,14 @@
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.SqlServer.Design/1.1.5": {
-      "sha512": "5Pzxg+WEzPivrBYur4uRTQt+c3kWOebWq51nkmkuOtK2O5hjCKS3Lw6Mln2iI/ae7rJcvVW6hUd3rCgctFSmmw==",
+    "Microsoft.EntityFrameworkCore.SqlServer.Design/2.0.0-preview1-final": {
+      "sha512": "c8olmWfi+pQyovpd0o5vlYY3eXeKBruv8oL0s7VY8f0QUvlEplyT2QP+coDAU7JBgNOv50TiuwKVMDH87zskDA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlserver.design/1.1.5",
+      "path": "microsoft.entityframeworkcore.sqlserver.design/2.0.0-preview1-final",
       "files": [
-        "lib/net451/Microsoft.EntityFrameworkCore.SqlServer.Design.dll",
-        "lib/net451/Microsoft.EntityFrameworkCore.SqlServer.Design.xml",
         "lib/netstandard1.3/Microsoft.EntityFrameworkCore.SqlServer.Design.dll",
         "lib/netstandard1.3/Microsoft.EntityFrameworkCore.SqlServer.Design.xml",
-        "microsoft.entityframeworkcore.sqlserver.design.1.1.5.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlserver.design.2.0.0-preview1-final.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlserver.design.nuspec"
       ]
     },
@@ -5201,16 +5018,6 @@
         "lib/uap10.0/testhost.dll",
         "microsoft.testplatform.testhost.15.5.0.nupkg.sha512",
         "microsoft.testplatform.testhost.nuspec"
-      ]
-    },
-    "Microsoft.Web.Infrastructure/1.0.0": {
-      "sha512": "FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
-      "type": "package",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "files": [
-        "lib/net40/Microsoft.Web.Infrastructure.dll",
-        "microsoft.web.infrastructure.1.0.0.nupkg.sha512",
-        "microsoft.web.infrastructure.nuspec"
       ]
     },
     "Microsoft.Win32.Primitives/4.3.0": {
@@ -10495,10 +10302,14 @@
     ".NETCoreApp,Version=v2.0": [
       "Business >= 1.0.0",
       "Data.Persistence >= 1.0.0",
-      "FluentAssertions.Mvc5 >= 0.6.0",
       "MSTest.TestAdapter >= 1.2.0",
       "MSTest.TestFramework >= 1.2.0",
       "Microsoft.EntityFrameworkCore >= 2.0.1",
+      "Microsoft.EntityFrameworkCore.Design >= 2.0.1",
+      "Microsoft.EntityFrameworkCore.InMemory >= 2.0.1",
+      "Microsoft.EntityFrameworkCore.SqlServer >= 2.0.1",
+      "Microsoft.EntityFrameworkCore.SqlServer.Design >= 2.0.0-preview1-final",
+      "Microsoft.EntityFrameworkCore.Tools >= 2.0.1",
       "Microsoft.NET.Test.Sdk >= 15.5.0",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
@@ -10554,10 +10365,6 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "FluentAssertions.Mvc5": {
-            "target": "Package",
-            "version": "[0.6.0, )"
-          },
           "MSTest.TestAdapter": {
             "target": "Package",
             "version": "[1.2.0, )"
@@ -10567,6 +10374,26 @@
             "version": "[1.2.0, )"
           },
           "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[2.0.1, )"
+          },
+          "Microsoft.EntityFrameworkCore.Design": {
+            "target": "Package",
+            "version": "[2.0.1, )"
+          },
+          "Microsoft.EntityFrameworkCore.InMemory": {
+            "target": "Package",
+            "version": "[2.0.1, )"
+          },
+          "Microsoft.EntityFrameworkCore.SqlServer": {
+            "target": "Package",
+            "version": "[2.0.1, )"
+          },
+          "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+            "target": "Package",
+            "version": "[2.0.0-preview1-final, )"
+          },
+          "Microsoft.EntityFrameworkCore.Tools": {
             "target": "Package",
             "version": "[2.0.1, )"
           },
@@ -10587,67 +10414,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'FluentAssertions 3.3.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "FluentAssertions",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'FluentAssertions.Mvc5 0.6.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "FluentAssertions.Mvc5",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Mvc 5.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Mvc",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Razor 3.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Razor",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebPages 3.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.WebPages",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Web.Infrastructure 1.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Web.Infrastructure",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    }
-  ]
+  }
 }

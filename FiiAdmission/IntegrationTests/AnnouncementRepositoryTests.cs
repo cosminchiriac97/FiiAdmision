@@ -1,12 +1,12 @@
 ﻿using Business.AnnouncementsRepo;
 using Data.Domain;
-using FluentAssertions;
 using IntegrationTests.Base;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Remotion.Linq.Parsing.Structure.IntermediateModel;
 
 namespace IntegrationTests
 {
@@ -28,10 +28,10 @@ namespace IntegrationTests
                 var counter = announcements.Result.Count;
 
                 //ASSERT
-                counter.Should().Be(0);
+                Assert.AreEqual(counter,0);
             });
         }
-
+        
         [TestMethod]
         public void Given_Announcements_When_NewAnnuncementIsAdded_Then_ShouldHaveOneAnnouncementInDatabase()
         {
@@ -49,11 +49,11 @@ namespace IntegrationTests
 
                 var result = announcementsRepository.GetAll();
 
-                result.Should().NotBe(null);
+                Assert.IsNotNull(result);
             });
 
         }
-
+        
         [TestMethod]
         public void Given_AnnocementRepo_When_GeyyingAnnoucementWith3Records_Then_NumOfRecordShouldBe3()
         {
@@ -72,10 +72,10 @@ namespace IntegrationTests
                     );
 
                 var result = repository.GetAll();
-                result.Should().Be(expected: 2);
+                Assert.AreEqual(result.Result.Count,2);
             });
         }
-
+        /*
         [TestMethod]
         public void Given_AnnouncementRepo_When_GettingStockById()
         {
@@ -90,7 +90,7 @@ namespace IntegrationTests
             }
             );
         }
-
+        */
         [TestMethod]
         public void Given_AnnouncementRepo_When_EditingAnnouncementRemove1Record_Then_NumOfRecordsShouldBe1()
         {
@@ -111,7 +111,7 @@ namespace IntegrationTests
                 var announcemnt = await repository.Edit(new Announcement { AdminId = "2", PublishDate = DateTime.Now, Title = "Anunt2", Body = "vacantaa" });
 
                 var result = repository.GetAll();
-                result.Should().Be(1);
+                Assert.AreEqual(result.Result.Count, 1);
             });
 
         }
@@ -135,8 +135,9 @@ namespace IntegrationTests
                 await repository.Delete(announcement.Id);
                 var result = repository.GetAll();
 
-                result.Should().Be(0);
+                Assert.AreEqual(result.Result.Count, 0);
             });
         }
+        
     }
 }
