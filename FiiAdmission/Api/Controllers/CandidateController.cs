@@ -165,11 +165,11 @@ namespace Api.Controllers
                             await context.Candidates.SingleOrDefaultAsync(x => x.Email.Equals(email));
                         if (actualCandidate != null)
                             context.Candidates.Remove(actualCandidate);
-
+                        await context.SaveChangesAsync();
                         var repartition =
                             await context.Repartitions.SingleOrDefaultAsync(
                                 x => x.ApprovedCandidate.Email.Equals(email));
-
+                        await context.SaveChangesAsync();
                         if (repartition != null)
                              context.Repartitions.Remove(repartition);
                         //Now Delete existing blob
