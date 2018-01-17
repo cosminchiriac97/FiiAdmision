@@ -45,4 +45,9 @@ export class HomeComponent implements OnInit {
     this.authenticationService.logout();
     this.router.navigate(['/']);
   }
+  d() {
+    if (localStorage.getItem('admin') === '200') {
+      this.router.navigate(['/dashmin']);
+    }
+  }
 }

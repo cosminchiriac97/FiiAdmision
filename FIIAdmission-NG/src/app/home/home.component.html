@@ -64,7 +64,7 @@
                     <div class="intro" >
                         <h1>Welcome back, {{user}}! </h1>
                         <h2 style="text-shadow: unset;">Check your application progress here down below!</h2>
-                        <button tabindex="3" accesskey="s" [routerLink]="['/dashboard']">DASHBOARD</button>
+                        <button tabindex="3" accesskey="s" [routerLink]="['/dashboard']" (click)="d()">DASHBOARD</button>
                         <button [routerLink]="['/']" style="margin-left: 40px;" (click)="logout()" >LOG OUT</button>
                     </div>
                 </div>
