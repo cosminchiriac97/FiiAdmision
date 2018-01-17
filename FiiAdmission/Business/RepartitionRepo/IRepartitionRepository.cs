@@ -10,5 +10,6 @@ namespace Business.RepartitionRepo
     {
         Task<Repartition> GetCandidateRepartition(string email);
         Task<Boolean> GenerateRepartition(RepartitionConfiguration configuration);
+        Task<PagingResult<Repartition>> GetCandidatesPageAsync(string classRoomName);
     }
 }

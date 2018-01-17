@@ -20,13 +20,14 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { NewsComponent } from './news/news.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
-import { DocumentsComponent } from './documents/documents.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { AnnouncementsService } from './_services/announcements.service';
 import { DashAdminComponent } from './dash-admin/dash-admin.component';
 import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
 import { AnnouncementsAdminComponent } from './announcements-admin/announcements-admin.component';
+import { MatInputModule } from '@angular/material';
+import { AdminGuard } from './admin-guard.guard';
 
 
 @NgModule({
@@ -41,7 +42,6 @@ import { AnnouncementsAdminComponent } from './announcements-admin/announcements
     NewsComponent,
     NotificationsComponent,
     ResetPassComponent,
-    DocumentsComponent,
     DialogOverviewExampleDialogComponent,
     RecoveryComponent,
     AnnouncementsComponent,
@@ -53,6 +53,7 @@ import { AnnouncementsAdminComponent } from './announcements-admin/announcements
     BrowserModule,
     FormsModule,
     HttpModule,
+    MatInputModule,
     AppRoutingModule,
     FormUtilitiesModule,
     MaterialUtilitiesModule
@@ -60,6 +61,7 @@ import { AnnouncementsAdminComponent } from './announcements-admin/announcements
   providers: [
     AppConfig,
     AuthenticationGuard,
+    AdminGuard,
     Authentication,
     UserService,
     AnnouncementsService

@@ -33,18 +33,19 @@ export class UserService {
   }
 
   sendForm(email: string, form: Object, completed: boolean, approved: boolean) {
-    email = String(email).replace('"', '');
-    email = String(email).replace('"', '');
+    console.log(email);
+    console.log(completed);
+    console.log(approved);
     console.log(form);
     return this.http.post(this.config.apiUrl + '/api/Form',
     { email: email , completed: completed, approved: approved, blobObject: { form }});
   }// private helper methods
 
-  private jwt() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser && currentUser.token) {
-      const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-      return new RequestOptions({ headers: headers });
-    }
+  getForm(email: string) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+    return this.http.get(this.config.apiUrl + '/api/Form/' + email, {headers});
   }
 }

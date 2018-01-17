@@ -11,6 +11,7 @@ using Business.CandidatesRepo;
 using Business.EmailServices;
 using Business.GeneratorServices.Implementation;
 using Business.GeneratorServices.Interfaces;
+using Business.RepartitionRepo;
 using Business.SignalR;
 using Business.StorageAzureServices.Implementation;
 using Business.StorageAzureServices.Interfaces;
@@ -52,6 +53,7 @@ namespace Api
       services.AddTransient<IJobSeekerRepository, JobSeekerRepository>();
       services.AddTransient<IContentDbContext, ContentDbContext>();
       services.AddTransient<ICandidateRepository, CandidateRepository>();
+      services.AddTransient<IRepartitionRepository,RepartitionRepository>();
       services.AddSingleton<IJwtFactory, JwtFactory>();
 
       services.AddDbContext<ContentDbContext>(options =>
