@@ -28,6 +28,8 @@ import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
 import { AnnouncementsAdminComponent } from './announcements-admin/announcements-admin.component';
 import { MatInputModule } from '@angular/material';
 import { AdminGuard } from './admin-guard.guard';
+import { CandidatesComponent } from './candidates/candidates.component';
+import { SeeFormComponent, DialogReasonComponent } from './see-form/see-form.component';
 
 
 @NgModule({
@@ -43,11 +45,14 @@ import { AdminGuard } from './admin-guard.guard';
     NotificationsComponent,
     ResetPassComponent,
     DialogOverviewExampleDialogComponent,
+    DialogReasonComponent,
     RecoveryComponent,
     AnnouncementsComponent,
     DashAdminComponent,
     SidenavAdminComponent,
-    AnnouncementsAdminComponent
+    AnnouncementsAdminComponent,
+    CandidatesComponent,
+    SeeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +73,7 @@ import { AdminGuard } from './admin-guard.guard';
   ],
   entryComponents: [
     DialogOverviewExampleDialogComponent,
+    DialogReasonComponent
   ],
   bootstrap: [AppComponent]
 })

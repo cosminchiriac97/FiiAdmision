@@ -1,0 +1,95 @@
+<mat-horizontal-stepper *ngIf="!loading" class="col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12" style="background: transparent;width:100%;"
+  [linear]=true>
+  <div *ngFor="let j of [0,1,2,3,4,5,6]">
+    <mat-step [stepControl]="'firstFormGroup'">
+      <form *ngFor="let field of fields; let z = index">
+        <div *ngIf="z<(fields.length)/7*(j+1) && z>=(fields.length)/7*j " [ngSwitch]="field.type">
+          <ng-template matStepLabel>Step {{j+1}}</ng-template>
+          <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'text'">
+            <input matInput placeholder={{field.placeholder}} type={{field.type}} id={{field.name}} value={{field.value}} (input)="inputElementListener(field.name)"
+              required>
+            <mat-hint>
+              <mat-checkbox [(ngModel)]="fields[z].checked" name="{{fields[z].name + '-check'}}" id="{{fields[z].name + '-check'}}">Mark as valid!</mat-checkbox>
+              <button *ngIf="!fields[z].checked" (click)="openDialog(z)" mat-button style="color: red;font-size:15px;"> Add reason </button>
+            </mat-hint>
+          </mat-form-field>
+          <div style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12" *ngSwitchCase="'file'">
+            <h3 style="margin-top:20px;margin-bottom:20px;">{{field.placeholder}}</h3>
+            <input type={{field.type}} id={{field.name}} accept="image/*" (change)="changeListener($event, z)">
+            <img *ngIf="fields[z].value.length > 1" src={{fields[z].value}} style="height: 50%; width:50%; cursor: pointer;margin-bottom:15px;margin-top:15px;"
+              (click)="zoom(fields[z].value)"><br>
+            <button *ngIf="fields[z].value.length > 1" (click)="saveFile(fields[z].value, fields[z].name)" style="margin-top:15px;margin-bottom:15px;">Save file</button>
+            <br>
+            <mat-hint >
+              <mat-checkbox [(ngModel)]="fields[z].checked" name="{{fields[z].name + '-check'}}" id="{{fields[z].name + '-check'}}">Mark as valid!</mat-checkbox>
+              <button *ngIf="!fields[z].checked" (click)="openDialog(z)" mat-button style="color: red;font-size:15px;"> Add reason</button>
+            </mat-hint>
+          </div>
+          <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'number'">
+            <input matInput placeholder={{field.placeholder}} type={{field.type}} id={{field.name}} value={{field.value}} (input)="inputElementListener(field.name)"
+              required>
+            <mat-hint >
+              <mat-checkbox [(ngModel)]="fields[z].checked" name="{{fields[z].name + '-check'}}" id="{{fields[z].name + '-check'}}">Mark as valid!</mat-checkbox>
+              <button *ngIf="!fields[z].checked" (click)="openDialog(z)" mat-button style="color: red;font-size:15px;"> Add reason</button>
+            </mat-hint>
+          </mat-form-field>
+          <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'select'">
+            <mat-select placeholder={{field.placeholder}} name={{field.name}} id={{field.name}} [(ngModel)]="fields[z].value">
+              <mat-option *ngFor="let option1 of field.selectOptions" [value]="option1">
+                {{option1}}
+              </mat-option>
+            </mat-select>
+            <mat-hint >
+              <mat-checkbox [(ngModel)]="fields[z].checked" name="{{fields[z].name + '-check'}}" id="{{fields[z].name + '-check'}}">Mark as valid!</mat-checkbox>
+              <button *ngIf="!fields[z].checked" (click)="openDialog(z)" mat-button style="color: red;font-size:15px;"> Add reason</button>
+            </mat-hint>
+          </mat-form-field>
+          <div style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12" *ngSwitchCase="'radio'">
+            <h3 style="margin-top:20px;margin-bottom:20px;">{{field.placeholder}}</h3>
+            <mat-radio-group disabled={{field.checked}} name={{field.name}} id={{field.name}} [(ngModel)]="fields[z].value">
+              <mat-radio-button class="col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12" style="margin-top:10px;" *ngFor="let option3 of field.checkChoices"
+                [value]="option3">
+                <br> {{option3}}
+              </mat-radio-button>
+            </mat-radio-group>
+            <mat-hint style="margin-top:10px;" class="col-md-8 col-md-offset-0 col-xs-offset-1 col-xs-10">
+              <mat-checkbox [(ngModel)]="fields[z].checked" name="{{fields[z].name + '-check'}}" id="{{fields[z].name + '-check'}}">Mark as valid!</mat-checkbox>
+              <button *ngIf="!fields[z].checked" (click)="openDialog(z)" mat-button style="color: red;font-size:15px;"> Add reason</button>
+            </mat-hint>
+          </div>
+          <mat-form-field style="margin-top:30px;margin-bottom:20px;" class="col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10" *ngSwitchCase="'date'">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" value={{field.value}} id={{field.name}} name={{field.name}}
+              (dateInput)="addEvent(field.name, $event)">
+            <mat-hint >
+              <mat-checkbox [(ngModel)]="fields[z].checked" name={{field.name}}>Mark as valid!</mat-checkbox>
+              <button *ngIf="!fields[z].checked" (click)="openDialog(z)" mat-button style="color: red;font-size:15px;"> Add reason</button>
+            </mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div class="col-md-12 col-md-offset-0 col-xs-12 col-xs-offset-0" *ngSwitchCase="'submit'">
+            <input (click)="onSubmit()" type="submit" mat-button class="col-md-4 col-md-offset-1 col-xs-12 col-xs-offset-0 btn btn-primary" id="registerSubmit" style="font-size:2em;margin-bottom:30px;margin-top:20px;"
+              value="Send Feedback" [disabled]="loading">
+              <input (click)="onApprove()" type="submit" mat-button class="col-md-4 col-md-offset-2 col-xs-12 col-xs-offset-0  btn btn-primary" id="registerSubmit" style="font-size:2em;margin-bottom:30px;margin-top:20px;"
+              value="Approve" [disabled]="loading">
+            <mat-spinner class="col-xs-offset-0 col-xs-4 col-md-1 col-md-offset-0" style="margin-left:16px;margin-top:26.5px;margin-left:16px;"
+              *ngIf="loading" [diameter]="30"></mat-spinner>
+          </div>
+        </div>
+      </form>
+      
+      <div class="col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3" *ngIf="j>0 && j<6">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+      <div class="col-md-8 col-md-offset-5 col-xs-4 col-xs-offset-3" *ngIf="j==0">
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+  </div>
+</mat-horizontal-stepper>
+<div id="myModal" class="modal">
+  <span (click)="closeModal()" class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
