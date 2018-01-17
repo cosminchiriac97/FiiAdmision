@@ -8,6 +8,7 @@ namespace Business.CandidatesRepo
 {
     public interface ICandidateRepository
     {
+        Task<Candidate> AddAsync(Candidate candidate);
         Task<List<Candidate>> GetAll();
         Task<Candidate> GetByFormEmail(string email);
         Task<List<Candidate>> GetApprovedCandidates();
