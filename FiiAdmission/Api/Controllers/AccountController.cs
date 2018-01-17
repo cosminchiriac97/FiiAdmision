@@ -186,23 +186,13 @@ namespace Api.Controllers
       return BadRequest(new ApiResponse {ModelState = ModelState, Status = false});
     }
 
-    [Authorize(Policy = "User")]
-    [HttpGet("{email}", Name = "GetUser")]
+    [Authorize(Policy = "Admin")]
+    [HttpGet("admin")]
     [NoCache]
     [ProducesResponseType(200)]
-    [ProducesResponseType(204)]
-    [ProducesResponseType(typeof(ApiResponse), 400)]
-    public async Task<IActionResult> GetUserInfo(string email)
+    [ProducesResponseType(403)]
+    public IActionResult AdminCheck(string email)
     {
-      if (string.IsNullOrWhiteSpace(email))
-      {
-        return BadRequest(new ApiResponse {Status = false});
-      }
-      var user = await _userManager.FindByEmailAsync(email);
-      if (user == null)
-      {
-        return NoContent();
-      }
       return Ok();
     }
   }
