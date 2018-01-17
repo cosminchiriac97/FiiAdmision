@@ -158,18 +158,18 @@ namespace Api.Controllers
     }
 
     [Authorize(AuthenticationSchemes = "Bearer", Policy = "User")]
-    [HttpPut("change_password")]
+    [HttpPut("change_password/{email}")]
     //[ValidateAntiForgeryToken]
     [ProducesResponseType(typeof(ApiResponse), 400)]
     [ProducesResponseType(200)]
-    public async Task<IActionResult> ChangePassword([FromBody] ResetPasswordModel model)
+    public async Task<IActionResult> ChangePassword(string email, [FromBody] ResetPasswordModel model)
     {
       if (!ModelState.IsValid)
       {
         return BadRequest(new ApiResponse {ModelState = ModelState, Status = false});
       }
 
-      var identityName = User.Identity.Name;
+      var identityName = email;
       var user = await _userManager.FindByNameAsync(identityName);
       bool passwordChecks = await _userManager.CheckPasswordAsync(user, model.CurrentPassword);
 
