@@ -168,7 +168,7 @@ namespace Api.Controllers
                         await context.SaveChangesAsync();
                         var repartition =
                             await context.Repartitions.SingleOrDefaultAsync(
-                                x => x.ApprovedCandidate.Email.Equals(email));
+                                x => x.ApprovedCandidateEmail.Equals(email));
                         await context.SaveChangesAsync();
                         if (repartition != null)
                              context.Repartitions.Remove(repartition);

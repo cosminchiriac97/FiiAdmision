@@ -34,6 +34,7 @@ namespace Business.RepartitionRepo
                     capacity = capacity + classroom.Capacity;
                 }
 
+                var dusmani = _candidateRepository.GetApprovedCandidatesNumber();
                 if (_candidateRepository.GetApprovedCandidatesNumber() > capacity)
                 {
                     return false;
@@ -85,7 +86,7 @@ namespace Business.RepartitionRepo
                     {
                         var repartition = new Repartition
                         {
-                            ApprovedCandidate = candidate,
+                            ApprovedCandidateEmail = candidate.Email,
                             ExamTime = configuration.ExamTime,
                             RClassroom = mateSubjectClassRoom
                         };
@@ -98,7 +99,7 @@ namespace Business.RepartitionRepo
                     {
                         var repartition = new Repartition
                         {
-                            ApprovedCandidate = candidate,
+                            ApprovedCandidateEmail = candidate.Email,
                             ExamTime = configuration.ExamTime,
                             RClassroom = infoSubjectClassRoom
                         };
@@ -121,15 +122,15 @@ namespace Business.RepartitionRepo
 
         public async Task<Repartition> GetCandidateRepartition(string email)
         {
-            return await _databaseContext.Repartitions.SingleOrDefaultAsync(c => c.ApprovedCandidate.Email.Equals(email));
+            return await _databaseContext.Repartitions.SingleOrDefaultAsync(c => c.ApprovedCandidateEmail.Equals(email));
         }
 
         public async Task<PagingResult<Repartition>> GetCandidatesPageAsync(string classRoomName)
         {
             var totalRecords = await _databaseContext.Repartitions.CountAsync(c => c.RClassroom.Name.Equals(classRoomName));
+          
             var repartitions = await _databaseContext.Repartitions
-                .Where(c=>c.RClassroom.Name.Equals(classRoomName))
-                .OrderBy(c => c.ApprovedCandidate.LastName)
+                .Where(c=>c.RClassroom.Name.Equals(classRoomName)).Include(c=>c.RClassroom)
                 .ToListAsync();
             return new PagingResult<Repartition>(repartitions, totalRecords);
         }

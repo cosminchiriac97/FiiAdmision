@@ -27,6 +27,7 @@ namespace Api.Controllers
             _logger = loggerFactory.CreateLogger(nameof(RepartitionController));
         }
 
+       
         [HttpGet("{classroomName}")]
         [NoCache]
         [ProducesResponseType(typeof(List<RepartitionConfigurationModel>), 200)]
@@ -46,7 +47,7 @@ namespace Api.Controllers
                 return BadRequest(new ApiResponse {Status = false});
             }
         }
-
+  
         [HttpPost]
         [ProducesResponseType(typeof(ApiResponse), 201)]
         [ProducesResponseType(typeof(ApiResponse), 400)]

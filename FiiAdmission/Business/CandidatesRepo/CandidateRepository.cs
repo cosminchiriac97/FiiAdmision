@@ -57,7 +57,7 @@ namespace Business.CandidatesRepo
 
         public  int GetApprovedCandidatesNumber()
         {
-            var count =  _databaseContext.Candidates.Count(c => c.Approved);
+            var count =  _databaseContext.Candidates.Count(c => c.Approved && c.Completed);
 
             return count;
         }

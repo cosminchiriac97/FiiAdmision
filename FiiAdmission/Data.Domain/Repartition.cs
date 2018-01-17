@@ -9,7 +9,7 @@ namespace Data.Domain
     {
        [Key]
        public Guid Id { set; get; }
-       public Candidate ApprovedCandidate { set; get; }
+       public string ApprovedCandidateEmail { set; get; }
        public Classroom RClassroom { set; get; }
        public DateTime ExamTime { set; get; }
     }
