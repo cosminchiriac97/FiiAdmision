@@ -157,7 +157,7 @@ namespace Api.Controllers
       return BadRequest(result);
     }
 
-    [Authorize(Policy = "User")]
+    [Authorize(AuthenticationSchemes = "Bearer", Policy = "User")]
     [HttpPut("change_password")]
     //[ValidateAntiForgeryToken]
     [ProducesResponseType(typeof(ApiResponse), 400)]
@@ -186,12 +186,12 @@ namespace Api.Controllers
       return BadRequest(new ApiResponse {ModelState = ModelState, Status = false});
     }
 
-    [Authorize(Policy = "Admin")]
+    [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
     [HttpGet("admin")]
     [NoCache]
     [ProducesResponseType(200)]
     [ProducesResponseType(403)]
-    public IActionResult AdminCheck(string email)
+    public IActionResult AdminCheck()
     {
       return Ok();
     }
