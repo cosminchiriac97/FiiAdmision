@@ -66,6 +66,25 @@ namespace Api.Controllers
                 return BadRequest(new ApiResponse { Status = false });
             }
         }
+
+        [HttpGet("classrooms")]
+        [NoCache]
+        [ProducesResponseType(typeof(List<Classroom>), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        public async Task<IActionResult> GetClassRooms()
+        {
+          
+            try
+            {
+                var classrooms = await _repartitionRepository.GetAllClassrooms();
+                return Ok(classrooms);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message);
+                return BadRequest(new ApiResponse { Status = false });
+            }
+        }
         [HttpPost]
         [ProducesResponseType(typeof(ApiResponse), 201)]
         [ProducesResponseType(typeof(ApiResponse), 400)]

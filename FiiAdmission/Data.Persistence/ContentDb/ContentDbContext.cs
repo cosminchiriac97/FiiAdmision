@@ -13,6 +13,7 @@ namespace Data.Persistence.ContentDb
         public DbSet<Announcement> Announcements { get; set;}
         public DbSet<Candidate> Candidates { get; set; }
         public DbSet<Repartition> Repartitions { get; set; }
+        public DbSet<Classroom> Classrooms { get; set; }
         public DbSet<AnswerToAdmissionForm> AnswerToAdmissionForms { get; set; }
     }
 }

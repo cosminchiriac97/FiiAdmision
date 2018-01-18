@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using Api.Helpers;
 using Business.StorageAzureServices.Implementation;
 using Business.StorageAzureServices.Interfaces;
@@ -10,10 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 
-namespace UnitTests
+namespace ServicesAndControllersTest
 {
     [TestClass]
-    public class StorageAzureServices
+    public class StorageAzureServicesTests
     {
         private IAzureBlobStorage _sut;
         private IConfiguration _config;
@@ -25,7 +23,7 @@ namespace UnitTests
                 .AddJsonFile("secrets.json")
                 .Build();
             _sut = new AzureBlobStorage(
-                new AzureBlobSetings(
+                settings: new AzureBlobSetings(
                     storageAccount: _config["Blob_StorageAccount"],
                     storageKey: _config["Blob_StorageKey"],
                     containerName: _config["Blob_ContainerName"])

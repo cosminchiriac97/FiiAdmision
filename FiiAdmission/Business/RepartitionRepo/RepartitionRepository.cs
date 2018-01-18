@@ -52,7 +52,8 @@ namespace Business.RepartitionRepo
                 sortedClassroomslist.Remove(infoSubjectClassRoom);
                 var mateSubjectClassRoom = sortedClassroomslist[0];
                 sortedClassroomslist.Remove(mateSubjectClassRoom);
-                _databaseContext.Repartitions.RemoveRange(await _databaseContext.Repartitions.Include(b => b.RClassroom).ToListAsync());
+                _databaseContext.Repartitions.RemoveRange(await _databaseContext.Repartitions.ToListAsync());
+                _databaseContext.Classrooms.RemoveRange(await _databaseContext.Classrooms.ToListAsync());
                 await _databaseContext.SaveChangesAsync();
                 foreach (var candidate in sortedCandidatesList)
                 {
@@ -118,6 +119,11 @@ namespace Business.RepartitionRepo
             }
 
             return true;
+        }
+
+        public async Task<List<Classroom>> GetAllClassrooms()
+        {
+            return await _databaseContext.Classrooms.ToListAsync();
         }
 
         public async Task<Repartition> GetCandidateRepartition(string email)
