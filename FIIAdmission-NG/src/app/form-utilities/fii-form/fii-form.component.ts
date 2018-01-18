@@ -30,6 +30,9 @@ export class FiiFormComponent implements OnInit {
       this.userService.getForm(this.currentUserMail).subscribe(
         data => {
           this.fields = JSON.parse(JSON.parse(JSON.stringify(data))._body).blobObject.form;
+          if (JSON.parse(JSON.parse(JSON.stringify(data))._body).approved) {
+            (<HTMLParagraphElement>document.getElementById('congratulation')).style.display = 'block';
+          }
         },
         error => {
         });
@@ -1247,10 +1250,9 @@ export class FiiFormComponent implements OnInit {
     this.userService.sendForm(email, this.fields, status, false)
       .subscribe(
       data => {
-        alert(data);
       },
       error => {
-        alert(error);
+        console.log(error);
       });
 
   }

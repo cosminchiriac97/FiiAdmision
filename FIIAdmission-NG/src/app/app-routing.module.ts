@@ -9,12 +9,14 @@ import { AuthenticationGuard } from './authentication.guard';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { DashAdminComponent } from './dash-admin/dash-admin.component';
 import { AdminGuard } from './admin-guard.guard';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'recovery', component: RecoveryComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'confirm', component: ConfirmComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard] },
   { path: 'dashmin', component: DashAdminComponent, canActivate: [AdminGuard] },
   { path: '', component: HomeComponent, pathMatch: 'full' },

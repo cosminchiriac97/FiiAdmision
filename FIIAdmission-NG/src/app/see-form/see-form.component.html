@@ -1,5 +1,5 @@
-<mat-horizontal-stepper *ngIf="!loading" class="col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12" style="background: transparent;width:100%;"
-  [linear]=true>
+<mat-horizontal-stepper *ngIf="!loading" class="col-md-12 col-md-offset-0 col-xs-offset-0 col-xs-12" style="background: transparent;width:100%;"
+  [linear]=false>
   <div *ngFor="let j of [0,1,2,3,4,5,6]">
     <mat-step [stepControl]="'firstFormGroup'">
       <form *ngFor="let field of fields; let z = index">

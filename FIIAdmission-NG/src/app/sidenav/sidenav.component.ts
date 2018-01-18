@@ -35,37 +35,28 @@ export class SidenavComponent {
   }
 
   announcements() {
-    this.toggle(1, 0, 0, 0);
-  }
-
-  notifications() {
-    this.toggle(0, 1, 0, 0);
+    this.toggle(1, 0, 0);
   }
 
   form() {
-    this.toggle(0, 0, 1, 0);
+    this.toggle(0, 1, 0);
   }
   reset() {
-    this.toggle(0, 0, 0, 1);
+    this.toggle(0, 0, 1);
   }
 
-  toggle(a, b, c, d) {
+  toggle(a, b, c) {
     if (a === 1) {
       document.getElementById('announcements').style.display = 'block';
     } else {
       document.getElementById('announcements').style.display = 'none';
     }
     if (b === 1) {
-      document.getElementById('notifications').style.display = 'block';
-    } else {
-      document.getElementById('notifications').style.display = 'none';
-    }
-    if (c === 1) {
       document.getElementById('form').style.display = 'block';
     } else {
       document.getElementById('form').style.display = 'none';
     }
-    if (d === 1) {
+    if (c === 1) {
       document.getElementById('reset').style.display = 'block';
     } else {
       document.getElementById('reset').style.display = 'none';

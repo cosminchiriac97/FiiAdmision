@@ -18,7 +18,6 @@ import { UserService } from './_services/user.service';
 import { MaterialUtilitiesModule } from './material-utilities/material-utilities.module';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { NewsComponent } from './news/news.component';
-import { NotificationsComponent } from './notifications/notifications.component';
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
@@ -30,6 +29,8 @@ import { MatInputModule } from '@angular/material';
 import { AdminGuard } from './admin-guard.guard';
 import { CandidatesComponent } from './candidates/candidates.component';
 import { SeeFormComponent, DialogReasonComponent } from './see-form/see-form.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { RepartitionComponent } from './repartition/repartition.component';
 
 
 @NgModule({
@@ -42,7 +43,6 @@ import { SeeFormComponent, DialogReasonComponent } from './see-form/see-form.com
     DashboardComponent,
     SidenavComponent,
     NewsComponent,
-    NotificationsComponent,
     ResetPassComponent,
     DialogOverviewExampleDialogComponent,
     DialogReasonComponent,
@@ -52,7 +52,9 @@ import { SeeFormComponent, DialogReasonComponent } from './see-form/see-form.com
     SidenavAdminComponent,
     AnnouncementsAdminComponent,
     CandidatesComponent,
-    SeeFormComponent
+    SeeFormComponent,
+    ConfirmComponent,
+    RepartitionComponent
   ],
   imports: [
     BrowserModule,

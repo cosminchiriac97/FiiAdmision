@@ -1,4 +1,6 @@
-<mat-horizontal-stepper class="col-md-12 col-md-offset-0 col-xs-offset-0 col-xs-12" style="background: transparent;width:100%;"
+<p class="col-md-8 col-md-offset-2 col-xs-offset-2 col-xs-8" id="congratulation" style="display:none;color: green;">
+  Congratulations your submission was approved! See you at the exam!</p>
+<mat-horizontal-stepper id="big-form" class="col-md-12 col-md-offset-0 col-xs-offset-0 col-xs-12" style="background: transparent;width:100%;"
   [linear]=true>
   <div *ngFor="let j of [0,1,2,3,4,5,6]">
     <mat-step [stepControl]="'firstFormGroup'">

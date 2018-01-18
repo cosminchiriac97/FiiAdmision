@@ -1,21 +1,25 @@
-
-  <div class="col-md-8 col-md-offset-0" id="welcome-panel">
-    <form name="form" (ngSubmit)="f.form.valid && reset()" #f="ngForm" novalidate>
-      <div class="form-group col-md-9 col-md-offset-5" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel"
-          required />
-        <div *ngIf="f.submitted && !password.valid" style="color:red;">Password is required</div>
-      </div>
-      <div class="form-group col-md-9 col-md-offset-5" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-        <label>Confirm Password</label>
-        <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="model.confirmPassword" required />
+<div class="col-md-8 col-md-offset-0" id="welcome-panel">
+  <form name="form" (ngSubmit)="f.form.valid && reset()" #f="ngForm" novalidate>
+    <div class="form-group col-md-9 col-md-offset-5" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="oldpassword" [(ngModel)]="model.password" #password="ngModel" required />
+      <div *ngIf="f.submitted && !password.valid" style="color:red;">Password is required</div>
+    </div>
+    <div class="form-group col-md-9 col-md-offset-5" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+      <label>New Password</label>
+      <input type="password" class="form-control" name="password" (input)="checkConfirmPass()" [(ngModel)]="model.confirmPassword" required />
+      <div id="confirmError" style="color:red;display:none;">Passwords don't match</div>
+    </div>
+    <div class="form-group col-md-9 col-md-offset-5" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <label>Confirm New Password</label>
+        <input type="password" class="form-control" name="confirmPassword" (input)="checkConfirmPass()" required />
         <div id="confirmError" style="color:red;display:none;">Passwords don't match</div>
       </div>
-      <div style="margin-bottom:30px;" class="col-md-10 col-md-offset-7 col-xs-offset-0">
-        <button class="col-md-5" style="margin-bottom:30px;" id="registerReset" [disabled]="loading">Submit</button>
-        <mat-spinner class="col-xs-offset-0 col-xs-4 col-md-1 col-md-offset-0" style="margin-left:16px;margin-top:26.5px;margin-left:16px;"
-          *ngIf="loading" [diameter]="30"></mat-spinner>
-      </div>
-    </form>
-  </div>
+    <div style="margin-bottom:30px;" class="col-md-10 col-md-offset-6 col-xs-offset-0">
+      <input type="submit" mat-button class="col-md-7 col-md col-xs-12 col-xs-offset-0  btn btn-primary"
+        id="registerSubmit" style="font-size:2em;margin-bottom:30px;margin-top:20px;" value="Submit" [disabled]="loading">
+      <mat-spinner class="col-xs-offset-0 col-xs-4 col-md-1 col-md-offset-0" style="margin-left:16px;margin-top:26.5px;margin-left:16px;"
+        *ngIf="loading" [diameter]="30"></mat-spinner>
+    </div>
+  </form>
+</div>

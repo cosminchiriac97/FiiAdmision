@@ -11,27 +11,42 @@ export class AnnouncementsService {
   constructor(private http: Http, private config: AppConfig) { }
 
   getAnnouncements() {
-    return this.http.get(this.config.apiUrl + '/api/Announcement');
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+    return this.http.get(this.config.apiUrl + '/api/Announcement', {headers});
   }
 
   getAnnouncement(id: string) {
-    return this.http.get(this.config.apiUrl + '/api/Announcement/' + id);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+    return this.http.get(this.config.apiUrl + '/api/Announcement/' + id, {headers});
   }
 
   addAnnouncement(announcement: AddAnnouncementModel) {
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
-    });
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
     return this.http.post(this.config.apiUrl + '/api/Announcement', announcement, { headers });
   }
 
   updateAnnouncement(announcement: AnnouncementModel) {
-    console.log(announcement);
-    return this.http.put(this.config.apiUrl + 'api/Announcement/', announcement);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+    return this.http.put(this.config.apiUrl + 'api/Announcement/', announcement, {headers});
   }
 
   deleteAnnouncement(id: string) {
-    return this.http.delete(this.config.apiUrl + '/api/Announcement/' + id);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+    return this.http.delete(this.config.apiUrl + '/api/Announcement/' + id, {headers});
   }
 }

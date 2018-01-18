@@ -39,13 +39,17 @@ export class SidenavAdminComponent implements OnInit {
   }
 
   announcements() {
-    this.toggle(1, 0);
+    this.toggle(1, 0, 0);
   }
   form() {
-    this.toggle(0, 1);
+    this.toggle(0, 1, 0);
+  }
+  repartition() {
+    this.toggle(0, 0, 1);
+
   }
 
-  toggle(a, b) {
+  toggle(a, b, c) {
     if (a === 1) {
       document.getElementById('announcements').style.display = 'block';
     } else {
@@ -55,6 +59,11 @@ export class SidenavAdminComponent implements OnInit {
       document.getElementById('form').style.display = 'block';
     } else {
       document.getElementById('form').style.display = 'none';
+    }
+    if (c === 1) {
+      document.getElementById('repartition').style.display = 'block';
+    } else {
+      document.getElementById('repartition').style.display = 'none';
     }
   }
 }

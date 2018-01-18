@@ -116,6 +116,9 @@ export class SeeFormComponent implements OnInit {
   }
 
   onApprove() {
+    for (let i = 0; i < this.fields.length; i++) {
+        this.fields[i].checked = true;
+    }
     this.userService.sendForm(this.currentUserMail, this.fields, true, true)
     .subscribe(
     data => {

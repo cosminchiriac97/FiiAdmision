@@ -1,0 +1,172 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FII Admis</title>
+
+</head>
+
+<body id="top">
+    <nav class="navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header" >
+                <button type="button" style="margin-right:10%;"class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" tabindex="1"
+                    accesskey="m">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"  href="#">
+                    <img style="height:inherit;" src="https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png"
+                        alt="FII Admis logo">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="navbar-buttons-hover" href="#beneficii">
+                            <h2 >Benefits</h2>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="navbar-buttons-hover" href="#impresii">
+                            <h2 >Impressions</h2>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="navbar-buttons-hover" href="#contact">
+                            <h2 >Contact</h2>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container" id="welcome-panel">
+            <div class="col-md-12">
+                <div class="intro">
+                    <h1 style="margin-bottom:22px;">Thanks for confirming the mail! Click <a [routerLink]="['/login']" >here</a> to login! </h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="beneficii" class="beneficii">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="header-content">
+                        <div class="header-content-inner">
+                            <h1 style="color: rgba(28, 50, 79,1); font-size: 3em; text-shadow: unset;">What do we offer?</h1><br>
+                            <ul>
+                                <li>a stimulating academic enviroment</li>
+                                <li>flexibility when choosing your study program</li>
+                                <li>latest tehnologies</li>
+                                <li>labs adequately equipped</li>
+                                <li>free access to software documentations</li>
+                                <li>opportunities to study or/and internships abroad</li>
+                                <li>friendly and helpful professors</li>
+                                <li>a diploma </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <div class="device-container" id="padded">
+                        <img src="https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/success.png" alt="Success">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impresii" class="impresii">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="header-content">
+                        <div class="header-content-inner">
+                            <h1 style="color: white; font-size: 3em; text-shadow: unset; ">What do our graduates say?</h1>
+                            <blockquote class="first">
+                                <h4 style="color: white; text-align: justify; font-style: italic;">
+                                    I graduated the Faculty of Computer Science of the "Alexandru
+                                    Ioan Cuza" University in Ia&#351;i. I consider myself, from this point of view,
+                                    a privileged person because I had the honor of being educated by respected and open-minded professors while 
+                                    also having part of colleagues from whom I had tons to learn.
+                                    <br><br> Through this institution I managed to fructify opportunities, opportunities which are needed and available to
+                                    all the community of students... so with the best intentions I invite you to discover them yourselves!</h4><br>
+                                <h4 class="right" style="color: white;">Alexandru Pruteanu (graduate FII 2001), Microsoft Rom&#226;nia</h4>
+                            </blockquote>
+                            <blockquote>
+                                <h4 style="color: white; text-align: justify; font-style: italic;">Computer Science is not a field that cannot be merged
+                                    with others. On the contrary, there are a lot of ways to do that. You can combine it with biology (bio-informatics), art
+                                    (design, graphics), medicine (working with x-ray images), movie industry (special effects), economy (database, transaction
+                                    security), physics (quantic informatics), and so many more.. 
+                                </h4><br>
+                                <h4 class="right" style="color: white;">Alexandrina Orzan (graduate FII 2003), team researcher at MAVERICK, INRIA,
+                                    Rh&ocirc;ne-Alpes</h4>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="col-md-6">
+                <img src="https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/fii.jpg" class="contactImg"
+                    alt="FII">
+            </div>
+            <div class="col-md-6">
+                <div class="detalii">
+                    <h1 style="color: rgba(28, 50, 79,1); font-size: 3em; text-shadow: unset;">How can you get to us?</h1>
+                    <h2 style="color: #000; font-size: 1.7em; text-shadow: unset;">
+                        <strong>Address: </strong><br>
+                        <br> Facultatea de Informatic&#259;, Universitatea "Al. I. Cuza",
+                        <br> General Berthelot, 16,
+                        <br> IA&#350;I, 700483, ROM&#194;NIA
+                        <br>
+                    </h2>
+                    <h3>
+                        <strong>Phone: </strong>
+                        <a href="tel:+40232201090">+40 232 201 090</a>
+                    </h3>
+                    <h3>
+                        <strong>Fax: </strong>+40 232 201 490</h3>
+                    <h3>
+                        <strong>E-mail: </strong>
+                        <a href="mailto:secretariat@info.uaic.ro">secretariat@info.uaic.ro</a>
+                    </h3>
+                    <div class="social">
+                        <a href="https://www.facebook.com/FacultateaDeInformaticaUAICIasi">
+                            <img src="https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/facebook.png"
+                                alt="Facebook">
+                        </a>
+                        <a href="https://twitter.com/uaiciasi">
+                            <img src="https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/twitter.png"
+                                alt="Twitter">
+                        </a>
+                        <a href="https://www.linkedin.com/grps/Facultatea-de-Informatica-Iasi-91904">
+                            <img src="https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/linkedin.png"
+                                alt="LinkedIn">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer >
+        <div class="container">
+            <h4>&copy; 2017
+                <a href="https://www.info.uaic.ro">Faculty of Computer Science Ia&#351;i</a>. All rights reserved.</h4>
+        </div>
+    </footer>
+</body>

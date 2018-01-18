@@ -43,24 +43,39 @@ var AnnouncementsService = (function () {
         this.config = config;
     }
     AnnouncementsService.prototype.getAnnouncements = function () {
-        return this.http.get(this.config.apiUrl + '/api/Announcement');
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.get(this.config.apiUrl + '/api/Announcement', { headers: headers });
     };
     AnnouncementsService.prototype.getAnnouncement = function (id) {
-        return this.http.get(this.config.apiUrl + '/api/Announcement/' + id);
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.get(this.config.apiUrl + '/api/Announcement/' + id, { headers: headers });
     };
     AnnouncementsService.prototype.addAnnouncement = function (announcement) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
-        });
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
         return this.http.post(this.config.apiUrl + '/api/Announcement', announcement, { headers: headers });
     };
     AnnouncementsService.prototype.updateAnnouncement = function (announcement) {
-        console.log(announcement);
-        return this.http.put(this.config.apiUrl + 'api/Announcement/', announcement);
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.put(this.config.apiUrl + 'api/Announcement/', announcement, { headers: headers });
     };
     AnnouncementsService.prototype.deleteAnnouncement = function (id) {
-        return this.http.delete(this.config.apiUrl + '/api/Announcement/' + id);
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.delete(this.config.apiUrl + '/api/Announcement/' + id, { headers: headers });
     };
     AnnouncementsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
@@ -174,7 +189,14 @@ var UserService = (function () {
         headers.append('Content-Type', 'application/json');
         var authToken = localStorage.getItem('auth_token');
         headers.append('Authorization', "Bearer " + authToken);
-        return this.http.put(this.config.apiUrl + '/api/account/change_password/', { currentPassword: currentPassword, password: password }, { headers: headers });
+        return this.http.put(this.config.apiUrl + '/api/Account/change_password/' + localStorage.getItem('currUserMail'), { currentPassword: currentPassword, password: password }, { headers: headers });
+    };
+    UserService.prototype.getClassrooms = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.get(this.config.apiUrl + '/api/Repartition/classrooms', { headers: headers });
     };
     UserService.prototype.create = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
@@ -184,18 +206,42 @@ var UserService = (function () {
     UserService.prototype.getCode = function (email) {
         return this.http.post(this.config.apiUrl + '/api/Account/password_recovery_s1', { email: email });
     };
+    UserService.prototype.postRepartition = function (availableClassrooms, examTime) {
+        console.log(availableClassrooms);
+        console.log(examTime);
+        var z = { availableClassrooms: availableClassrooms,
+            examTime: examTime };
+        console.log(z);
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.post(this.config.apiUrl + '/api/Repartition', { availableClassrooms: availableClassrooms,
+            examTime: examTime }, { headers: headers });
+    };
+    UserService.prototype.getClassroomRepartition = function (classRoom) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.get(this.config.apiUrl + '/api/Repartition/' + classRoom, { headers: headers });
+    };
     UserService.prototype.retrievePassword = function (email, password, code) {
         return this.http.put(this.config.apiUrl + '/api/Account/password_recovery_s2', { email: email, password: password, code: code });
     };
     UserService.prototype.sendForm = function (email, form, completed, approved) {
-        console.log(email);
-        console.log(completed);
-        console.log(approved);
-        console.log(form);
-        return this.http.post(this.config.apiUrl + '/api/Form', { email: email, completed: completed, approved: approved, blobObject: { form: form } });
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.post(this.config.apiUrl + '/api/Form', { email: email, completed: completed, approved: approved, blobObject: { form: form } }, { headers: headers });
     }; // private helper methods
     UserService.prototype.getCandidates = function (skip, take) {
-        return this.http.get(this.config.apiUrl + '/api/Form/page/' + skip + '/' + take);
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.get(this.config.apiUrl + '/api/Form/page/' + skip + '/' + take, { headers: headers });
     };
     UserService.prototype.getForm = function (email) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
@@ -486,6 +532,7 @@ var AppConfig = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__recovery_recovery_component__ = __webpack_require__("../../../../../src/app/recovery/recovery.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dash_admin_dash_admin_component__ = __webpack_require__("../../../../../src/app/dash-admin/dash-admin.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__admin_guard_guard__ = __webpack_require__("../../../../../src/app/admin-guard.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__confirm_confirm_component__ = __webpack_require__("../../../../../src/app/confirm/confirm.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -503,11 +550,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var routes = [
     { path: 'home', component: __WEBPACK_IMPORTED_MODULE_2__home_home_component__["a" /* HomeComponent */] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_3__login_login_component__["b" /* LoginComponent */] },
     { path: 'recovery', component: __WEBPACK_IMPORTED_MODULE_8__recovery_recovery_component__["a" /* RecoveryComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_4__register_register_component__["a" /* RegisterComponent */] },
+    { path: 'confirm', component: __WEBPACK_IMPORTED_MODULE_11__confirm_confirm_component__["a" /* ConfirmComponent */] },
     { path: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_5__dashboard_dashboard_component__["a" /* DashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_7__authentication_guard__["a" /* AuthenticationGuard */]] },
     { path: 'dashmin', component: __WEBPACK_IMPORTED_MODULE_9__dash_admin_dash_admin_component__["a" /* DashAdminComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_10__admin_guard_guard__["a" /* AdminGuard */]] },
     { path: '', component: __WEBPACK_IMPORTED_MODULE_2__home_home_component__["a" /* HomeComponent */], pathMatch: 'full' },
@@ -609,24 +658,26 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__material_utilities_material_utilities_module__ = __webpack_require__("../../../../../src/app/material-utilities/material-utilities.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__sidenav_sidenav_component__ = __webpack_require__("../../../../../src/app/sidenav/sidenav.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__news_news_component__ = __webpack_require__("../../../../../src/app/news/news.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__notifications_notifications_component__ = __webpack_require__("../../../../../src/app/notifications/notifications.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__reset_pass_reset_pass_component__ = __webpack_require__("../../../../../src/app/reset-pass/reset-pass.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__recovery_recovery_component__ = __webpack_require__("../../../../../src/app/recovery/recovery.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__announcements_announcements_component__ = __webpack_require__("../../../../../src/app/announcements/announcements.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_announcements_service__ = __webpack_require__("../../../../../src/app/_services/announcements.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__dash_admin_dash_admin_component__ = __webpack_require__("../../../../../src/app/dash-admin/dash-admin.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__sidenav_admin_sidenav_admin_component__ = __webpack_require__("../../../../../src/app/sidenav-admin/sidenav-admin.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__announcements_admin_announcements_admin_component__ = __webpack_require__("../../../../../src/app/announcements-admin/announcements-admin.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__admin_guard_guard__ = __webpack_require__("../../../../../src/app/admin-guard.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__candidates_candidates_component__ = __webpack_require__("../../../../../src/app/candidates/candidates.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__see_form_see_form_component__ = __webpack_require__("../../../../../src/app/see-form/see-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__reset_pass_reset_pass_component__ = __webpack_require__("../../../../../src/app/reset-pass/reset-pass.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__recovery_recovery_component__ = __webpack_require__("../../../../../src/app/recovery/recovery.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__announcements_announcements_component__ = __webpack_require__("../../../../../src/app/announcements/announcements.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_announcements_service__ = __webpack_require__("../../../../../src/app/_services/announcements.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__dash_admin_dash_admin_component__ = __webpack_require__("../../../../../src/app/dash-admin/dash-admin.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__sidenav_admin_sidenav_admin_component__ = __webpack_require__("../../../../../src/app/sidenav-admin/sidenav-admin.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__announcements_admin_announcements_admin_component__ = __webpack_require__("../../../../../src/app/announcements-admin/announcements-admin.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__admin_guard_guard__ = __webpack_require__("../../../../../src/app/admin-guard.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__candidates_candidates_component__ = __webpack_require__("../../../../../src/app/candidates/candidates.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__see_form_see_form_component__ = __webpack_require__("../../../../../src/app/see-form/see-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__confirm_confirm_component__ = __webpack_require__("../../../../../src/app/confirm/confirm.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__repartition_repartition_component__ = __webpack_require__("../../../../../src/app/repartition/repartition.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -672,22 +723,24 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_10__dashboard_dashboard_component__["a" /* DashboardComponent */],
                 __WEBPACK_IMPORTED_MODULE_17__sidenav_sidenav_component__["a" /* SidenavComponent */],
                 __WEBPACK_IMPORTED_MODULE_18__news_news_component__["a" /* NewsComponent */],
-                __WEBPACK_IMPORTED_MODULE_19__notifications_notifications_component__["a" /* NotificationsComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__reset_pass_reset_pass_component__["a" /* ResetPassComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__reset_pass_reset_pass_component__["a" /* ResetPassComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__login_login_component__["a" /* DialogOverviewExampleDialogComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__recovery_recovery_component__["a" /* RecoveryComponent */],
-                __WEBPACK_IMPORTED_MODULE_22__announcements_announcements_component__["a" /* AnnouncementsComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__dash_admin_dash_admin_component__["a" /* DashAdminComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__sidenav_admin_sidenav_admin_component__["a" /* SidenavAdminComponent */],
-                __WEBPACK_IMPORTED_MODULE_26__announcements_admin_announcements_admin_component__["a" /* AnnouncementsAdminComponent */],
-                __WEBPACK_IMPORTED_MODULE_29__candidates_candidates_component__["a" /* CandidatesComponent */],
-                __WEBPACK_IMPORTED_MODULE_30__see_form_see_form_component__["a" /* SeeFormComponent */]
+                __WEBPACK_IMPORTED_MODULE_29__see_form_see_form_component__["a" /* DialogReasonComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__recovery_recovery_component__["a" /* RecoveryComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__announcements_announcements_component__["a" /* AnnouncementsComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__dash_admin_dash_admin_component__["a" /* DashAdminComponent */],
+                __WEBPACK_IMPORTED_MODULE_24__sidenav_admin_sidenav_admin_component__["a" /* SidenavAdminComponent */],
+                __WEBPACK_IMPORTED_MODULE_25__announcements_admin_announcements_admin_component__["a" /* AnnouncementsAdminComponent */],
+                __WEBPACK_IMPORTED_MODULE_28__candidates_candidates_component__["a" /* CandidatesComponent */],
+                __WEBPACK_IMPORTED_MODULE_29__see_form_see_form_component__["b" /* SeeFormComponent */],
+                __WEBPACK_IMPORTED_MODULE_30__confirm_confirm_component__["a" /* ConfirmComponent */],
+                __WEBPACK_IMPORTED_MODULE_31__repartition_repartition_component__["a" /* RepartitionComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_27__angular_material__["p" /* MatInputModule */],
+                __WEBPACK_IMPORTED_MODULE_26__angular_material__["p" /* MatInputModule */],
                 __WEBPACK_IMPORTED_MODULE_4__app_routing_module__["a" /* AppRoutingModule */],
                 __WEBPACK_IMPORTED_MODULE_11__form_utilities_form_utilities_module__["a" /* FormUtilitiesModule */],
                 __WEBPACK_IMPORTED_MODULE_16__material_utilities_material_utilities_module__["a" /* MaterialUtilitiesModule */]
@@ -695,13 +748,14 @@ var AppModule = (function () {
             providers: [
                 __WEBPACK_IMPORTED_MODULE_14__app_config__["a" /* AppConfig */],
                 __WEBPACK_IMPORTED_MODULE_13__authentication_guard__["a" /* AuthenticationGuard */],
-                __WEBPACK_IMPORTED_MODULE_28__admin_guard_guard__["a" /* AdminGuard */],
+                __WEBPACK_IMPORTED_MODULE_27__admin_guard_guard__["a" /* AdminGuard */],
                 __WEBPACK_IMPORTED_MODULE_12__services_authentication_service__["a" /* Authentication */],
                 __WEBPACK_IMPORTED_MODULE_15__services_user_service__["a" /* UserService */],
-                __WEBPACK_IMPORTED_MODULE_23__services_announcements_service__["a" /* AnnouncementsService */]
+                __WEBPACK_IMPORTED_MODULE_22__services_announcements_service__["a" /* AnnouncementsService */]
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_7__login_login_component__["a" /* DialogOverviewExampleDialogComponent */],
+                __WEBPACK_IMPORTED_MODULE_29__see_form_see_form_component__["a" /* DialogReasonComponent */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
         })
@@ -762,7 +816,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".example-container {\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    width: 100%;\r\n  }\r\n  \r\n  .mat-table {\r\n    overflow: auto;\r\n    height: 100%;\r\n  }\r\n  \r\n  .mat-header-cell.mat-sort-header-sorted {\r\n    color: black;\r\n  }", ""]);
+exports.push([module.i, ".example-container {\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    width: 100%;\r\n  }\r\n  \r\n  .mat-table {\r\n    overflow: auto;\r\n    height: 100%;\r\n  }\r\n  .mat-cell{\r\n    padding: 10px;\r\n  }\r\n  .mat-header-cell{\r\n    padding-left: 10px;\r\n  }\r\n  .mat-header-cell.mat-sort-header-sorted {\r\n    color: black;\r\n   }", ""]);
 
 // exports
 
@@ -868,6 +922,78 @@ var Candidate = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/confirm/confirm.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "button {\r\n    /*color: rgba(62, 156, 242, 0.5);*/\r\n    color: #2f5e85;\r\n    font-weight: bold;\r\n    padding: 10px 20px;\r\n    margin: 20px 0;\r\n    border: none;\r\n    cursor: pointer;\r\n    border-radius: 5px;\r\n}\r\nbutton:hover{\r\n\topacity: 0.6;\r\n}\r\n.navbar-buttons-hover:hover{\r\n\ttext-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 1em white;\r\n}\r\n.right {\r\n\tfloat: right;\r\n}\r\n#welcome-panel{\r\n\tbackground: rgba(39,39,39,1);\r\n}\r\nheader {\r\n\tmin-height:100vh;\r\n\tbackground: url('https://i.pinimg.com/originals/5b/bc/11/5bbc11d7852485126c992135005efd9d.png') no-repeat center center;\r\n\tbackground-size: cover;\r\n\tbackground-color: #EDEFF3;\r\n\tpadding-top: 20%;\r\n\t/*background: rgba(62, 156, 242, 0.1);*/\r\n}\r\nh1{\r\n\tcolor: white;\r\n\ttext-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 0.2em darkblue;\r\n}\r\nh2 {\r\n\tcolor: white;\r\n}\r\n\r\n.beneficii {\r\n\tpadding-top: 75px;\r\n\tbackground-color: #EDEFF3;\r\n\tmin-height: 640px;\r\n}\r\n\r\n.beneficii ul {\r\n\tcolor: #20547E;\r\n\tline-height: 1.7;\r\n\ttext-shadow: unset;\r\n\tfont-size: 2em;\r\n}\r\n\r\n.impresii {\r\n\tpadding-top: 75px;\r\n\tbackground-color: rgba(28, 50, 79,1);\r\n\tmin-height: 640px;\r\n}\r\n\r\n.contact {\r\n\tbackground-color: #EDEFF3;\r\n\tmin-height: 640px;\r\n}\r\n\r\n.padded {\r\n\tpadding: 10%;\r\n}\r\n\r\n.first {\r\n\tmargin-top: 5%;\r\n\tmargin-bottom: 7%;\r\n}\r\n\r\n.contactImg {\r\n\twidth: 100%;\r\n    \theight: auto;\r\n\tmin-height: 640px;\r\n\tfloat: left;\r\n}\r\n\r\n.detalii {\r\n\tcolor: black;\r\n\tfloat: left;\r\n\tpadding-top: 75px;\r\n\tpadding-left: 15px;\r\n}\r\n\r\nfooter {\r\n\tbackground-color: rgba(39, 39, 39,1);\r\n  color: white;\r\n }\r\n\r\n footer a {\r\n \tcolor: white;\r\n }\r\n\r\n .social img {\r\n \twidth: 50px;\r\n \tmargin-right: 20px;\r\n }\r\n\r\n .social {\r\n \tpadding: 20px 20px 20px 0; \r\n }\r\n #bs-example-navbar-collapse-1{\r\n\t float: right !important;\r\n }\r\n\r\n @media screen and (max-width: 770px) {\r\n    #bs-example-navbar-collapse-1{\r\n\t\tfloat: left !important;\r\n\t}\r\n\theader{\r\n\t\tpadding-top: 90%;\r\n\t}\r\n}\r\n\r\n@media screen and (max-width: 1000px) {\r\n    #padded{\r\n\t\tdisplay: none;\r\n\t}\r\n\theader{\r\n\t\tpadding-top: 90%;\r\n\t}\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/confirm/confirm.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"\">\n    <meta name=\"author\" content=\"\">\n\n    <title>FII Admis</title>\n\n</head>\n\n<body id=\"top\">\n    <nav class=\"navbar-inverse navbar-fixed-top\" role=\"navigation\">\n        <div class=\"container\">\n            <div class=\"navbar-header\" >\n                <button type=\"button\" style=\"margin-right:10%;\"class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" tabindex=\"1\"\n                    accesskey=\"m\">\n                    <span class=\"sr-only\">Toggle navigation</span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                </button>\n                <a class=\"navbar-brand\"  href=\"#\">\n                    <img style=\"height:inherit;\" src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png\"\n                        alt=\"FII Admis logo\">\n                </a>\n            </div>\n            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n                <ul class=\"nav navbar-nav\">\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#beneficii\">\n                            <h2 >Benefits</h2>\n                        </a>\n                    </li>\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#impresii\">\n                            <h2 >Impressions</h2>\n                        </a>\n                    </li>\n                    <li>\n                        <a class=\"navbar-buttons-hover\" href=\"#contact\">\n                            <h2 >Contact</h2>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </nav>\n\n    <header>\n        <div class=\"container\" id=\"welcome-panel\">\n            <div class=\"col-md-12\">\n                <div class=\"intro\">\n                    <h1 style=\"margin-bottom:22px;\">Thanks for confirming the mail! Click <a [routerLink]=\"['/login']\" >here</a> to login! </h1>\n                </div>\n            </div>\n        </div>\n    </header>\n\n    <section id=\"beneficii\" class=\"beneficii\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-7\">\n                    <div class=\"header-content\">\n                        <div class=\"header-content-inner\">\n                            <h1 style=\"color: rgba(28, 50, 79,1); font-size: 3em; text-shadow: unset;\">What do we offer?</h1><br>\n                            <ul>\n                                <li>a stimulating academic enviroment</li>\n                                <li>flexibility when choosing your study program</li>\n                                <li>latest tehnologies</li>\n                                <li>labs adequately equipped</li>\n                                <li>free access to software documentations</li>\n                                <li>opportunities to study or/and internships abroad</li>\n                                <li>friendly and helpful professors</li>\n                                <li>a diploma </li>\n                            </ul>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-md-2\"></div>\n                <div class=\"col-md-3\">\n                    <div class=\"device-container\" id=\"padded\">\n                        <img src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/success.png\" alt=\"Success\">\n                    </div>\n                </div>\n            </div>\n        </div>\n    </section>\n\n    <section id=\"impresii\" class=\"impresii\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-12\">\n                    <div class=\"header-content\">\n                        <div class=\"header-content-inner\">\n                            <h1 style=\"color: white; font-size: 3em; text-shadow: unset; \">What do our graduates say?</h1>\n                            <blockquote class=\"first\">\n                                <h4 style=\"color: white; text-align: justify; font-style: italic;\">\n                                    I graduated the Faculty of Computer Science of the \"Alexandru\n                                    Ioan Cuza\" University in Ia&#351;i. I consider myself, from this point of view,\n                                    a privileged person because I had the honor of being educated by respected and open-minded professors while \n                                    also having part of colleagues from whom I had tons to learn.\n                                    <br><br> Through this institution I managed to fructify opportunities, opportunities which are needed and available to\n                                    all the community of students... so with the best intentions I invite you to discover them yourselves!</h4><br>\n                                <h4 class=\"right\" style=\"color: white;\">Alexandru Pruteanu (graduate FII 2001), Microsoft Rom&#226;nia</h4>\n                            </blockquote>\n                            <blockquote>\n                                <h4 style=\"color: white; text-align: justify; font-style: italic;\">Computer Science is not a field that cannot be merged\n                                    with others. On the contrary, there are a lot of ways to do that. You can combine it with biology (bio-informatics), art\n                                    (design, graphics), medicine (working with x-ray images), movie industry (special effects), economy (database, transaction\n                                    security), physics (quantic informatics), and so many more.. \n                                </h4><br>\n                                <h4 class=\"right\" style=\"color: white;\">Alexandrina Orzan (graduate FII 2003), team researcher at MAVERICK, INRIA,\n                                    Rh&ocirc;ne-Alpes</h4>\n                            </blockquote>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </section>\n\n    <section id=\"contact\" class=\"contact\">\n        <div class=\"container\">\n            <div class=\"col-md-6\">\n                <img src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/fii.jpg\" class=\"contactImg\"\n                    alt=\"FII\">\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"detalii\">\n                    <h1 style=\"color: rgba(28, 50, 79,1); font-size: 3em; text-shadow: unset;\">How can you get to us?</h1>\n                    <h2 style=\"color: #000; font-size: 1.7em; text-shadow: unset;\">\n                        <strong>Address: </strong><br>\n                        <br> Facultatea de Informatic&#259;, Universitatea \"Al. I. Cuza\",\n                        <br> General Berthelot, 16,\n                        <br> IA&#350;I, 700483, ROM&#194;NIA\n                        <br>\n                    </h2>\n                    <h3>\n                        <strong>Phone: </strong>\n                        <a href=\"tel:+40232201090\">+40 232 201 090</a>\n                    </h3>\n                    <h3>\n                        <strong>Fax: </strong>+40 232 201 490</h3>\n                    <h3>\n                        <strong>E-mail: </strong>\n                        <a href=\"mailto:secretariat@info.uaic.ro\">secretariat@info.uaic.ro</a>\n                    </h3>\n                    <div class=\"social\">\n                        <a href=\"https://www.facebook.com/FacultateaDeInformaticaUAICIasi\">\n                            <img src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/facebook.png\"\n                                alt=\"Facebook\">\n                        </a>\n                        <a href=\"https://twitter.com/uaiciasi\">\n                            <img src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/twitter.png\"\n                                alt=\"Twitter\">\n                        </a>\n                        <a href=\"https://www.linkedin.com/grps/Facultatea-de-Informatica-Iasi-91904\">\n                            <img src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/linkedin.png\"\n                                alt=\"LinkedIn\">\n                        </a>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </section>\n    <footer >\n        <div class=\"container\">\n            <h4>&copy; 2017\n                <a href=\"https://www.info.uaic.ro\">Faculty of Computer Science Ia&#351;i</a>. All rights reserved.</h4>\n        </div>\n    </footer>\n</body>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/confirm/confirm.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfirmComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__ = __webpack_require__("../../../../../src/app/_services/authentication.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../src/app/_services/user.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ConfirmComponent = (function () {
+    function ConfirmComponent(userService, authenticationService, router) {
+        this.userService = userService;
+        this.authenticationService = authenticationService;
+        this.router = router;
+    }
+    ConfirmComponent.prototype.ngOnInit = function () {
+    };
+    ConfirmComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-confirm',
+            template: __webpack_require__("../../../../../src/app/confirm/confirm.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/confirm/confirm.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* Authentication */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
+    ], ConfirmComponent);
+    return ConfirmComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/dash-admin/dash-admin.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -876,7 +1002,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#notifications{\r\n    display: none;\r\n}\r\n\r\n#form{\r\n    display: none;\r\n}\r\n#documents{\r\n    display: none;\r\n}\r\n#reset{\r\n    display: none;\r\n}\r\n#welcome-panel{\r\n    margin-top: 50px;    \r\n    background-color: rgba(255,255,255,0.9);\r\n    margin-bottom: 30px;\r\n}", ""]);
+exports.push([module.i, "#form{\r\n    display: none;\r\n}\r\n#repartition{\r\n    display: none;\r\n}\r\n#reset{\r\n    display: none;\r\n}\r\n#welcome-panel{\r\n    margin-top: 50px;    \r\n    background-color: rgba(255,255,255,0.9);\r\n    margin-bottom: 30px;\r\n}", ""]);
 
 // exports
 
@@ -889,7 +1015,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dash-admin/dash-admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body style=\"background:black\">\r\n    <app-sidenav-admin>\r\n        <div class=\"dash-container\">\r\n            <div id=\"announcements\">\r\n                <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\">\r\n                    <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-3 col-xs-7\" style=\"margin-bottom:20px;\">Announcements</h2>\r\n                    <app-announcements-admin class=\"col-md-8 col-md-offset-2\">\r\n                    </app-announcements-admin>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"dash-container\" id=\"form\">\r\n            <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\" style=\"word-wrap: break-word;\">\r\n                <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-1 col-xs-10\" style=\"margin-bottom:20px;\">Candidates</h2>\r\n                <app-candidates class=\"col-md-12 col-md-offset-0\">\r\n                </app-candidates>\r\n            </div>\r\n        </div>\r\n    </app-sidenav-admin>\r\n</body>"
+module.exports = "<body style=\"background:black\">\r\n    <app-sidenav-admin>\r\n        <div class=\"dash-container\">\r\n            <div id=\"announcements\">\r\n                <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\">\r\n                    <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-3 col-xs-7\" style=\"margin-bottom:20px;\">Announcements</h2>\r\n                    <app-announcements-admin class=\"col-md-8 col-md-offset-2\">\r\n                    </app-announcements-admin>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"dash-container\" id=\"form\">\r\n            <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\" style=\"word-wrap: break-word;\">\r\n                <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-1 col-xs-10\" style=\"margin-bottom:20px;\">Candidates</h2>\r\n                <app-candidates class=\"col-md-12 col-md-offset-0\">\r\n                </app-candidates>\r\n            </div>\r\n        </div>\r\n        <div class=\"dash-container\" id=\"repartition\">\r\n            <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\" style=\"word-wrap: break-word;\">\r\n                <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-1 col-xs-10\" style=\"margin-bottom:20px;\">Repartition</h2>\r\n                <app-repartition class=\"col-md-12 col-md-offset-0\">\r\n                </app-repartition>\r\n            </div>\r\n        </div>\r\n    </app-sidenav-admin>\r\n</body>"
 
 /***/ }),
 
@@ -950,7 +1076,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body style=\"background:black\">\r\n  <dashboard-sidenav>\r\n    <div class=\"dash-container\">\r\n      <div id=\"announcements\">\r\n        <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\">\r\n          <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-3 col-xs-7\" style=\"margin-bottom:20px;\">Announcements</h2>\r\n          <app-announcements class=\"col-md-8 col-md-offset-2\">\r\n            </app-announcements>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"dash-container\">\r\n      <div id=\"notifications\">\r\n        <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\">\r\n          <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-2 col-xs-8\" style=\"margin-bottom:20px;\">Notifications</h2>\r\n          <app-notifications class=\"col-md-10 col-xs-10 col-md-offset-1\">\r\n          </app-notifications>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"dash-container\" id=\"form\">\r\n      <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\" style=\"word-wrap: break-word;\">\r\n        <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-1 col-xs-10\" style=\"margin-bottom:20px;\">Application Form</h2>\r\n        <app-fii-form class=\"col-md-8 col-md-offset-2\">\r\n        </app-fii-form>\r\n      </div>\r\n    </div>\r\n    <div class=\"dash-container\" id=\"reset\">\r\n      <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\">\r\n        <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-1 col-xs-10\" style=\"margin-bottom:20px;\">Reset Password</h2>\r\n        <app-reset-pass class=\"col-md-8 col-md-offset-2\">\r\n        </app-reset-pass>\r\n      </div>\r\n    </div>\r\n  </dashboard-sidenav>\r\n</body>\r\n"
+module.exports = "<body style=\"background:black\">\r\n  <dashboard-sidenav>\r\n    <div class=\"dash-container\">\r\n      <div id=\"announcements\">\r\n        <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\">\r\n          <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-3 col-xs-7\" style=\"margin-bottom:20px;\">Announcements</h2>\r\n          <app-announcements class=\"col-md-8 col-md-offset-2\">\r\n            </app-announcements>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"dash-container\" id=\"form\">\r\n      <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\" style=\"word-wrap: break-word;\">\r\n        <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-1 col-xs-10\" style=\"margin-bottom:20px;\">Application Form</h2>\r\n        <app-fii-form class=\"col-md-8 col-md-offset-2\">\r\n        </app-fii-form>\r\n      </div>\r\n    </div>\r\n    <div class=\"dash-container\" id=\"reset\">\r\n      <div class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" id=\"welcome-panel\">\r\n        <h2 class=\"col-md-4 col-md-offset-5 col-xs-offset-1 col-xs-10\" style=\"margin-bottom:20px;\">Reset Password</h2>\r\n        <app-reset-pass class=\"col-md-8 col-md-offset-2\">\r\n        </app-reset-pass>\r\n      </div>\r\n    </div>\r\n  </dashboard-sidenav>\r\n</body>\r\n"
 
 /***/ }),
 
@@ -1022,7 +1148,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/form-utilities/fii-form/fii-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-horizontal-stepper class=\"col-md-12 col-md-offset-0 col-xs-offset-0 col-xs-12\" style=\"background: transparent;width:100%;\"\r\n  [linear]=true>\r\n  <div *ngFor=\"let j of [0,1,2,3,4,5,6]\">\r\n    <mat-step [stepControl]=\"'firstFormGroup'\">\r\n      <form *ngFor=\"let field of fields; let z = index\">\r\n        <div *ngIf=\"z<(fields.length)/7*(j+1) && z>=(fields.length)/7*j \" [ngSwitch]=\"field.type\">\r\n          <ng-template matStepLabel>Step {{j+1}}</ng-template>\r\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'text'\">\r\n            <input matInput placeholder={{field.placeholder}} disabled={{field.checked}} type={{field.type}} id={{field.name}} value={{field.value}}\r\n              (input)=\"inputElementListener(field.name)\" required>\r\n            <mat-hint>\r\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\r\n                <i style=\"font-size:15px; color: green;\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\r\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">{{field.reason}}</div>\r\n            </mat-hint>\r\n          </mat-form-field>\r\n          <div style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12\" *ngSwitchCase=\"'file'\">\r\n            <h3 style=\"margin-top:20px;margin-bottom:20px;\">{{field.placeholder}}</h3>\r\n            <input type={{field.type}} id={{field.name}} accept=\"image/*\" (change)=\"changeListener($event, z)\" >\r\n            <img *ngIf=\"fields[z].value.length > 1\" src={{fields[z].value}} style=\"height: 100%; width:100%; cursor: pointer;margin-bottom:15px;margin-top:15px;\" (click)=\"zoom(fields[z].value)\">\r\n            <button *ngIf=\"fields[z].value.length > 1\" (click)=\"saveFile(fields[z].value, fields[z].name)\"  style=\"margin-top:15px;margin-bottom:15px;\">Save file</button>\r\n            <mat-hint >\r\n              <div style=\"margin-top:15px;color: green;\" *ngIf=\"field.checked\" >\r\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div style=\"margin-top:15px;\" *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\r\n              <div style=\"margin-top:15px;\"*ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\r\n            </mat-hint>\r\n          </div>\r\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'number'\">\r\n            <input matInput placeholder={{field.placeholder}} disabled={{field.checked}} type={{field.type}} id={{field.name}} value={{field.value}}\r\n              (input)=\"inputElementListener(field.name)\" required>\r\n            <mat-hint>\r\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\r\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">Hint: {{field.hint}}</div>\r\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\r\n            </mat-hint>\r\n          </mat-form-field>\r\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'select'\">\r\n            <mat-select placeholder={{field.placeholder}} disabled={{field.checked}} name={{field.name}} id={{field.name}} [(ngModel)]=\"fields[z].value\">\r\n              <mat-option *ngFor=\"let option1 of field.selectOptions\" [value]=\"option1\">\r\n                {{option1}}\r\n              </mat-option>\r\n            </mat-select>\r\n            <mat-hint>\r\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\r\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\r\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\r\n            </mat-hint>\r\n          </mat-form-field>\r\n          <div style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12\" *ngSwitchCase=\"'radio'\">\r\n            <h3 style=\"margin-top:20px;margin-bottom:20px;\">{{field.placeholder}}</h3>\r\n            <mat-radio-group disabled={{field.checked}} name={{field.name}} id={{field.name}} [(ngModel)]=\"fields[z].value\">\r\n              <mat-radio-button class=\"col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12\" style=\"margin-top:10px;\" *ngFor=\"let option3 of field.checkChoices\"\r\n                [value]=\"option3\">\r\n                <br> {{option3}}\r\n              </mat-radio-button>\r\n            </mat-radio-group>\r\n            <mat-hint style=\"margin-top:10px;\" class=\"col-md-8 col-md-offset-0 col-xs-offset-1 col-xs-10\">\r\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\r\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\r\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\r\n            </mat-hint>\r\n          </div>\r\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'date'\">\r\n            <input matInput [matDatepicker]=\"picker\" placeholder=\"Choose a date\" value={{field.value}} id={{field.name}} name={{field.name}}\r\n              (dateInput)=\"addEvent(field.name, $event)\">\r\n            <mat-hint>\r\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\r\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\r\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\r\n            </mat-hint>\r\n            <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n            <mat-datepicker #picker></mat-datepicker>\r\n          </mat-form-field>\r\n          <div class=\"col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3\" *ngSwitchCase=\"'submit'\">\r\n            <input (click)=\"onSubmit()\" type=\"submit\" mat-button class=\"col-md-5  btn btn-primary\" id=\"registerSubmit\" style=\"font-size:30px;margin-bottom:30px;margin-top:40px;\"\r\n              value=\"Submit\" [disabled]=\"loading\">\r\n            <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"\r\n            />\r\n          </div>\r\n        </div>\r\n      </form>\r\n      <div class=\"col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3\" *ngIf=\"j>0 && j<6\">\r\n        <button mat-button matStepperPrevious>Back</button>\r\n        <button mat-button matStepperNext>Next</button>\r\n      </div>\r\n      <div class=\"col-md-8 col-md-offset-5 col-xs-4 col-xs-offset-3\" *ngIf=\"j==0\">\r\n        <button mat-button matStepperNext>Next</button>\r\n      </div>\r\n    </mat-step>\r\n  </div>\r\n</mat-horizontal-stepper>\r\n<div id=\"myModal\" class=\"modal\">\r\n    <span (click)=\"closeModal()\" class=\"close\">&times;</span>\r\n    <img class=\"modal-content\" id=\"img01\">\r\n    <div id=\"caption\"></div>\r\n</div>"
+module.exports = "<p class=\"col-md-8 col-md-offset-2 col-xs-offset-2 col-xs-8\" id=\"congratulation\" style=\"display:none;color: green;\">\r\n  Congratulations your submission was approved! See you at the exam!</p>\r\n<mat-horizontal-stepper id=\"big-form\" class=\"col-md-12 col-md-offset-0 col-xs-offset-0 col-xs-12\" style=\"background: transparent;width:100%;\"\r\n  [linear]=true>\r\n  <div *ngFor=\"let j of [0,1,2,3,4,5,6]\">\r\n    <mat-step [stepControl]=\"'firstFormGroup'\">\r\n      <form *ngFor=\"let field of fields; let z = index\">\r\n        <div *ngIf=\"z<(fields.length)/7*(j+1) && z>=(fields.length)/7*j \" [ngSwitch]=\"field.type\">\r\n          <ng-template matStepLabel>Step {{j+1}}</ng-template>\r\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'text'\">\r\n            <input matInput placeholder={{field.placeholder}} disabled={{field.checked}} type={{field.type}} id={{field.name}} value={{field.value}}\r\n              (input)=\"inputElementListener(field.name)\" required>\r\n            <mat-hint>\r\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\r\n                <i style=\"font-size:15px; color: green;\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\r\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">{{field.reason}}</div>\r\n            </mat-hint>\r\n          </mat-form-field>\r\n          <div style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12\" *ngSwitchCase=\"'file'\">\r\n            <h3 style=\"margin-top:20px;margin-bottom:20px;\">{{field.placeholder}}</h3>\r\n            <input type={{field.type}} id={{field.name}} accept=\"image/*\" (change)=\"changeListener($event, z)\" >\r\n            <img *ngIf=\"fields[z].value.length > 1\" src={{fields[z].value}} style=\"height: 100%; width:100%; cursor: pointer;margin-bottom:15px;margin-top:15px;\" (click)=\"zoom(fields[z].value)\">\r\n            <button *ngIf=\"fields[z].value.length > 1\" (click)=\"saveFile(fields[z].value, fields[z].name)\"  style=\"margin-top:15px;margin-bottom:15px;\">Save file</button>\r\n            <mat-hint >\r\n              <div style=\"margin-top:15px;color: green;\" *ngIf=\"field.checked\" >\r\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div style=\"margin-top:15px;\" *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\r\n              <div style=\"margin-top:15px;\"*ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\r\n            </mat-hint>\r\n          </div>\r\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'number'\">\r\n            <input matInput placeholder={{field.placeholder}} disabled={{field.checked}} type={{field.type}} id={{field.name}} value={{field.value}}\r\n              (input)=\"inputElementListener(field.name)\" required>\r\n            <mat-hint>\r\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\r\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">Hint: {{field.hint}}</div>\r\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\r\n            </mat-hint>\r\n          </mat-form-field>\r\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'select'\">\r\n            <mat-select placeholder={{field.placeholder}} disabled={{field.checked}} name={{field.name}} id={{field.name}} [(ngModel)]=\"fields[z].value\">\r\n              <mat-option *ngFor=\"let option1 of field.selectOptions\" [value]=\"option1\">\r\n                {{option1}}\r\n              </mat-option>\r\n            </mat-select>\r\n            <mat-hint>\r\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\r\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\r\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\r\n            </mat-hint>\r\n          </mat-form-field>\r\n          <div style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12\" *ngSwitchCase=\"'radio'\">\r\n            <h3 style=\"margin-top:20px;margin-bottom:20px;\">{{field.placeholder}}</h3>\r\n            <mat-radio-group disabled={{field.checked}} name={{field.name}} id={{field.name}} [(ngModel)]=\"fields[z].value\">\r\n              <mat-radio-button class=\"col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12\" style=\"margin-top:10px;\" *ngFor=\"let option3 of field.checkChoices\"\r\n                [value]=\"option3\">\r\n                <br> {{option3}}\r\n              </mat-radio-button>\r\n            </mat-radio-group>\r\n            <mat-hint style=\"margin-top:10px;\" class=\"col-md-8 col-md-offset-0 col-xs-offset-1 col-xs-10\">\r\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\r\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\r\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\r\n            </mat-hint>\r\n          </div>\r\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'date'\">\r\n            <input matInput [matDatepicker]=\"picker\" placeholder=\"Choose a date\" value={{field.value}} id={{field.name}} name={{field.name}}\r\n              (dateInput)=\"addEvent(field.name, $event)\">\r\n            <mat-hint>\r\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\r\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\r\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\r\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\r\n            </mat-hint>\r\n            <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n            <mat-datepicker #picker></mat-datepicker>\r\n          </mat-form-field>\r\n          <div class=\"col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3\" *ngSwitchCase=\"'submit'\">\r\n            <input (click)=\"onSubmit()\" type=\"submit\" mat-button class=\"col-md-5  btn btn-primary\" id=\"registerSubmit\" style=\"font-size:30px;margin-bottom:30px;margin-top:40px;\"\r\n              value=\"Submit\" [disabled]=\"loading\">\r\n            <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"\r\n            />\r\n          </div>\r\n        </div>\r\n      </form>\r\n      <div class=\"col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3\" *ngIf=\"j>0 && j<6\">\r\n        <button mat-button matStepperPrevious>Back</button>\r\n        <button mat-button matStepperNext>Next</button>\r\n      </div>\r\n      <div class=\"col-md-8 col-md-offset-5 col-xs-4 col-xs-offset-3\" *ngIf=\"j==0\">\r\n        <button mat-button matStepperNext>Next</button>\r\n      </div>\r\n    </mat-step>\r\n  </div>\r\n</mat-horizontal-stepper>\r\n<div id=\"myModal\" class=\"modal\">\r\n    <span (click)=\"closeModal()\" class=\"close\">&times;</span>\r\n    <img class=\"modal-content\" id=\"img01\">\r\n    <div id=\"caption\"></div>\r\n</div>"
 
 /***/ }),
 
@@ -1060,6 +1186,9 @@ var FiiFormComponent = (function () {
             this.currentUserMail = localStorage.getItem('currUserMail');
             this.userService.getForm(this.currentUserMail).subscribe(function (data) {
                 _this.fields = JSON.parse(JSON.parse(JSON.stringify(data))._body).blobObject.form;
+                if (JSON.parse(JSON.parse(JSON.stringify(data))._body).approved) {
+                    document.getElementById('congratulation').style.display = 'block';
+                }
             }, function (error) {
             });
         }
@@ -2161,9 +2290,8 @@ var FiiFormComponent = (function () {
         }
         this.userService.sendForm(email, this.fields, status, false)
             .subscribe(function (data) {
-            alert(data);
         }, function (error) {
-            alert(error);
+            console.log(error);
         });
     };
     FiiFormComponent = __decorate([
@@ -2678,67 +2806,6 @@ var NotFoundComponent = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/notifications/notifications.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "dd{\r\n    padding-left: 30px;\r\n    padding-top: 20px;\r\n}\r\ndt{\r\n    padding-top: 20px;\r\n}\r\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/notifications/notifications.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<dl>\n    <dt>To re-check in form</dt>\n    <dd style=\"color: red;\">   Field Name is wrong: Your name smth</dd>\n    <dt> Checked: </dt>\n    <dd style=\"color: green;\">   Identity document checked all gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang gucci gang</dd>\n  </dl>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/notifications/notifications.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NotificationsComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var NotificationsComponent = (function () {
-    function NotificationsComponent() {
-    }
-    NotificationsComponent.prototype.ngOnInit = function () {
-    };
-    NotificationsComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-notifications',
-            template: __webpack_require__("../../../../../src/app/notifications/notifications.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/notifications/notifications.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], NotificationsComponent);
-    return NotificationsComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "../../../../../src/app/recovery/recovery.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2972,6 +3039,126 @@ var RegisterComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/repartition/repartition.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/repartition/repartition.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n  <div class=\"example-container col-md-8 col-md-offset-2 mat-elevation-z8\" >\n    <mat-table *ngFor=\"let r of reset\" #table [dataSource]=\"dataSource\" style=\"margin-top:15px;\">\n      <ng-container matColumnDef=\"name\">\n        <mat-header-cell *matHeaderCellDef> Classroom </mat-header-cell>\n        <mat-cell *matCellDef=\"let element\"> {{element.name}} </mat-cell>\n      </ng-container>\n      <ng-container matColumnDef=\"capacity\">\n        <mat-header-cell *matHeaderCellDef> Capacity </mat-header-cell>\n        <mat-cell *matCellDef=\"let element\"> {{element.capacity}} </mat-cell>\n      </ng-container>\n      <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n      <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n    </mat-table>\n    <mat-paginator #paginator [length]=\"length\" [pageSize]=\"10\" [pageSizeOptions]=\"[10]\">\n    </mat-paginator>\n  </div>\n  <div>\n    <form>\n      <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\">\n        <input matInput [matDatepicker]=\"picker\" placeholder=\"Exam date\" [(ngModel)]=\"examDate\" name=\"exam-date\">\n        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n        <mat-datepicker #picker></mat-datepicker>\n      </mat-form-field>\n      <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-4 col-md-offset-2 col-xs-offset-1 col-xs-10\">\n        <input matInput placeholder=\"Classroom Name\" type=\"text\" name=\"name\" [(ngModel)]=\"classroomName\" required>\n      </mat-form-field>\n      <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-4 col-md-offset-0 col-xs-offset-1 col-xs-10\">\n        <input matInput placeholder=\"Capacity\" type=\"number\" name=\"capacity\" [(ngModel)]=\"classroomCapacity\" required>\n      </mat-form-field>\n      <div style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8  col-md-offset-2 col-xs-offset-1 col-xs-10\">\n        <input type=\"submit\" mat-button style=\"margin-top:14px; \" (click)=\"addClassroom()\" class=\"col-md-12 col-md-offset-0 col-xs-offset-0 col-xs-12\" value=\"Add Classroom\">\n      </div>\n    </form>\n  </div>\n\n  <input type=\"submit\" (click)=\"generate()\" mat-button class=\"col-md-4 col-md-offset-4 col-xs-12 col-xs-offset-0  btn btn-primary\" id=\"addRepartition\"\n    style=\"font-size:2em;margin-bottom:30px;margin-top:20px;\" value=\"Generate\" [disabled]=\"loading\">\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/repartition/repartition.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RepartitionComponent; });
+/* unused harmony export Classroom */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__("../../../../../src/app/_services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var RepartitionComponent = (function () {
+    function RepartitionComponent(userService) {
+        this.userService = userService;
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_2__angular_material__["H" /* MatTableDataSource */]();
+        this.reset = [{}];
+    }
+    // tslint:disable-next-line:use-life-cycle-interface
+    RepartitionComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.userService.getClassrooms()
+            .subscribe(function (data) {
+            _this.dataSource.data = JSON.parse(JSON.parse(JSON.stringify(data))._body);
+            var x = JSON.parse(JSON.parse(JSON.stringify(data))._body);
+            _this.length = _this.dataSource.data.length;
+            for (var i = void 0; i < _this.length; i++) {
+                _this.userService.getClassroomRepartition(x[i].name)
+                    .subscribe(
+                // tslint:disable-next-line:no-shadowed-variable
+                function (data) {
+                    console.log(data);
+                }, function (error) {
+                    console.log(error);
+                });
+            }
+            var names = Object.getOwnPropertyNames(_this.dataSource.data[0]);
+            _this.displayedColumns = names;
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    RepartitionComponent.prototype.generate = function () {
+        var date = this.examDate.toJSON();
+        this.userService.postRepartition(this.dataSource.data, date)
+            .subscribe(function (data) {
+            console.log(data);
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    RepartitionComponent.prototype.addClassroom = function () {
+        var x = {};
+        this.length++;
+        x.name = this.classroomName;
+        x.capacity = this.classroomCapacity;
+        this.dataSource.data[this.dataSource.data.length] = x;
+        this.reset[0] = {};
+    };
+    RepartitionComponent.prototype.ngOnInit = function () {
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_2__angular_material__["t" /* MatPaginator */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_material__["t" /* MatPaginator */])
+    ], RepartitionComponent.prototype, "paginator", void 0);
+    RepartitionComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-repartition',
+            template: __webpack_require__("../../../../../src/app/repartition/repartition.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/repartition/repartition.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]])
+    ], RepartitionComponent);
+    return RepartitionComponent;
+}());
+
+var Classroom = (function () {
+    function Classroom() {
+    }
+    return Classroom;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/reset-pass/reset-pass.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2993,7 +3180,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/reset-pass/reset-pass.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n  <div class=\"col-md-8 col-md-offset-0\" id=\"welcome-panel\">\r\n    <form name=\"form\" (ngSubmit)=\"f.form.valid && reset()\" #f=\"ngForm\" novalidate>\r\n      <div class=\"form-group col-md-9 col-md-offset-5\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\r\n        <label for=\"password\">Password</label>\r\n        <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" #password=\"ngModel\"\r\n          required />\r\n        <div *ngIf=\"f.submitted && !password.valid\" style=\"color:red;\">Password is required</div>\r\n      </div>\r\n      <div class=\"form-group col-md-9 col-md-offset-5\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\r\n        <label>Confirm Password</label>\r\n        <input type=\"password\" class=\"form-control\" name=\"confirmPassword\" [(ngModel)]=\"model.confirmPassword\" required />\r\n        <div id=\"confirmError\" style=\"color:red;display:none;\">Passwords don't match</div>\r\n      </div>\r\n      <div style=\"margin-bottom:30px;\" class=\"col-md-10 col-md-offset-7 col-xs-offset-0\">\r\n        <button class=\"col-md-5\" style=\"margin-bottom:30px;\" id=\"registerReset\" [disabled]=\"loading\">Submit</button>\r\n        <mat-spinner class=\"col-xs-offset-0 col-xs-4 col-md-1 col-md-offset-0\" style=\"margin-left:16px;margin-top:26.5px;margin-left:16px;\"\r\n          *ngIf=\"loading\" [diameter]=\"30\"></mat-spinner>\r\n      </div>\r\n    </form>\r\n  </div>\r\n"
+module.exports = "<div class=\"col-md-8 col-md-offset-0\" id=\"welcome-panel\">\r\n  <form name=\"form\" (ngSubmit)=\"f.form.valid && reset()\" #f=\"ngForm\" novalidate>\r\n    <div class=\"form-group col-md-9 col-md-offset-5\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\r\n      <label for=\"password\">Password</label>\r\n      <input type=\"password\" class=\"form-control\" name=\"oldpassword\" [(ngModel)]=\"model.password\" #password=\"ngModel\" required />\r\n      <div *ngIf=\"f.submitted && !password.valid\" style=\"color:red;\">Password is required</div>\r\n    </div>\r\n    <div class=\"form-group col-md-9 col-md-offset-5\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\r\n      <label>New Password</label>\r\n      <input type=\"password\" class=\"form-control\" name=\"password\" (input)=\"checkConfirmPass()\" [(ngModel)]=\"model.confirmPassword\" required />\r\n      <div id=\"confirmError\" style=\"color:red;display:none;\">Passwords don't match</div>\r\n    </div>\r\n    <div class=\"form-group col-md-9 col-md-offset-5\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\r\n        <label>Confirm New Password</label>\r\n        <input type=\"password\" class=\"form-control\" name=\"confirmPassword\" (input)=\"checkConfirmPass()\" required />\r\n        <div id=\"confirmError\" style=\"color:red;display:none;\">Passwords don't match</div>\r\n      </div>\r\n    <div style=\"margin-bottom:30px;\" class=\"col-md-10 col-md-offset-6 col-xs-offset-0\">\r\n      <input type=\"submit\" mat-button class=\"col-md-7 col-md col-xs-12 col-xs-offset-0  btn btn-primary\"\r\n        id=\"registerSubmit\" style=\"font-size:2em;margin-bottom:30px;margin-top:20px;\" value=\"Submit\" [disabled]=\"loading\">\r\n      <mat-spinner class=\"col-xs-offset-0 col-xs-4 col-md-1 col-md-offset-0\" style=\"margin-left:16px;margin-top:26.5px;margin-left:16px;\"\r\n        *ngIf=\"loading\" [diameter]=\"30\"></mat-spinner>\r\n    </div>\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -3062,6 +3249,13 @@ var ResetPassComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/see-form/dialog-reason.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h1 mat-dialog-title>Dialog</h1>\r\n<div mat-dialog-content>\r\n    <p>Write the reason for which the input is invalid:</p>\r\n    <mat-form-field class=\"col-md-12 col-xs-12\">\r\n        <input placeholder=\"Reason\" matInput tabindex=\"-1\" [(ngModel)]=\"data.reason\">\r\n    </mat-form-field>\r\n</div>\r\n<div mat-dialog-actions class=\"col-md-8 col-xs-10 col-md-offset-2 col-xs-offset-2\">\r\n    <button mat-button class=\"col-md-4  col-xs-offset-4\" [mat-dialog-close]=\"data.reason\" cdkFocusInitial>Add reason</button>\r\n    <button mat-button class=\"col-md-4  col-xs-offset-0\" (click)=\"onNoClick()\">Close</button>\r\n</div>"
+
+/***/ }),
+
 /***/ "../../../../../src/app/see-form/see-form.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3083,7 +3277,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/see-form/see-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-horizontal-stepper *ngIf=\"!loading\" class=\"col-md-12 col-md-offset-0 col-xs-offset-0 col-xs-12\" style=\"background: transparent;width:100%;\"\n  [linear]=true>\n  <div *ngFor=\"let j of [0,1,2,3,4,5,6]\">\n    <mat-step [stepControl]=\"'firstFormGroup'\">\n      <form *ngFor=\"let field of fields; let z = index\">\n        <div *ngIf=\"z<(fields.length)/7*(j+1) && z>=(fields.length)/7*j \" [ngSwitch]=\"field.type\">\n          <ng-template matStepLabel>Step {{j+1}}</ng-template>\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'text'\">\n            <input matInput placeholder={{field.placeholder}} disabled={{field.checked}} type={{field.type}} id={{field.name}} value={{field.value}}\n              (input)=\"inputElementListener(field.name)\" required>\n            <mat-hint>\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\n                <i style=\"font-size:15px; color: green;\" class=\"material-icons\">done</i> Field checked by an admin.</div>\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">{{field.reason}}</div>\n            </mat-hint>\n          </mat-form-field>\n          <div style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12\" *ngSwitchCase=\"'file'\">\n            <h3 style=\"margin-top:20px;margin-bottom:20px;\">{{field.placeholder}}</h3>\n            <input type={{field.type}} id={{field.name}} accept=\"image/*\" (change)=\"changeListener($event, z)\" >\n            <img *ngIf=\"fields[z].value.length > 1\" src={{fields[z].value}} style=\"height: 100%; width:100%; cursor: pointer;margin-bottom:15px;margin-top:15px;\" (click)=\"zoom(fields[z].value)\">\n            <button *ngIf=\"fields[z].value.length > 1\" (click)=\"saveFile(fields[z].value, fields[z].name)\"  style=\"margin-top:15px;margin-bottom:15px;\">Save file</button>\n            <mat-hint >\n              <div style=\"margin-top:15px;color: green;\" *ngIf=\"field.checked\" >\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\n              <div style=\"margin-top:15px;\" *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\n              <div style=\"margin-top:15px;\"*ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\n            </mat-hint>\n          </div>\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'number'\">\n            <input matInput placeholder={{field.placeholder}} disabled={{field.checked}} type={{field.type}} id={{field.name}} value={{field.value}}\n              (input)=\"inputElementListener(field.name)\" required>\n            <mat-hint>\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">Hint: {{field.hint}}</div>\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\n            </mat-hint>\n          </mat-form-field>\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'select'\">\n            <mat-select placeholder={{field.placeholder}} disabled={{field.checked}} name={{field.name}} id={{field.name}} [(ngModel)]=\"fields[z].value\">\n              <mat-option *ngFor=\"let option1 of field.selectOptions\" [value]=\"option1\">\n                {{option1}}\n              </mat-option>\n            </mat-select>\n            <mat-hint>\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\n            </mat-hint>\n          </mat-form-field>\n          <div style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12\" *ngSwitchCase=\"'radio'\">\n            <h3 style=\"margin-top:20px;margin-bottom:20px;\">{{field.placeholder}}</h3>\n            <mat-radio-group disabled={{field.checked}} name={{field.name}} id={{field.name}} [(ngModel)]=\"fields[z].value\">\n              <mat-radio-button class=\"col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12\" style=\"margin-top:10px;\" *ngFor=\"let option3 of field.checkChoices\"\n                [value]=\"option3\">\n                <br> {{option3}}\n              </mat-radio-button>\n            </mat-radio-group>\n            <mat-hint style=\"margin-top:10px;\" class=\"col-md-8 col-md-offset-0 col-xs-offset-1 col-xs-10\">\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\n            </mat-hint>\n          </div>\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'date'\">\n            <input matInput [matDatepicker]=\"picker\" placeholder=\"Choose a date\" value={{field.value}} id={{field.name}} name={{field.name}}\n              (dateInput)=\"addEvent(field.name, $event)\">\n            <mat-hint>\n              <div style=\"color: green;\" *ngIf=\"field.checked\">\n                <i style=\"font-size:15px\" class=\"material-icons\">done</i> Field checked by an admin.</div>\n              <div *ngIf=\"!field.checked && noReason(field.reason)\">{{field.hint}}</div>\n              <div *ngIf=\"!field.checked && !noReason(field.reason)\" style=\"color:red;font-weight:400;\">Reason: {{field.reason}}</div>\n            </mat-hint>\n            <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n            <mat-datepicker #picker></mat-datepicker>\n          </mat-form-field>\n          <div class=\"col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3\" *ngSwitchCase=\"'submit'\">\n            <input (click)=\"onSubmit()\" type=\"submit\" mat-button class=\"col-md-5  btn btn-primary\" id=\"registerSubmit\" style=\"font-size:30px;margin-bottom:30px;margin-top:40px;\"\n              value=\"Submit\" [disabled]=\"loading\">\n              <mat-spinner  class=\"col-xs-offset-0 col-xs-4 col-md-1 col-md-offset-0\" style=\"margin-left:16px;margin-top:26.5px;margin-left:16px;\" *ngIf=\"loading\" [diameter]=\"30\"></mat-spinner>\n            \n          </div>\n        </div>\n      </form>\n      <div class=\"col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3\" *ngIf=\"j>0 && j<6\">\n        <button mat-button matStepperPrevious>Back</button>\n        <button mat-button matStepperNext>Next</button>\n      </div>\n      <div class=\"col-md-8 col-md-offset-5 col-xs-4 col-xs-offset-3\" *ngIf=\"j==0\">\n        <button mat-button matStepperNext>Next</button>\n      </div>\n    </mat-step>\n  </div>\n</mat-horizontal-stepper>\n<div id=\"myModal\" class=\"modal\">\n    <span (click)=\"closeModal()\" class=\"close\">&times;</span>\n    <img class=\"modal-content\" id=\"img01\">\n    <div id=\"caption\"></div>\n</div>"
+module.exports = "<mat-horizontal-stepper *ngIf=\"!loading\" class=\"col-md-12 col-md-offset-0 col-xs-offset-0 col-xs-12\" style=\"background: transparent;width:100%;\"\n  [linear]=false>\n  <div *ngFor=\"let j of [0,1,2,3,4,5,6]\">\n    <mat-step [stepControl]=\"'firstFormGroup'\">\n      <form *ngFor=\"let field of fields; let z = index\">\n        <div *ngIf=\"z<(fields.length)/7*(j+1) && z>=(fields.length)/7*j \" [ngSwitch]=\"field.type\">\n          <ng-template matStepLabel>Step {{j+1}}</ng-template>\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'text'\">\n            <input matInput placeholder={{field.placeholder}} type={{field.type}} id={{field.name}} value={{field.value}} (input)=\"inputElementListener(field.name)\"\n              required>\n            <mat-hint>\n              <mat-checkbox [(ngModel)]=\"fields[z].checked\" name=\"{{fields[z].name + '-check'}}\" id=\"{{fields[z].name + '-check'}}\">Mark as valid!</mat-checkbox>\n              <button *ngIf=\"!fields[z].checked\" (click)=\"openDialog(z)\" mat-button style=\"color: red;font-size:15px;\"> Add reason </button>\n            </mat-hint>\n          </mat-form-field>\n          <div style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12\" *ngSwitchCase=\"'file'\">\n            <h3 style=\"margin-top:20px;margin-bottom:20px;\">{{field.placeholder}}</h3>\n            <input type={{field.type}} id={{field.name}} accept=\"image/*\" (change)=\"changeListener($event, z)\">\n            <img *ngIf=\"fields[z].value.length > 1\" src={{fields[z].value}} style=\"height: 50%; width:50%; cursor: pointer;margin-bottom:15px;margin-top:15px;\"\n              (click)=\"zoom(fields[z].value)\"><br>\n            <button *ngIf=\"fields[z].value.length > 1\" (click)=\"saveFile(fields[z].value, fields[z].name)\" style=\"margin-top:15px;margin-bottom:15px;\">Save file</button>\n            <br>\n            <mat-hint >\n              <mat-checkbox [(ngModel)]=\"fields[z].checked\" name=\"{{fields[z].name + '-check'}}\" id=\"{{fields[z].name + '-check'}}\">Mark as valid!</mat-checkbox>\n              <button *ngIf=\"!fields[z].checked\" (click)=\"openDialog(z)\" mat-button style=\"color: red;font-size:15px;\"> Add reason</button>\n            </mat-hint>\n          </div>\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'number'\">\n            <input matInput placeholder={{field.placeholder}} type={{field.type}} id={{field.name}} value={{field.value}} (input)=\"inputElementListener(field.name)\"\n              required>\n            <mat-hint >\n              <mat-checkbox [(ngModel)]=\"fields[z].checked\" name=\"{{fields[z].name + '-check'}}\" id=\"{{fields[z].name + '-check'}}\">Mark as valid!</mat-checkbox>\n              <button *ngIf=\"!fields[z].checked\" (click)=\"openDialog(z)\" mat-button style=\"color: red;font-size:15px;\"> Add reason</button>\n            </mat-hint>\n          </mat-form-field>\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'select'\">\n            <mat-select placeholder={{field.placeholder}} name={{field.name}} id={{field.name}} [(ngModel)]=\"fields[z].value\">\n              <mat-option *ngFor=\"let option1 of field.selectOptions\" [value]=\"option1\">\n                {{option1}}\n              </mat-option>\n            </mat-select>\n            <mat-hint >\n              <mat-checkbox [(ngModel)]=\"fields[z].checked\" name=\"{{fields[z].name + '-check'}}\" id=\"{{fields[z].name + '-check'}}\">Mark as valid!</mat-checkbox>\n              <button *ngIf=\"!fields[z].checked\" (click)=\"openDialog(z)\" mat-button style=\"color: red;font-size:15px;\"> Add reason</button>\n            </mat-hint>\n          </mat-form-field>\n          <div style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-0 col-xs-12\" *ngSwitchCase=\"'radio'\">\n            <h3 style=\"margin-top:20px;margin-bottom:20px;\">{{field.placeholder}}</h3>\n            <mat-radio-group disabled={{field.checked}} name={{field.name}} id={{field.name}} [(ngModel)]=\"fields[z].value\">\n              <mat-radio-button class=\"col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12\" style=\"margin-top:10px;\" *ngFor=\"let option3 of field.checkChoices\"\n                [value]=\"option3\">\n                <br> {{option3}}\n              </mat-radio-button>\n            </mat-radio-group>\n            <mat-hint style=\"margin-top:10px;\" class=\"col-md-8 col-md-offset-0 col-xs-offset-1 col-xs-10\">\n              <mat-checkbox [(ngModel)]=\"fields[z].checked\" name=\"{{fields[z].name + '-check'}}\" id=\"{{fields[z].name + '-check'}}\">Mark as valid!</mat-checkbox>\n              <button *ngIf=\"!fields[z].checked\" (click)=\"openDialog(z)\" mat-button style=\"color: red;font-size:15px;\"> Add reason</button>\n            </mat-hint>\n          </div>\n          <mat-form-field style=\"margin-top:30px;margin-bottom:20px;\" class=\"col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10\" *ngSwitchCase=\"'date'\">\n            <input matInput [matDatepicker]=\"picker\" placeholder=\"Choose a date\" value={{field.value}} id={{field.name}} name={{field.name}}\n              (dateInput)=\"addEvent(field.name, $event)\">\n            <mat-hint >\n              <mat-checkbox [(ngModel)]=\"fields[z].checked\" name={{field.name}}>Mark as valid!</mat-checkbox>\n              <button *ngIf=\"!fields[z].checked\" (click)=\"openDialog(z)\" mat-button style=\"color: red;font-size:15px;\"> Add reason</button>\n            </mat-hint>\n            <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n            <mat-datepicker #picker></mat-datepicker>\n          </mat-form-field>\n          <div class=\"col-md-12 col-md-offset-0 col-xs-12 col-xs-offset-0\" *ngSwitchCase=\"'submit'\">\n            <input (click)=\"onSubmit()\" type=\"submit\" mat-button class=\"col-md-4 col-md-offset-1 col-xs-12 col-xs-offset-0 btn btn-primary\" id=\"registerSubmit\" style=\"font-size:2em;margin-bottom:30px;margin-top:20px;\"\n              value=\"Send Feedback\" [disabled]=\"loading\">\n              <input (click)=\"onApprove()\" type=\"submit\" mat-button class=\"col-md-4 col-md-offset-2 col-xs-12 col-xs-offset-0  btn btn-primary\" id=\"registerSubmit\" style=\"font-size:2em;margin-bottom:30px;margin-top:20px;\"\n              value=\"Approve\" [disabled]=\"loading\">\n            <mat-spinner class=\"col-xs-offset-0 col-xs-4 col-md-1 col-md-offset-0\" style=\"margin-left:16px;margin-top:26.5px;margin-left:16px;\"\n              *ngIf=\"loading\" [diameter]=\"30\"></mat-spinner>\n          </div>\n        </div>\n      </form>\n      \n      <div class=\"col-md-8 col-md-offset-4 col-xs-4 col-xs-offset-3\" *ngIf=\"j>0 && j<6\">\n        <button mat-button matStepperPrevious>Back</button>\n        <button mat-button matStepperNext>Next</button>\n      </div>\n      <div class=\"col-md-8 col-md-offset-5 col-xs-4 col-xs-offset-3\" *ngIf=\"j==0\">\n        <button mat-button matStepperNext>Next</button>\n      </div>\n    </mat-step>\n  </div>\n</mat-horizontal-stepper>\n<div id=\"myModal\" class=\"modal\">\n  <span (click)=\"closeModal()\" class=\"close\">&times;</span>\n  <img class=\"modal-content\" id=\"img01\">\n  <div id=\"caption\"></div>\n</div>"
 
 /***/ }),
 
@@ -3091,10 +3285,12 @@ module.exports = "<mat-horizontal-stepper *ngIf=\"!loading\" class=\"col-md-12 c
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SeeFormComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SeeFormComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogReasonComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__("../../../../../src/app/_services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3104,13 +3300,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 
 
 var SeeFormComponent = (function () {
-    function SeeFormComponent(router, userService) {
+    function SeeFormComponent(router, userService, dialog) {
         this.router = router;
         this.userService = userService;
+        this.dialog = dialog;
     }
     SeeFormComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -3158,6 +3359,17 @@ var SeeFormComponent = (function () {
         var blob = new Blob(byteArrays, { type: contentType });
         return blob;
     };
+    SeeFormComponent.prototype.openDialog = function (i) {
+        var _this = this;
+        var dialogRef = this.dialog.open(DialogReasonComponent, {
+            data: { reason: this.reason }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            _this.reason = result;
+            _this.fields[i].reason = _this.reason;
+            _this.fields[i].checked = false;
+        });
+    };
     SeeFormComponent.prototype.closeModal = function () {
         var modal = document.getElementById('myModal');
         modal.style.display = 'none';
@@ -3169,16 +3381,23 @@ var SeeFormComponent = (function () {
         modalImg.src = src;
     };
     SeeFormComponent.prototype.onSubmit = function () {
-        var email = localStorage.getItem('currUserMail');
-        var status = true;
-        for (var i = 0; i < this.fields.length - 1; i++) {
-            this.fields[i].reason = '';
-            if (this.fields[i].value === '') {
-                status = false;
-                break;
+        for (var i = 0; i < this.fields.length; i++) {
+            if (this.fields[i].reason !== '') {
+                this.fields[i].value = '';
             }
         }
-        this.userService.sendForm(email, this.fields, status, false)
+        this.userService.sendForm(this.currentUserMail, this.fields, false, false)
+            .subscribe(function (data) {
+            alert(data);
+        }, function (error) {
+            alert(error);
+        });
+    };
+    SeeFormComponent.prototype.onApprove = function () {
+        for (var i = 0; i < this.fields.length; i++) {
+            this.fields[i].checked = true;
+        }
+        this.userService.sendForm(this.currentUserMail, this.fields, true, true)
             .subscribe(function (data) {
             alert(data);
         }, function (error) {
@@ -3196,9 +3415,35 @@ var SeeFormComponent = (function () {
             styles: [__webpack_require__("../../../../../src/app/see-form/see-form.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]])
+            __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["i" /* MatDialog */]])
     ], SeeFormComponent);
     return SeeFormComponent;
+}());
+
+var DialogReasonComponent = (function () {
+    function DialogReasonComponent(dialogRef, dialModalRef, data) {
+        this.dialogRef = dialogRef;
+        this.dialModalRef = dialModalRef;
+        this.data = data;
+    }
+    DialogReasonComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    DialogReasonComponent.prototype.changePosition = function () {
+        this.dialModalRef.updatePosition({ top: '250px', left: '250px' });
+    };
+    DialogReasonComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            // tslint:disable-next-line:component-selector
+            selector: 'dialog-reason-dialog',
+            template: __webpack_require__("../../../../../src/app/see-form/dialog-reason.html"),
+        }),
+        __param(2, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_material__["k" /* MatDialogRef */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["k" /* MatDialogRef */], Object])
+    ], DialogReasonComponent);
+    return DialogReasonComponent;
 }());
 
 
@@ -3226,7 +3471,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/sidenav-admin/sidenav-admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body  >\n  <div class=\"example-container\" [class.example-is-mobile]=\"mobileQuery.matches\">\n    <mat-toolbar color=\"primary\" id=\"topbar\" class=\"example-toolbar\">\n      <button mat-icon-button (click)=\"snav.toggle()\">\n        <mat-icon style=\"font-size:40px;\">&#9776;</mat-icon>\n      </button>\n      <img style=\"margin-left:30px;width:165.137px;height:50px;\" src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png\"\n        alt=\"FII Admis logo\">\n    </mat-toolbar>\n  \n    <mat-sidenav-container style=\"background:rgba(31,50,79,0.9)\" class=\"example-sidenav-container\" [style.marginTop.px]=\"mobileQuery.matches ? 56 : 0\">\n      <mat-sidenav id=\"rightbar\" #snav [mode]=\"mobileQuery.matches ? 'over' : 'side'\" [fixedInViewport]=\"mobileQuery.matches\" fixedTopGap=\"56\">\n        <mat-nav-list>\n          <a class=\"sidenav-button\" mat-list-item (click)=\"announcements()\">Announcements</a>\n          <a class=\"sidenav-button\" mat-list-item (click)=\"form()\">Candidates</a>\n          <a class=\"sidenav-button\" mat-list-item (click)=\"logout()\">Logout</a>\n        </mat-nav-list>\n      </mat-sidenav>\n  \n      <mat-sidenav-content id=\"main\">\n        <ng-content></ng-content>\n      </mat-sidenav-content>\n  \n    </mat-sidenav-container>\n  </div>\n  </body>"
+module.exports = "<body  >\n  <div class=\"example-container\" [class.example-is-mobile]=\"mobileQuery.matches\">\n    <mat-toolbar color=\"primary\" id=\"topbar\" class=\"example-toolbar\">\n      <button mat-icon-button (click)=\"snav.toggle()\">\n        <mat-icon style=\"font-size:40px;\">&#9776;</mat-icon>\n      </button>\n      <img style=\"margin-left:30px;width:165.137px;height:50px;\" src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png\"\n        alt=\"FII Admis logo\">\n    </mat-toolbar>\n  \n    <mat-sidenav-container style=\"background:rgba(31,50,79,0.9)\" class=\"example-sidenav-container\" [style.marginTop.px]=\"mobileQuery.matches ? 56 : 0\">\n      <mat-sidenav id=\"rightbar\" #snav [mode]=\"mobileQuery.matches ? 'over' : 'side'\" [fixedInViewport]=\"mobileQuery.matches\" fixedTopGap=\"56\">\n        <mat-nav-list>\n          <a class=\"sidenav-button\" mat-list-item (click)=\"announcements()\">Announcements</a>\n          <a class=\"sidenav-button\" mat-list-item (click)=\"form()\">Candidates</a>\n          <a class=\"sidenav-button\" mat-list-item (click)=\"repartition()\">Repartition</a>\n          <a class=\"sidenav-button\" mat-list-item (click)=\"logout()\">Logout</a>\n        </mat-nav-list>\n      </mat-sidenav>\n  \n      <mat-sidenav-content id=\"main\">\n        <ng-content></ng-content>\n      </mat-sidenav-content>\n  \n    </mat-sidenav-container>\n  </div>\n  </body>"
 
 /***/ }),
 
@@ -3273,12 +3518,15 @@ var SidenavAdminComponent = (function () {
         this.router.navigate(['/']);
     };
     SidenavAdminComponent.prototype.announcements = function () {
-        this.toggle(1, 0);
+        this.toggle(1, 0, 0);
     };
     SidenavAdminComponent.prototype.form = function () {
-        this.toggle(0, 1);
+        this.toggle(0, 1, 0);
     };
-    SidenavAdminComponent.prototype.toggle = function (a, b) {
+    SidenavAdminComponent.prototype.repartition = function () {
+        this.toggle(0, 0, 1);
+    };
+    SidenavAdminComponent.prototype.toggle = function (a, b, c) {
         if (a === 1) {
             document.getElementById('announcements').style.display = 'block';
         }
@@ -3290,6 +3538,12 @@ var SidenavAdminComponent = (function () {
         }
         else {
             document.getElementById('form').style.display = 'none';
+        }
+        if (c === 1) {
+            document.getElementById('repartition').style.display = 'block';
+        }
+        else {
+            document.getElementById('repartition').style.display = 'none';
         }
     };
     SidenavAdminComponent = __decorate([
@@ -3330,7 +3584,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/sidenav/sidenav.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<body  >\r\n<div class=\"example-container\" [class.example-is-mobile]=\"mobileQuery.matches\">\r\n  <mat-toolbar color=\"primary\" id=\"topbar\" class=\"example-toolbar\">\r\n    <button mat-icon-button (click)=\"snav.toggle()\">\r\n      <mat-icon style=\"font-size:40px;\">&#9776;</mat-icon>\r\n    </button>\r\n    <img style=\"margin-left:30px;width:165.137px;height:50px;\" src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png\"\r\n      alt=\"FII Admis logo\">\r\n  </mat-toolbar>\r\n\r\n  <mat-sidenav-container style=\"background:rgba(31,50,79,0.9)\" class=\"example-sidenav-container\" [style.marginTop.px]=\"mobileQuery.matches ? 56 : 0\">\r\n    <mat-sidenav id=\"rightbar\" #snav [mode]=\"mobileQuery.matches ? 'over' : 'side'\" [fixedInViewport]=\"mobileQuery.matches\" fixedTopGap=\"56\">\r\n      <mat-nav-list>\r\n        <a class=\"sidenav-button\" mat-list-item (click)=\"announcements()\">Announcements</a>\r\n        <a class=\"sidenav-button\" mat-list-item (click)=\"notifications()\">Notifications</a>\r\n        <a class=\"sidenav-button\" mat-list-item (click)=\"form()\">Application Form</a>\r\n        <a class=\"sidenav-button\" mat-list-item (click)=\"reset()\">Reset Password</a>\r\n        <a class=\"sidenav-button\" mat-list-item (click)=\"logout()\">Logout</a>\r\n      </mat-nav-list>\r\n    </mat-sidenav>\r\n\r\n    <mat-sidenav-content id=\"main\">\r\n      <ng-content></ng-content>\r\n    </mat-sidenav-content>\r\n\r\n  </mat-sidenav-container>\r\n</div>\r\n</body>"
+module.exports = "<body  >\r\n<div class=\"example-container\" [class.example-is-mobile]=\"mobileQuery.matches\">\r\n  <mat-toolbar color=\"primary\" id=\"topbar\" class=\"example-toolbar\">\r\n    <button mat-icon-button (click)=\"snav.toggle()\">\r\n      <mat-icon style=\"font-size:40px;\">&#9776;</mat-icon>\r\n    </button>\r\n    <img style=\"margin-left:30px;width:165.137px;height:50px;\" src=\"https://raw.githubusercontent.com/ip-b1-2017/fii-admission/master/FrontEnd/static/images/logo.png\"\r\n      alt=\"FII Admis logo\">\r\n  </mat-toolbar>\r\n\r\n  <mat-sidenav-container style=\"background:rgba(31,50,79,0.9)\" class=\"example-sidenav-container\" [style.marginTop.px]=\"mobileQuery.matches ? 56 : 0\">\r\n    <mat-sidenav id=\"rightbar\" #snav [mode]=\"mobileQuery.matches ? 'over' : 'side'\" [fixedInViewport]=\"mobileQuery.matches\" fixedTopGap=\"56\">\r\n      <mat-nav-list>\r\n        <a class=\"sidenav-button\" mat-list-item (click)=\"announcements()\">Announcements</a>\r\n        <a class=\"sidenav-button\" mat-list-item (click)=\"form()\">Application Form</a>\r\n        <a class=\"sidenav-button\" mat-list-item (click)=\"reset()\">Reset Password</a>\r\n        <a class=\"sidenav-button\" mat-list-item (click)=\"logout()\">Logout</a>\r\n      </mat-nav-list>\r\n    </mat-sidenav>\r\n\r\n    <mat-sidenav-content id=\"main\">\r\n      <ng-content></ng-content>\r\n    </mat-sidenav-content>\r\n\r\n  </mat-sidenav-container>\r\n</div>\r\n</body>"
 
 /***/ }),
 
@@ -3374,18 +3628,15 @@ var SidenavComponent = (function () {
         this.router.navigate(['/']);
     };
     SidenavComponent.prototype.announcements = function () {
-        this.toggle(1, 0, 0, 0);
-    };
-    SidenavComponent.prototype.notifications = function () {
-        this.toggle(0, 1, 0, 0);
+        this.toggle(1, 0, 0);
     };
     SidenavComponent.prototype.form = function () {
-        this.toggle(0, 0, 1, 0);
+        this.toggle(0, 1, 0);
     };
     SidenavComponent.prototype.reset = function () {
-        this.toggle(0, 0, 0, 1);
+        this.toggle(0, 0, 1);
     };
-    SidenavComponent.prototype.toggle = function (a, b, c, d) {
+    SidenavComponent.prototype.toggle = function (a, b, c) {
         if (a === 1) {
             document.getElementById('announcements').style.display = 'block';
         }
@@ -3393,18 +3644,12 @@ var SidenavComponent = (function () {
             document.getElementById('announcements').style.display = 'none';
         }
         if (b === 1) {
-            document.getElementById('notifications').style.display = 'block';
-        }
-        else {
-            document.getElementById('notifications').style.display = 'none';
-        }
-        if (c === 1) {
             document.getElementById('form').style.display = 'block';
         }
         else {
             document.getElementById('form').style.display = 'none';
         }
-        if (d === 1) {
+        if (c === 1) {
             document.getElementById('reset').style.display = 'block';
         }
         else {
