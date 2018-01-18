@@ -7,13 +7,14 @@ using AutoMapper;
 using Business.CandidatesRepo;
 using Business.RepartitionRepo;
 using Data.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Api.Controllers
 {
-    // [Authorize(AuthenticationSchemes = "Bearer", Policy = "User")]
-    [Produces("application/json")]
+  [Authorize(AuthenticationSchemes = "Bearer", Policy = "User")]
+  [Produces("application/json")]
   [Route("api/Repartition")]
   public class RepartitionController : Controller
   {
@@ -31,7 +32,36 @@ namespace Api.Controllers
       _logger = loggerFactory.CreateLogger(nameof(RepartitionController));
     }
 
-   // [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
+      [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
+      [HttpGet]
+      [NoCache]
+      [ProducesResponseType(typeof(List<AssignedCandidate>), 200)]
+      [ProducesResponseType(typeof(ApiResponse), 400)]
+      public async Task<IActionResult> GetAllRepartition()
+      {
+         
+          try
+          {
+              var repartitions = await _repartitionRepository.GetRepartitions();
+              List<AssignedCandidate> assignedCandidatesList = new List<AssignedCandidate>();
+              foreach (var candidate in repartitions)
+              {
+                  assignedCandidatesList.Add(new AssignedCandidate
+                  {
+                      AssignedCanidate = _mapper.Map<CandidatModel>(await _candidateRepository.GetByFormEmail(candidate.ApprovedCandidateEmail)),
+                      ExamTime = candidate.ExamTime
+                  });
+              }
+              return Ok(assignedCandidatesList);
+          }
+          catch (Exception exp)
+          {
+              _logger.LogError(exp.Message);
+              return BadRequest(new ApiResponse { Status = false });
+          }
+      }
+
+    [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
     [HttpGet("{classroomName}")]
     [NoCache]
     [ProducesResponseType(typeof(List<AssignedCandidate>), 200)]
@@ -81,7 +111,7 @@ namespace Api.Controllers
       }
     }
 
-   // [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
+    [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
     [HttpGet("classrooms")]
     [NoCache]
     [ProducesResponseType(typeof(List<Classroom>), 200)]
@@ -101,7 +131,7 @@ namespace Api.Controllers
       }
     }
 
-  //  [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
+    [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
     [HttpPost]
     [ProducesResponseType(typeof(ApiResponse), 201)]
     [ProducesResponseType(typeof(ApiResponse), 400)]

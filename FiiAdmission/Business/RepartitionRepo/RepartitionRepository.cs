@@ -141,5 +141,9 @@ namespace Business.RepartitionRepo
             return new PagingResult<Repartition>(repartitions, totalRecords);
         }
 
+        public async Task<List<Repartition>> GetRepartitions()
+        {
+            return await _databaseContext.Repartitions.Include(c => c.RClassroom).ToListAsync();
+        }
     }
 }
