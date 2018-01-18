@@ -39,4 +39,9 @@
 6. Account creation is accompanied by e-mail validation, to prevent users from being registered without their consent.
 
 ## Agile/Scrum principles applied
-1. 
+1. Each week, the scrum master held a skype conference with all the members to review previous tasks and asign new ones, as well as review the overall status of the project.
+2. In the design phase of the project, we used Trello as a task-mananing platform; when the development began, we switched to Github's Issues platform.
+
+
+Firebase link: https://fii-admission.firebaseapp.com/
+Azure link: http://fiiadmission.azurewebsites.net/swagger/
