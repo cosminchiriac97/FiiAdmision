@@ -25,12 +25,12 @@
 
 ## Best practices
 1. User authentication is done using JWT's, along with Claim-based authorization.
-![JWT authentication](https://lh3.googleusercontent.com/inO4oAAqVAeDz3EWO9oilsFxC3odmD0sE6kgjoXhGK9GR0ivvAoloPeIl4H2bHewfvIXofgla1VlLli1QReC=w1918-h947)
-![Claim-based authorization](https://lh6.googleusercontent.com/dwwArrf23aTzrb6diNs_8YYnM6Wp2Kh9X5Us_XoIvIcLPmVoEJYctBrZB8MaqChTUOE_3dvfNKkn541P3IuU=w1918-h947-rw)
+![JWT authentication](https://drive.google.com/open?id=1rCyCYlthAaEC-qsDGe8acwyk29pUW2L7)
+![Claim-based authorization](https://drive.google.com/open?id=1IoELgK2DmVGekqbltQcu693Fj6oTAKCC)
 
 
 2. The Backend API is hosted on Microsoft's Azure platform, along with the databases and storages, to prevent the dangers of hosting the locally, as well as getting the benefits of shared databases for the projects developers. All the application forms are saved as blobs in the storage, as well as the images that come along.
-![Azure platform](https://lh3.googleusercontent.com/UKdIjhbOH2GFOT2hiBMn-qb_RoB-r3nwzRgDAgt0q7hUVt-fDjqDMNxofpRHQc2CUqI3_AqBkQDRcNKaVFl4=w1918-h947-rw)
+![Azure platform](https://drive.google.com/open?id=1X6ydPy4W13itGfFnGR0-edLddIUiUi3a)
 
 
 3. The Backend API is (re)deployed with every push to the github repository.
