@@ -1,21 +1,20 @@
-﻿using Business.AnnouncementsRepo;
+﻿
+
+using System;
+using Business.AnnouncementsRepo;
 using Data.Domain;
 using IntegrationTests.Base;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Remotion.Linq.Parsing.Structure.IntermediateModel;
+using NUnit.Framework;
 
 namespace IntegrationTests
 {
-    [TestClass]
+    [TestFixture]
     public class AnnouncementRepositoryTests: BaseIntegrationTest
     {
         private readonly ILoggerFactory _loggerFactory = new LoggerFactory();
 
-        [TestMethod]
+        [Test]
         public void Given_Announcements_When_GetAnnouncementIsCalled_Then_ShouldReturnZeroAnnouncements()
         {
             RunOnDatabase(context =>
@@ -32,7 +31,7 @@ namespace IntegrationTests
             });
         }
         
-        [TestMethod]
+        [Test]
         public void Given_Announcements_When_NewAnnuncementIsAdded_Then_ShouldHaveOneAnnouncementInDatabase()
         {
             RunOnDatabase(async context =>
@@ -54,7 +53,7 @@ namespace IntegrationTests
 
         }
         
-        [TestMethod]
+        [Test]
         public void Given_AnnocementRepo_When_GeyyingAnnoucementWith3Records_Then_NumOfRecordShouldBe3()
         {
             RunOnDatabase(async context =>
@@ -91,7 +90,7 @@ namespace IntegrationTests
             );
         }
         */
-        [TestMethod]
+        [Test]
         public void Given_AnnouncementRepo_When_EditingAnnouncementRemove1Record_Then_NumOfRecordsShouldBe1()
         {
             RunOnDatabase(async context =>
@@ -116,7 +115,7 @@ namespace IntegrationTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void Given_AnnoncementRepo_When_RemovingAnnouncement_Then_NumOfAnnouncementShouldBe0()
         {
 

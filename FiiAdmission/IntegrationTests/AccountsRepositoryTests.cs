@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
+
+using System;
 using Business.AccountsRepo;
 using Data.Domain;
 using Data.Persistence.ApplicationUserDb;
-using Data.Persistence.ContentDb;
 using FluentAssertions;
 using IntegrationTests.Base;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace IntegrationTests
 {
-  [TestClass]
+  [TestFixture]
   public class AccountsRepositoryTests : BaseIntegrationTest
   {
     private readonly ILoggerFactory _loggerFactory = new LoggerFactory();
 
-    [TestMethod]
+    [Test]
     public void Given_AccountsRepo_When_GetAllIsCalled_Then_CountIs0()
     {
       RunOnDatabase(async context =>
@@ -39,7 +38,7 @@ namespace IntegrationTests
       });
     }
 
-    [TestMethod]
+    [Test]
     public void Given_AccountsRepo_When_AddIsCalled_Then_CountIs1()
     {
       RunOnDatabase(async context =>

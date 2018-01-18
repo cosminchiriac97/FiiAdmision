@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using Business.CandidatesRepo;
 using Data.Domain;
 using FluentAssertions;
 using IntegrationTests.Base;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
 
 namespace IntegrationTests
 {
-  [TestClass]
+  [TestFixture]
   public class CandidatesRepositoryTests : BaseIntegrationTest
   {
 
     private readonly ILoggerFactory _loggerFactory = new LoggerFactory();
 
-    [TestMethod]
+    [Test]
     public void Given_CandidateRepo_When_GetAllIsCalled_Then_CountIs0()
     {
       RunOnDatabase(async context =>
@@ -32,7 +31,7 @@ namespace IntegrationTests
       });
     }
 
-    [TestMethod]
+    [Test]
     public void Given_CandidateRepo_When_AddAsyncIsCalled_Then_MailValueShouldBeCorrect()
     {
       RunOnDatabase(async context =>
@@ -59,7 +58,7 @@ namespace IntegrationTests
       });
     }
 
-    [TestMethod]
+    [Test]
     public void Given_CandidateRepo_When_GetFormByEmailIsCalled_Then_CorrectCandidateIsReturned()
     {
       RunOnDatabase(async context =>
@@ -87,7 +86,7 @@ namespace IntegrationTests
       });
     }
 
-    [TestMethod]
+    [Test]
     public void Given_CandidateRepo_When_GetApprovedCandidatesIsCalled_Then_CountIs1()
     {
       RunOnDatabase(async context =>
@@ -126,8 +125,8 @@ namespace IntegrationTests
         res.Count.Should().Be(1);
       });
     }
-
-    [TestMethod]
+    
+    [Test]
     public void Given_CandidateRepo_When_GetApprovedCandidatesNumberIsCalled_Then_CountIs1()
     {
       RunOnDatabase(async context =>
@@ -166,8 +165,8 @@ namespace IntegrationTests
         res.Should().Be(1);
       });
     }
-
-    [TestMethod]
+    
+    [Test]
     public void Given_CandidateRepo_When_GetCandidatesPageAsyncIsCalled_Then_CountIs1()
     {
       RunOnDatabase(async context =>

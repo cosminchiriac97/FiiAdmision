@@ -1,8 +1,9 @@
 ﻿
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using System;
 using Data.Persistence.ContentDb;
+using Microsoft.EntityFrameworkCore;
+using NUnit.Framework;
 
 namespace IntegrationTests.Base
 {
@@ -10,14 +11,14 @@ namespace IntegrationTests.Base
     {
         protected virtual bool UseSqlServer => false;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialie()
         {
             DeleteDatabase();
             CreateDatabase();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void CleanUp()
         {
             DeleteDatabase();
