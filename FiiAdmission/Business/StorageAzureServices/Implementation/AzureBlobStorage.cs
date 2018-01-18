@@ -43,42 +43,6 @@ namespace Business.StorageAzureServices.Implementation
             return blockBlob;
         }
 
-        private async Task<List<AzureBlobItem>> GetBlobListAsync(bool useFlatListing = true)
-        {
-            //Container
-            CloudBlobContainer blobContainer = await GetContainerAsync();
-
-            //List
-            var list = new List<AzureBlobItem>();
-            BlobContinuationToken token = null;
-            do
-            {
-                BlobResultSegment resultSegment =
-                    await blobContainer.ListBlobsSegmentedAsync("", useFlatListing,
-                          new BlobListingDetails(), null, token, null, null);
-                token = resultSegment.ContinuationToken;
-
-                foreach (IListBlobItem item in resultSegment.Results)
-                {
-                    list.Add(new AzureBlobItem(item));
-                }
-            } while (token != null);
-
-            return list.OrderBy(i => i.Folder).ThenBy(i => i.Name).ToList();
-        }
-
-        public async Task UploadAsync(string blobName, string filePath)
-        {
-            //Blob
-            CloudBlockBlob blockBlob = await GetBlockBlobAsync(blobName);
-
-            //Upload
-            using (var fileStream = System.IO.File.Open(filePath, FileMode.Open))
-            {
-                fileStream.Position = 0;
-                await blockBlob.UploadFromStreamAsync(fileStream);
-            }
-        }
 
         public async Task UploadAsync(string blobName, Stream stream)
         {
@@ -114,32 +78,6 @@ namespace Business.StorageAzureServices.Implementation
                     sr.Dispose();
                 }
             }
-        }
-
-        public async Task DownloadAsync(string blobName, string path)
-        {
-            //Blob
-            CloudBlockBlob blockBlob = await GetBlockBlobAsync(blobName);
-
-            //Download
-            await blockBlob.DownloadToFileAsync(path, FileMode.Create);
-        }
-     
-
-     //   Hide Copy Code
-        public async Task<List<AzureBlobItem>> ListAsync()
-        {
-            return await GetBlobListAsync();
-        }
-
-        public async Task<List<string>> ListFoldersAsync()
-        {
-            var list = await GetBlobListAsync();
-            return Enumerable.Where(list, i => !string.IsNullOrEmpty(i.Folder))
-                       .Select(i => i.Folder)
-                       .Distinct<string>()
-                       .OrderBy(i => i)
-                       .ToList();
         }
 
         public async Task DeleteAsync(string blobName)

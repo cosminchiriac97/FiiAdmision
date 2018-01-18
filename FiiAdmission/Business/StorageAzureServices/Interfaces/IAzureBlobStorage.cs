@@ -10,11 +10,7 @@ namespace Business.StorageAzureServices.Interfaces
     {
         Task<string> DownloadAsync(string blobName);
         Task<Boolean> ExistBlob(string blobName);
-        Task DeleteAsync(string blobName);
-        Task DownloadAsync(string blobName, string path);
-        Task<List<AzureBlobItem>> ListAsync();
-        Task<List<string>> ListFoldersAsync();
-        Task UploadAsync(string blobName, Stream stream);
-        Task UploadAsync(string blobName, string filePath);
+        Task DeleteAsync(string blobName);        
+        Task UploadAsync(string blobName, Stream stream);  
     }
 }

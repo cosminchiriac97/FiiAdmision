@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Api.Controllers
 {
+  [Authorize(AuthenticationSchemes = "Bearer", Policy = "User")]
   [Produces("application/json")]
   [Route("api/Announcement")]
   public class AnnouncementController : Controller
@@ -72,9 +73,7 @@ namespace Api.Controllers
     }
 
     [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
-    //[Authorize(Policy = "ApiUser")]
     [HttpPost]
-    //[ValidateAntiForgeryToken]
     [ProducesResponseType(typeof(ApiResponseObject<AddAnnouncementModel>), 201)]
     [ProducesResponseType(typeof(ApiResponse), 400)]
     public async Task<IActionResult> CreateAnnouncement([FromBody] AddAnnouncementModel model)
@@ -102,8 +101,8 @@ namespace Api.Controllers
       }
     }
 
+    [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
     [HttpPut]
-    //[ValidateAntiForgeryToken]
     [ProducesResponseType(typeof(ApiResponseObject<AnnouncementModel>), 200)]
     [ProducesResponseType(typeof(ApiResponse), 400)]
     public async Task<ActionResult> UpdateAnnouncement([FromBody] AnnouncementModel announcementModel)
@@ -130,8 +129,8 @@ namespace Api.Controllers
       }
     }
 
+    [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
     [HttpDelete("{id}")]
-    //[ValidateAntiForgeryToken]
     [ProducesResponseType(typeof(ApiResponse), 200)]
     [ProducesResponseType(typeof(ApiResponse), 400)]
     public async Task<ActionResult> DeleteAnnouncement(Guid id)
