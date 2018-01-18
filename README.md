@@ -25,12 +25,14 @@
 
 ## Best practices
 1. User authentication is done using JWT's, along with Claim-based authorization.
-![JWT authentication](https://drive.google.com/open?id=1rCyCYlthAaEC-qsDGe8acwyk29pUW2L7)
-![Claim-based authorization](https://drive.google.com/open?id=1IoELgK2DmVGekqbltQcu693Fj6oTAKCC)
+![JWT authentication](https://i.imgur.com/avuKQ70.png)
+
+![Claim based authorization](https://i.imgur.com/Z92hEhp.png)
 
 
 2. The Backend API is hosted on Microsoft's Azure platform, along with the databases and storages, to prevent the dangers of hosting the locally, as well as getting the benefits of shared databases for the projects developers. All the application forms are saved as blobs in the storage, as well as the images that come along.
-![Azure platform](https://drive.google.com/open?id=1X6ydPy4W13itGfFnGR0-edLddIUiUi3a)
+
+![Azure platform](https://i.imgur.com/zaDyodr.png)
 
 
 3. The Backend API is (re)deployed with every push to the github repository.
@@ -40,7 +42,7 @@
 
 ## Agile/Scrum principles applied
 1. Each week, the scrum master held a skype conference with all the members to review previous tasks and asign new ones, as well as review the overall status of the project.
-2. In the design phase of the project, we used Trello as a task-mananing platform; when the development began, we switched to Github's Issues platform.
+2. In the design phase of the project, we used Trello as a task-managing platform; when the development began, we switched to Github's Issues platform.
 
 
 Firebase link: https://fii-admission.firebaseapp.com/
