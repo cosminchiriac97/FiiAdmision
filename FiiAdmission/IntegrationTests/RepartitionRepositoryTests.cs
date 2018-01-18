@@ -9,15 +9,16 @@ using FluentAssertions;
 using IntegrationTests.Base;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace IntegrationTests
 {
-  [TestClass]
+  [TestFixture]
   public class RepartitionRepositoryTests : BaseIntegrationTest
   {
     private readonly ILoggerFactory _loggerFactory = new LoggerFactory();
 
-    [TestMethod]
+    [Test]
     public void Given_RepartitionRepo_When_GenerateRepartitionIsCalled_Then_ResultIsTrue()
     {
       RunOnDatabase(async context =>
@@ -36,7 +37,7 @@ namespace IntegrationTests
       });
     }
 
-    [TestMethod]
+    [Test]
     public void Given_RepartitionRepo_When_GetCandidateRepartitionIsCalled_Then_ValidRepartitionIsReturned()
     {
       RunOnDatabase(async context =>
@@ -56,7 +57,7 @@ namespace IntegrationTests
       });
     }
 
-    [TestMethod]
+    [Test]
     public void Given_RepartitionRepo_When_GetCandidatesPageAsyncIsCalled_Then_ValidRepartitionsAreReturned()
     {
       RunOnDatabase(async context =>
