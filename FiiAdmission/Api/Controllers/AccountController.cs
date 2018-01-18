@@ -20,7 +20,6 @@ namespace Api.Controllers
   [Route("api/[controller]")]
   public class AccountController : Controller
   {
-    //private readonly HttpClient _client = new HttpClient();
     private readonly UserManager<AppUser> _userManager;
 
     private readonly IMapper _mapper;
@@ -66,8 +65,6 @@ namespace Api.Controllers
         Subject = "FIIAdmis - Confirmarea email-ului",
         TextBody = "Confirmati-va mailul, utilizand acest <a href=\"" + callbackUrl + "\">link</a>"
       });
-
-      //await _jobSeekerRepository.AddAsync(new JobSeeker { Id = new Guid(), IdentityId = userIdentity.Id });
 
       return Ok("Account created");
     }
@@ -118,12 +115,6 @@ namespace Api.Controllers
       var code = await _userManager.GeneratePasswordResetTokenAsync(userIdentity);
       var callbackUrl = "https://fii-admission.firebaseapp.com/recovery?userEmail=" + userIdentity.Email +
                         "&code=" + code;
-      /*Url.Action(
-      "PasswordRecoveryStep2",
-      "Account",
-      new { userId = userIdentity.Id, code },
-      HttpContext.Request.Scheme
-  );*/
 
       await _emailSender.SendEmail(new Email
       {
@@ -159,7 +150,6 @@ namespace Api.Controllers
 
     [Authorize(AuthenticationSchemes = "Bearer", Policy = "User")]
     [HttpPut("change_password/{email}")]
-    //[ValidateAntiForgeryToken]
     [ProducesResponseType(typeof(ApiResponse), 400)]
     [ProducesResponseType(200)]
     public async Task<IActionResult> ChangePassword(string email, [FromBody] ResetPasswordModel model)
