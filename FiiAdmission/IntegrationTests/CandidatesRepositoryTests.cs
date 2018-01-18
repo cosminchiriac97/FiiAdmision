@@ -165,7 +165,7 @@ namespace IntegrationTests
         res.Should().Be(1);
       });
     }
-    
+
     [Test]
     public void Given_CandidateRepo_When_GetCandidatesPageAsyncIsCalled_Then_CountIs1()
     {
@@ -214,7 +214,7 @@ namespace IntegrationTests
         var res = await candidateRepo.GetCandidatesPageAsync(1, 1);
 
         //Assert
-        
+        res.TotalRecords.Should().Be(3);
       });
     }
   }

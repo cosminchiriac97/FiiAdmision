@@ -15,6 +15,7 @@ using Microsoft.Extensions.Options;
 
 namespace Api.Controllers
 {
+  [AllowAnonymous]
   [Route("api/[controller]")]
   public class AuthController : Controller
   {
@@ -38,19 +39,11 @@ namespace Api.Controllers
       _jwtOptions = jwtOptions.Value;
     }
 
-    [Authorize(AuthenticationSchemes = "Bearer", Policy = "User")]
-    [HttpGet]
-    public IActionResult Protected()
-    {
-      return Ok("Protected area");
-    }
-
     // POST api/auth/login
-    [AllowAnonymous]
     [HttpPost("login")]
     [ProducesResponseType(typeof(ApiResponseObject<SimpleUserModel>), 204)]
     [ProducesResponseType(typeof(ApiResponse), 400)]
-    public async Task<object> Post([FromBody] CredentialsViewModel credentials)
+    public async Task<object> Login([FromBody] CredentialsViewModel credentials)
     {
       if (!ModelState.IsValid)
       {
