@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Data.Domain
 {
-   public class Repartition
+    public class Repartition
     {
        [Key]
        public Guid Id { set; get; }

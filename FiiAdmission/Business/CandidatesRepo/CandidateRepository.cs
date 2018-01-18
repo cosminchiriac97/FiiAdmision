@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Data.Domain;
 using Data.Persistence.ContentDb;
@@ -10,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Business.CandidatesRepo
 {
-  public class CandidateRepository : ICandidateRepository
+    public class CandidateRepository : ICandidateRepository
   {
     private readonly IContentDbContext _databaseContext;
     private readonly ILogger _logger;

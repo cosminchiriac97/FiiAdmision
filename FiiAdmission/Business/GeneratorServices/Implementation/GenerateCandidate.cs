@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Business.GeneratorServices.Interfaces;
+﻿using Business.GeneratorServices.Interfaces;
 using Data.Domain;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;

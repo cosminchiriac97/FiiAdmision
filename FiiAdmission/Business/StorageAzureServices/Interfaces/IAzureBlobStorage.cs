@@ -1,6 +1,4 @@
 ﻿using System;
-using Business.StorageAzureServices.Implementation;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 

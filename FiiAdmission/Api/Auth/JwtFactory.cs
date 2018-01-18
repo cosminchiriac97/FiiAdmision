@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Principal;
-using System.Text;
 using System.Threading.Tasks;
-using Data.Domain;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Api.Auth
 {
-  public class JwtFactory : IJwtFactory
+    public class JwtFactory : IJwtFactory
   {
     private readonly JwtIssuerOptions _jwtOptions;
 

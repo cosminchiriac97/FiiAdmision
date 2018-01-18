@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Api.Helpers;
 using Api.ModelView;
@@ -17,7 +15,7 @@ namespace Api.Controllers
 {
 
 
-  [Route("api/[controller]")]
+    [Route("api/[controller]")]
   public class AccountController : Controller
   {
     private readonly UserManager<AppUser> _userManager;

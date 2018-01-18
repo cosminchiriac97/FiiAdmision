@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Api.Auth;
 using Api.Helpers;
@@ -15,7 +13,7 @@ using Microsoft.Extensions.Options;
 
 namespace Api.Controllers
 {
-  [AllowAnonymous]
+    [AllowAnonymous]
   [Route("api/[controller]")]
   public class AuthController : Controller
   {

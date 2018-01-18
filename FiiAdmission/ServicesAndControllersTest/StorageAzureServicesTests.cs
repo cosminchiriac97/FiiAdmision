@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using Api.Helpers;
 using Business.StorageAzureServices.Implementation;
 using Business.StorageAzureServices.Interfaces;
-using Microsoft.Extensions.Configuration;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using Assert = NUnit.Framework.Assert;

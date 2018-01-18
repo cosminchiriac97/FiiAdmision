@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Api.ModelView
+﻿namespace Api.ModelView
 {
     public class SimpleUserModel
     {

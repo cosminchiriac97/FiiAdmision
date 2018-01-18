@@ -1,16 +1,11 @@
 ﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net;
 using System.Text;
 using Api.Auth;
-using Api.Helpers;
 using AutoMapper;
 using Business.AccountsRepo;
 using Business.AnnouncementsRepo;
 using Business.CandidatesRepo;
 using Business.EmailServices;
-using Business.GeneratorServices.Implementation;
-using Business.GeneratorServices.Interfaces;
 using Business.RepartitionRepo;
 using Business.SignalR;
 using Business.StorageAzureServices.Implementation;
@@ -19,7 +14,6 @@ using Data.Domain;
 using Data.Persistence.ApplicationUserDb;
 using Data.Persistence.ContentDb;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +26,7 @@ using Swashbuckle.AspNetCore.Swagger;
 
 namespace Api
 {
-  public class Startup
+    public class Startup
   {
     private const string SecretKey = "iNivDmHLpUA223sqsfhqGbMRdRj1PVkH";
     private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));

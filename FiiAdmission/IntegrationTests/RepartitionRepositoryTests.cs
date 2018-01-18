@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Business.CandidatesRepo;
 using Business.RepartitionRepo;
@@ -8,12 +7,11 @@ using Data.Domain;
 using FluentAssertions;
 using IntegrationTests.Base;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 
 namespace IntegrationTests
 {
-  [TestFixture]
+    [TestFixture]
   public class RepartitionRepositoryTests : BaseIntegrationTest
   {
     private readonly ILoggerFactory _loggerFactory = new LoggerFactory();

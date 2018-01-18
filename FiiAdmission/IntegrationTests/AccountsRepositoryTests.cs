@@ -8,12 +8,11 @@ using FluentAssertions;
 using IntegrationTests.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 
 namespace IntegrationTests
 {
-  [TestFixture]
+    [TestFixture]
   public class AccountsRepositoryTests : BaseIntegrationTest
   {
     private readonly ILoggerFactory _loggerFactory = new LoggerFactory();
