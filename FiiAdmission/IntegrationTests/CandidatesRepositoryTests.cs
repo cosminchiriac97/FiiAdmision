@@ -168,7 +168,7 @@ namespace IntegrationTests
     }
 
     [TestMethod]
-    public void Given_CandidateRepo_When_GetCandidatesPageAsyncIsCalled_Then_CountIs1()
+    public void Given_CandidateRepo_When_GetCandidatesPageAsyncIsCalled_Then_CountIs3()
     {
       RunOnDatabase(async context =>
       {
@@ -215,7 +215,7 @@ namespace IntegrationTests
         var res = await candidateRepo.GetCandidatesPageAsync(1, 1);
 
         //Assert
-        
+        res.TotalRecords.Should().Be(3);
       });
     }
   }
