@@ -12,9 +12,9 @@
   - *view notifications*
   - view exam repartitions
 2. As an **administrator**, you are able to:
-  - review application form
+  - *review application form*
   - *create, modify and delete announcements*
   - send notifications
-  - generate the exam repartitions
+  - *generate the exam repartitions*
   
  Functionalities in *italics* have been completed
