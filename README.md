@@ -43,7 +43,14 @@
 4. The Backend API and Front-end run separately.
 5. The Backend API uses swagger, to make testing easier.
 6. Account creation is accompanied by e-mail validation, to prevent users from being registered without their consent.
-7. Frontend server provides _Guards_ that keeps accessing certain resources strictly to logged users
+7. Frontend server provides _Guards_ that keeps accessing certain resources dedicated strictly to logged users.
+
+8. The application form has a dynamic approach as fields are easy to be added, moved or removed.
+
+#### Example:
+
+![JSON_field](https://i.imgur.com/UhHMNaS.png)
+![Interface_field](https://i.imgur.com/mrp7q4a.png)
 
 ## Agile/Scrum principles applied
 1. Each week, the scrum master held a skype conference with all the members to review previous tasks and asign new ones, as well as review the overall status of the project.
