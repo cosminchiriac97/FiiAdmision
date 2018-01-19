@@ -29,9 +29,9 @@
 ![Claim based authorization](https://i.imgur.com/Z92hEhp.png)
 
 
- (The angular service that attaches the *auth_token* to each authorized based request)
+ (The angular service that attaches the *auth_token* to each authorized request)
 
-![JWT_authentication](https://i.imgur.com/NPmPgtA.png)
+![Authorization header](https://i.imgur.com/NPmPgtA.png)
 
 
 2. The Backend API is hosted on Microsoft's Azure platform, along with the databases and storages, to prevent the dangers of hosting the locally, as well as getting the benefits of shared databases for the projects developers. All the application forms are saved as blobs in the storage, as well as the images that come along.
@@ -63,7 +63,7 @@
 - be more patient with project colleagues and learned to accept everyone has different working styles
 - if your project's architecture is planned really well since the early days of the project, your last days will be more bearable
 - to ask before we attempt to modify a pre-implemented functionality
-- _DestroyDatabse()_ is fun times while unit testing a day before project presentation
+- _DestroyDatabase()_ is fun times while unit testing a day before project presentation
 
 
 # Angular Server hosting link: 
